@@ -1,0 +1,41 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+.section {
+    min-height: 500px;
+}
+
+
+.footer {
+    background-color: #ddd;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 5px;
+}
+
+.footer span {
+    margin: 5px;
+}
+
+.section-body h1{
+    font-size: 1.2em;
+}
+
+.section-body form{
+    padding: 30px;
+    text-align: right;
+    background-color: #eee;
+}
+
+table .form-inline{
+    padding: 0px;
+    text-align: center;
+    background-color: white;
+}
+
+
+
