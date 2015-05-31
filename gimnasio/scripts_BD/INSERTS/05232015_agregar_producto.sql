@@ -1,0 +1,1 @@
+INSERT INTO `atleticus`.`productos` (`id_producto`, `producto_descripcion`, `producto_marca`, `producto_categoria`, `producto_tipoProducto`, `producto_genero`, `producto_talle`, `producto_color`) VALUES (NULL, 'Nike shox tele 3 ', '1', '1', '2', '1', '19', NULL);
