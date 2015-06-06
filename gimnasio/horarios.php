@@ -1,4 +1,4 @@
-<?php require("header.php"); ?>
+<?php require("partials/header.php"); ?>
         
         <div class="container-fluid cuerpo">
             
@@ -9,14 +9,14 @@
 
                         <div class="col-md-6">
                             <div class="row sedes">
-                                <h2>Sedes</h2>
+                                <h3>Sedes</h3>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             
                             <div class="row horarios">
-                                <h2>Buscar Horario</h2>
+                                <h3>Buscar Horario</h3>
                             </div>
                             
                             <p class="intro-horarios">Filtrá actividades seleccionando tus intereses y encontrá tus clases favoritas.</p>
@@ -74,4 +74,4 @@
                 </div>
         </div>
         
-<?php require("footer.php"); ?>
+<?php require("partials/footer.php"); ?>

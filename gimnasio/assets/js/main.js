@@ -11,12 +11,12 @@
         var talle = $("#talle-producto").val();
 
         
-        if(descripcion-producto.length == 0){
+      /*  if(descripcion-producto.length == 0){
             $("#descripcion-producto").closest(".form-group").addClass("has-error");
             $("#descripcion-producto").siblings(".glyphicon-remove").removeClass("hide");
             $("#descripcion-producto").siblings(".help-block").html("Completar este campo");
             valid = false;
-        }
+        }*/
 
         if(marca.length == 0){
             $("#marca").closest(".form-group").addClass("has-error");
@@ -108,7 +108,7 @@
     };
 
     /*Ver que formulario poner aca */
-    $("#form-categoria").on("submit", function(){
+    $("#form-productos").on("submit", function(){
         cleanFormError();
         return validarFormData();
     });

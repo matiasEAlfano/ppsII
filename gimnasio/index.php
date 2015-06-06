@@ -1,4 +1,4 @@
-<?php require("header.php"); ?>
+<?php require("partials/header.php"); ?>
         
         <div class="jumbotron flyer">
             
@@ -14,14 +14,14 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="row sedes">
-                            <h2>Nuestros Gimnasios</h2>
+                            <h3>Nuestros Gimnasios</h3>
                         </div>                        
                         <div id="googleMap"></div>             
                     </div>
 
                     <div class="col-md-6">
                         <div class="row horarios">
-                            <h2>Proximas Actividades</h2>
+                            <h3>Proximas Actividades</h3>
                         </div>
                         
                         
@@ -82,4 +82,4 @@
             
         </div>
 
-<?php require("footer.php"); ?>
+<?php require("partials/footer.php"); ?>

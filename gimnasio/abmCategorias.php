@@ -1,4 +1,4 @@
-<?php require("header.php"); ?>
+<?php require("partials/header.php"); ?>
         
             
             <h2 class="titulo-cuerpo">Categorias</h2>            
@@ -47,4 +47,4 @@
             </div>
             
         
-<?php require("footer.php"); ?>
+<?php require("partials/footer.php"); ?>

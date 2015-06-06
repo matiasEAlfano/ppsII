@@ -33,23 +33,16 @@
         return $result->fetch_assoc();
     }
 
-    function getproductos(){
+    function getProductos(){
         $productos = array();
         $c = getConnection();
         $query = "SELECT p.id_producto, p.producto_descripcion, m.marca_nombre, c.categoria_nombre, pt.nombre_tipo_producto, g.genero_nombre, t.talle_nombre, p.producto_color 
         FROM productos as p , marcas as m , categorias as c , `producto-tipo` as pt , generos as g, talles as t
-        WHERE p.producto_marca = m.id_marca AND p.producto_categoria = c.id_categoria AND p.producto_tipoProducto = pt.id_tipo_producto AND p.producto_genero = g.id_genero AND p.producto_talle = t.id_talle"
+        WHERE p.producto_marca = m.id_marca AND p.producto_categoria = c.id_categoria AND p.producto_tipoProducto = pt.id_tipo_producto AND p.producto_genero = g.id_genero AND p.producto_talle = t.id_talle";
         $productos = array();
         if( $result = $c->query($query) ){
             while($fila = $result->fetch_assoc()){
-                $fila['id_producto'] = $fila['id_producto'];
-                $fila['producto_descripcion'] = $fila['producto_descripcion'];
-                $fila['producto_marca'] = $fila['producto_marca'];
-                $fila['producto_categoria'] = $fila['producto_categoria'];
-                $fila['producto_tipoProducto'] = $fila['producto_tipoProducto'];
-                $fila['producto_genero'] = $fila['producto_genero'];
-                $fila['producto_talle'] = $fila['producto_talle'];
-                $fila['producto_color'] = $fila['producto_color'];
+                
                 $productos[] = $fila;
             }
             $result->free();
@@ -116,5 +109,10 @@
                   WHERE id_producto = $productoId";
         return $c->query($query);
     }
+
+/*$productos = getProductos();
+
+var_dump ($productos);*/
+
 
 ?>

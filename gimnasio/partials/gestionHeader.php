@@ -5,10 +5,5 @@
             
             <div class="container cuerpo-admin">
 <!--                ACA VA TODO EL CODIGO!!-->
-                
-                <?php require("partials/menuGestiones.php"); ?>                
-                
-            </div>
-            
-        
-<?php require("partials/footer.php"); ?>
+                                
+                <?php require("partials/menuGestiones.php"); ?>

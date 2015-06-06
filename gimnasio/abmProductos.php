@@ -1,8 +1,5 @@
 
                     <div class="col-md-5">
-                        <div>
-                            <h3>Fotos</h3>
-                        </div>
                         
                         <div class="agrupador_fotos_productos">                        
                         
@@ -27,6 +24,9 @@
                          
                     <div class="col-md-7 atributos_productos ">
                         
+                        <form method="post" action="actions/actions_productos.php" id="form-productos">
+                            
+                                                    
                         <label for="descripcion-producto"> Descripcion</label>                                    
                         <input id="descripcion-producto" type="text" class="texto form-control" placeholder="Descripcion *" >
                         
@@ -107,6 +107,6 @@
                         
                         </div>
                         
-                        
+                       </form> 
                     </div>
 

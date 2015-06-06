@@ -1,7 +1,4 @@
                     <div class="col-md-5">
-                        <div>
-                            <h3>Fotos</h3>
-                        </div>
                         
                         <div class="agrupador_fotos_sedes">                        
                         

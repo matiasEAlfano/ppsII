@@ -1,4 +1,4 @@
-<?php require("header.php"); ?>
+<?php require("partials/header.php"); ?>
 
         <div class="container-fluid cuerpo">
             
@@ -29,4 +29,4 @@
             
         </div>
 
-<?php require("footer.php"); ?>
+<?php require("partials/footer.php"); ?>

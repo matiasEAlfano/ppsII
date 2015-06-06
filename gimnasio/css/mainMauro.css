@@ -54,7 +54,7 @@
 }
 
 .cuerpo-comprar .facturacion button, input, select{
-    margin-bottom: 3%
+    margin-bottom: 1%
 }
 
 .cuerpo-comprar .pagos-resumen .pagos, .resumen{
@@ -176,5 +176,16 @@
     width: 100%;
 }
 
+.abm-contenido{
+    margin-top: 3%;
+}
+
+.abm-inputs{
+    width: 250px;
+}
+
+.abm-tablas{
+    margin-top: 3%;
+}
 
 /**/
