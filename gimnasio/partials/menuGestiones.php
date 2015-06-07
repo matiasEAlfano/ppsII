@@ -39,10 +39,10 @@
                 <a role="menuitem" tabindex="-1" href="abmMarcas.php">Marcas</a>
             </li>
             <li role="presentation">
-                <a role="menuitem" tabindex="-1" href="abmTipoProducto.php"></a>
+                <a role="menuitem" tabindex="-1" href="abmTipoProducto.php">Tipo Producto</a>
             </li>
             <li role="presentation">
-                <a role="menuitem" tabindex="-1" href="abmCategorias.php"></a>
+                <a role="menuitem" tabindex="-1" href="abmCategorias.php">Categoria</a>
             </li>
         </ul>
     </div>
