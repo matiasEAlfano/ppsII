@@ -9,7 +9,6 @@ class ActividadTipo
         $this->connection = Connection::getInstance();
     }
     
-      
 
     function getTipo($tipoId){
         $c = getConnection();
