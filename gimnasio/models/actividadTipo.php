@@ -19,7 +19,8 @@
 
     function getTipos(){
         $c = getConnection();
-        $query = "SELECT id, descripcion FROM `actividad-tipo`";
+        $query = "SELECT id, descripcion FROM `actividad-tipo`
+                order by descripcion";
         $tipos = array();
         if( $result = $c->query($query) ){
             while($fila = $result->fetch_assoc()){

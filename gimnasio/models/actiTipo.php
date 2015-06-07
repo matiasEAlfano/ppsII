@@ -20,7 +20,8 @@ class ActividadTipo
     }
     
     public function getAll(){
-        $query = "SELECT id, descripcion FROM `actividad-tipo`";
+        $query = "SELECT id, descripcion FROM `actividad-tipo`
+                    order by descripcion";
         $tipos = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){

@@ -36,6 +36,6 @@
     </tbody>
 </table>
 
-<script src="assets/js/listado.js"></script>
+<script src="/js/listado.js"></script>
 
 <?php require("partials/gestionFooter.php"); ?>

@@ -20,7 +20,8 @@
     function getTipos(){
         $tipos = array();
         $c = getConnection();
-        $query = "SELECT id, descripcion FROM `actividad-tipo`";
+        $query = "SELECT id, descripcion FROM `actividad-tipo`
+                    Order by descripcion";
         $tipos = array();
         if( $result = $c->query($query) ){
             while($fila = $result->fetch_assoc()){
@@ -35,7 +36,8 @@
         $c = getConnection();
         $query = "SELECT ag.id, ag.descripcion as grupo, ag.idTipo, at.descripcion as tipo  
                  FROM `actividad-grupo` as ag, `actividad-tipo` as at
-                 where ag.idTipo = at.id";
+                 where ag.idTipo = at.id
+                 order by ag.descripcion";
         $grupos = array();
         if( $result = $c->query($query) ){
             while($fila = $result->fetch_assoc()){
