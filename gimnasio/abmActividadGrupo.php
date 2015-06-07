@@ -33,6 +33,7 @@
     </select>
     
     <input type="submit" class="btn btn-primary" name="action" value="<?= $action; ?>"/>
+    <input type="submit" class="btn btn-danger" name="action" value="Cancelar"/>
     
 </form>
 

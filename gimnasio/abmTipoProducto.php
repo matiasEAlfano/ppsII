@@ -1,24 +1,24 @@
 <?php require("partials/gestionHeader.php"); ?>
 
 <?php
-    require("models/marcas.php");
+    require("models/productoTipo.php");
     $id = isset($_GET["id"]) ? $_GET["id"] : null;
     $action = empty($id) ? "guardar" : "actualizar";
     
-    $marcas = getMarcas();
-    $marca = array();
+    $tipos = getTipos();
+    $tipo = array();
     if($action == "actualizar"){
-        $marca = getMarca($id);
+        $tipo = getTipo($id);
     }
 ?>
-<form method="post" action="actions/actions_marcas.php">
+<form method="post" action="actions/actions_tipos_productos.php">
     
     <?php if($id): ?>
-        <input type="hidden" name="id_marca" value="<?= $id; ?>"/>                      
+        <input type="hidden" name="id_tipo" value="<?= $id; ?>"/>                      
     <?php endif; ?>
     
-    <label>Nombre de Marca: </label>
-    <input name = "nombre_marca" type="text" class="form-control abm-inputs" id="marca_nombre" value="<?= !empty($marca) ? $marca["marca_nombre"] : ""?>" placeholder="Ingrese marca">
+    <label>Nombre tipo de producto: </label>
+    <input name = "nombre_tipo" type="text" class="form-control abm-inputs" id="nombre_tipo" value="<?= !empty($tipo) ? $tipo["nombre_tipo_producto"] : ""?>" placeholder="Ingrese tipo de producto">
     <input type="submit" class="btn btn-primary" name="action" value="<?= $action; ?>"/>
     <input type="submit" class="btn btn-danger" name="action" value="Cancelar"/>
     
@@ -27,20 +27,20 @@
 <table class="table table-hover abm-tablas">
     <thead>
         <tr>
-            <th>Marcas: </th>
+            <th>Tipo de producto: </th>
             <th>Modificar / Eliminar</th>
         </tr>
     </thead>
     <tbody>
 
-    <?php foreach($marcas as $marca) {?>
+    <?php foreach($tipos as $tipo) {?>
     <tr>
-        <td class="acti-tipoDescripcion"><?= $marca["marca_nombre"];?></td>
+        <td class="acti-tipoDescripcion"><?= $tipo["nombre_tipo_producto"];?></td>
         
         <td>
-            <form class="form-inline" action="actions/actions_marcas.php" method="post">
+            <form class="form-inline" action="actions/actions_tipos_productos.php" method="post">
                 
-                <input type="hidden" name="id" value="<?= $marca["id_marca"]; ?>"/>
+                <input type="hidden" name="id" value="<?= $tipo["id_tipo_producto"]; ?>"/>
                 
                 <button type="submit" name="action" value="editar" class="btn btn-success editar"><sapan class="glyphicon glyphicon-pencil" aria-hidden="true"></sapan></button>
                     
@@ -54,7 +54,3 @@
 </table>
 
 <?php require("partials/gestionFooter.php"); ?>
-                   
-
-
-
