@@ -12,7 +12,6 @@ class ActividadTipo
       
 
     function getTipo($tipoId){
-        $tipos = array();
         $c = getConnection();
         $id = (int) $c->real_escape_string($tipoId);
         $query = "SELECT id, descripcion FROM `actividad-tipo` WHERE id = $id";
