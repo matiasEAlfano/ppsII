@@ -11,6 +11,7 @@
          
         $tipo = array();
         $tipo["nombre_tipo_producto"] = $request["nombre_tipo"];
+        $tipo["id_categoria"] = $request["idCategoria"];
         
         if(createTipo($tipo)){
             redirect("../abmTipoProducto.php");
@@ -24,15 +25,14 @@
         $tipo = array();
         $tipo["id_tipo_producto"] = $request["id_tipo"];
         $tipo["nombre_tipo_producto"] = $request["nombre_tipo"];
-       
+        $tipo["id_categoria"] = $request["idCategoria"];
+        
         if(updateTipo($tipo)){
             redirect("../abmTipoProducto.php");
         }else{
             redirect("../error.php");
         }
     }
-
-
 
 
     function eliminar($request){

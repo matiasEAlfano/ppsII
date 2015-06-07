@@ -10,6 +10,7 @@
         require("../models/actividadTipo.php");
         $tipo = array();
         $tipo["descripcion"] = $request["descripcion"];
+        
         if(createTipo($tipo)){
             redirect("../abmActividadTipo.php");
         }else{
