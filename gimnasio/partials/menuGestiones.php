@@ -36,13 +36,19 @@
                 <a role="menuitem" tabindex="-1" href="abmActividadGrupo.php">Actividad Grupo</a>
             </li>
             <li role="presentation">
-                <a role="menuitem" tabindex="-1" href="abmMarcas.php">Marcas</a>
+                <a role="menuitem" tabindex="-1" href="abmMarcas.php">Producto Marcas</a>
             </li>
             <li role="presentation">
-                <a role="menuitem" tabindex="-1" href="abmTipoProducto.php">Tipo Producto</a>
+                <a role="menuitem" tabindex="-1" href="abmTipoProducto.php">Producto Tipo</a>
             </li>
             <li role="presentation">
-                <a role="menuitem" tabindex="-1" href="abmCategorias.php">Categoria</a>
+                <a role="menuitem" tabindex="-1" href="abmCategorias.php">Producto Categoria</a>
+            </li>
+            <li role="presentation">
+                <a role="menuitem" tabindex="-1" href="abmGeneroProducto.php">Producto Genero</a>
+            </li>
+            <li role="presentation">
+                <a role="menuitem" tabindex="-1" href="abmTallesProducto.php">Producto Talle</a>
             </li>
         </ul>
     </div>
