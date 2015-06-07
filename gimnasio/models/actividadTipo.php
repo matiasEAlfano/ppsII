@@ -10,7 +10,6 @@
     }
 
     function getTipo($tipoId){
-        $tipos = array();
         $c = getConnection();
         $id = (int) $c->real_escape_string($tipoId);
         $query = "SELECT id, descripcion FROM `actividad-tipo` WHERE id = $id";
@@ -19,7 +18,6 @@
     }
 
     function getTipos(){
-        $tipos = array();
         $c = getConnection();
         $query = "SELECT id, descripcion FROM `actividad-tipo`";
         $tipos = array();

@@ -10,7 +10,6 @@
     }
 
     function getGrupo($grupoId){
-        $grupos = array();
         $c = getConnection();
         $id = (int) $c->real_escape_string($grupoId);
         $query = "SELECT id, idTipo, descripcion FROM `actividad-grupo` WHERE id = $id";
@@ -33,7 +32,6 @@
     }
 
     function getGrupos(){
-        $grupos = array();
         $c = getConnection();
         $query = "SELECT ag.id, ag.descripcion as grupo, ag.idTipo, at.descripcion as tipo  
                  FROM `actividad-grupo` as ag, `actividad-tipo` as at
