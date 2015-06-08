@@ -1,3 +1,10 @@
+<?php
+    require("models/producto.php");
+    $id = isset($_GET["id"]) ? $_GET["id"] : null;
+    $productos = getProductos();
+    $talles = getTalles();
+?>
+
 <?php require("partials/header.php"); ?>
         
         <div class="container-fluid cuerpo">
@@ -53,97 +60,49 @@
                 
                 <div class="col-md-9 productos">
                     
-                    <ul class="lista-prodcutos list-unstyled">
-                        <li class="item">
-                        <img src="img/zapa_puma.jpg" alt="img"><p>zapatilla puma</p>                        
+                    <ul class="lista-prodcutos list-inline list-unstyled">
+                        <?php foreach ($productos as $producto) {?>
+                            <li class="item">
+                                <img src="<?= $producto["producto_imagen"]; ?>" alt="img"><p><b><?= $producto["producto_descripcion"]; ?></b></p>
+                                
+                                <select name="talle">
+                                    <option> Talle </option>
+                                    <?php foreach ($talles as $talle) {?>
+                                        <option value="<?= $talle["id_talle"]; ?>">
+                                        <?= $talle["talle_nombre"]; ?>
+                                        </option>
+                                    <?php } ?>                            
+                                </select>
+                                
+                                <select>
+                                    <option>Cantidad</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
 
-                            <select>
-                                <option>Talle</option>
-                                <option value="35">35</option>
-                                <option value="36">36</option>
-                                <option value="38">38</option>
-                                <option value="40">40</option>
-                            </select>
+                                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target=".prod-agregado">Agregar</button>
 
-                            <select>
-                                <option>Cantidad</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".prod-agregado">Agregar</button>
-
-                        </li>
-
-                        <li class="item">
-                        <img src="img/remera-nike.jpg" alt="img"><p>Remera Tecnica Nike</p>                        
-
-                            <select>
-                                <option>Talle</option>
-                                <option value="35">35</option>
-                                <option value="36">36</option>
-                                <option value="38">38</option>
-                                <option value="40">40</option>
-                            </select>
-
-                            <select>
-                                <option>Cantidad</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".prod-agregado">Agregar</button>
-        
-                        </li>
-
-                        <li class="item">
-                            <img src="img/mochila-topper.jpg" alt="img"><p>Mochila Topper</p>                        
-
-                            <select>
-                                <option>Talle Unico</option>
-                            </select>
-
-                            <select>
-                                <option>Cantidad</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".prod-agregado">Agregar</button>
-
-                            <div class="modal fade prod-agregado" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-sm">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">x</span></button>
-                                                <h4 class="modal-title">Producto agregado al carrito!</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>Podrá ver el producto yendo a la opcion "Ir a Mi Carrito".</p>                               
-                                            </div>                                                  
-                                        </div>
-                                  </div>
-                            </div>
-                        </li>
+                            </li>
+                        <?php } ?>
+                        
                     </ul>
-<!--
-                    <img src="img/zapa_puma.jpg" alt="img"><p>zapatilla puma</p>
-                    <img src="img/zapa_puma.jpg" alt="img"><p>zapatilla puma</p>
-                    <img src="img/zapa_puma.jpg" alt="img">
-                    <img src="img/zapa_puma.jpg" alt="img">
-                    <img src="img/zapa_puma.jpg" alt="img">
-                    <img src="img/zapa_puma.jpg" alt="img">                            
--->
-
+                    
+                    <div class="modal fade prod-agregado" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">x</span></button>
+                                    <h4 class="modal-title">Producto agregado al carrito!</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Podrá ver el producto yendo a la opcion "Ir a Mi Carrito".</p>                               
+                                </div>                                                  
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
                 

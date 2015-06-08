@@ -31,9 +31,10 @@
                                 <img src="img/remera-nike.jpg" alt="Oro" class="imagenes_alta_producto">              
                             </div>                        
                         </div>
-                            <div class="row boton_agregar_foto">
+                            <div class="row">
+                                
+                                <input type="file" title="Agregar foto" data-filename-placement="inside">
                             
-                                  <button type="button" class="btn btn-default"> Agregar foto </button>                       
                             </div>
                     </div>
                     </div>
