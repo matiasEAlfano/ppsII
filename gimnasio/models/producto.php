@@ -91,7 +91,8 @@ function getConnection(){
         $id = (int) $c->real_escape_string($productoId);
         $query = "SELECT p.id_producto, 
                          p.producto_descripcion, 
-                         m.marca_nombre, 
+                         m.marca_nombre,
+                         p.producto_precio,
                          c.categoria_nombre, 
                          pt.nombre_tipo_producto, 
                          g.genero_nombre, 
@@ -110,7 +111,7 @@ function getConnection(){
 
     function getProductos(){
         $c = getConnection();
-        $query = "SELECT p.id_producto, p.producto_descripcion, m.marca_nombre, c.categoria_nombre, pt.nombre_tipo_producto, g.genero_nombre, t.talle_nombre, p.producto_imagen
+        $query = "SELECT p.id_producto, p.producto_descripcion, m.marca_nombre, p.producto_precio, c.categoria_nombre, pt.nombre_tipo_producto, g.genero_nombre, t.talle_nombre, p.producto_imagen
         FROM productos as p , marcas as m , categorias as c , `producto-tipo` as pt , generos as g, talles as t
         WHERE p.producto_marca = m.id_marca AND p.producto_categoria = c.id_categoria AND p.producto_tipoProducto = pt.id_tipo_producto AND p.producto_genero = g.id_genero AND p.producto_talle = t.id_talle
         order by producto_descripcion";
@@ -129,6 +130,7 @@ function getConnection(){
         $c = getConnection();
         $descripcion = $c->real_escape_string($producto['producto_descripcion']);
         $marca = (int) $c->real_escape_string($producto['producto_marca']);
+        $precio = $c->real_escape_string($producto['producto_precio']);
         $categoria = (int) $c->real_escape_string($producto['producto_categoria']);
         $tipoProducto = (int) $c->real_escape_string($producto['producto_tipoProducto']);
         $genero = (int) $c->real_escape_string($producto['producto_genero']);
@@ -138,6 +140,7 @@ function getConnection(){
                     DEFAULT,
                     '$descripcion',
                     '$marca',
+                    '$precio',
                     '$categoria',
                     '$tipoProducto',
                     '$genero',
@@ -156,6 +159,7 @@ function getConnection(){
         $id = $c->real_escape_string($producto['id_producto']);
         $descripcion = $c->real_escape_string($producto['producto_descripcion']);
         $marca = $c->real_escape_string($producto['producto_marca']);
+        $precio = $c->real_escape_string($producto['producto_precio']);
         $categoria = $c->real_escape_string($producto['producto_categoria']);
         $tipoProducto = $c->real_escape_string($producto['producto_tipoProducto']);
         $genero = $c->real_escape_string($producto['producto_genero']);
@@ -165,6 +169,7 @@ function getConnection(){
         $query = "UPDATE `productos` SET
                     producto_descripcion = '$descripcion',
                     producto_marca = '$marca',
+                    producto_precio = '$precio',
                     producto_categoria = '$categoria',
                     producto_tipoProducto = '$tipoProducto',
                     producto_genero = '$genero',

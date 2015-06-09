@@ -63,7 +63,16 @@
                     <ul class="lista-prodcutos list-inline list-unstyled">
                         <?php foreach ($productos as $producto) {?>
                             <li class="item">
-                                <img src="<?= $producto["producto_imagen"]; ?>" alt="img"><p><b><?= $producto["producto_descripcion"]; ?></b></p>
+                                <img src="<?= $producto["producto_imagen"]; ?>" alt="img">
+                                <p>
+                                    <b><?= $producto["marca_nombre"]; ?> <?= $producto["producto_descripcion"]; ?></b>
+                                    <br>
+                                    (<?= $producto["nombre_tipo_producto"]; ?>)
+                                </p>
+                                
+                                <p>
+                                    <b class="precio">$<?= $producto["producto_precio"]; ?></b>
+                                </p>
                                 
                                 <select name="talle">
                                     <option> Talle </option>

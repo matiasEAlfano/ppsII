@@ -188,4 +188,14 @@
     margin-top: 3%;
 }
 
+.productos .item{
+    
+    margin-bottom: 7%;
+}
+
+.productos .item .precio{    
+    font-size: 150%;
+    background-color: cornflowerblue;
+    color: white;
+}
 /**/

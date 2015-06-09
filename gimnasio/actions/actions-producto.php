@@ -10,6 +10,7 @@
         require("../models/producto.php");
         $producto = array();
         $producto["producto_descripcion"] = $request["descripcion"];
+        $producto["producto_precio"] = $request["precio"];
         $producto["producto_genero"] = $request["genero"];
         $producto["producto_marca"] = $request["marca"];
         $producto["producto_categoria"] = $request["categoria"];
@@ -28,6 +29,7 @@
         $producto = array();
         $producto["id_producto"] = $request["id"];
         $producto["producto_descripcion"] = $request["descripcion"];
+        $producto["producto_precio"] = $request["precio"];
         $producto["producto_genero"] = $request["genero"];
         $producto["producto_marca"] = $request["marca"];
         $producto["producto_categoria"] = $request["categoria"];
