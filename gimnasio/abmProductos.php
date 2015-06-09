@@ -102,18 +102,6 @@
                         </select>
                         <br>
                         
-                        <label for="talle-producto"> Talle </label>
-                        <br>
-                        <select name = "talle" id="talle-producto" class="dropdown-basico abm-inputs">
-                            <option> Seleccione un talle </option>
-                            <?php foreach ($talles as $talle) {?>
-                            <option value="<?= $talle["id_talle"]; ?>">
-                                <?= $talle["talle_nombre"]; ?>
-                            </option>
-                            <?php } ?>
-                        </select>
-                        <br>
-                        
                     <input type="submit" class="btn btn-primary" name="action" value="<?= $action; ?>"/>
                     <input type="submit" class="btn btn-danger" name="action" value="Cancelar"/>    
                         
@@ -132,7 +120,6 @@
             <th>Categoria</th>
             <th>Tipo</th>
             <th>Genero</th>
-            <th>Talle</th>
             <th>Imagenes</th>
             <th>Modificar / Eliminar</th>
         </tr>
@@ -146,7 +133,6 @@
                 <td><?= $producto["categoria_nombre"];?></td>
                 <td><?= $producto["nombre_tipo_producto"];?></td>
                 <td><?= $producto["genero_nombre"];?></td>
-                <td><?= $producto["talle_nombre"];?></td>
                 <td><?= $producto["producto_imagen"];?></td>
                 <td>
                 <form class="form-inline" action="actions/actions-producto.php" method="post">

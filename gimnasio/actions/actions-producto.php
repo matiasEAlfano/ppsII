@@ -15,7 +15,6 @@
         $producto["producto_marca"] = $request["marca"];
         $producto["producto_categoria"] = $request["categoria"];
         $producto["producto_tipoProducto"] = $request["tipo"];
-        $producto["producto_talle"] = $request["talle"];
         
         if(createProducto($producto)){
             redirect("../abmProductos.php");
@@ -34,7 +33,6 @@
         $producto["producto_marca"] = $request["marca"];
         $producto["producto_categoria"] = $request["categoria"];
         $producto["producto_tipoProducto"] = $request["tipo"];
-        $producto["producto_talle"] = $request["talle"];
         
         if(updateProducto($producto)){
             redirect("../abmProductos.php");

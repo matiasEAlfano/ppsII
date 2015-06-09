@@ -1,125 +1,97 @@
 <?php
-    require("models/producto.php");
+    require("models/stock.php");
     $id = isset($_GET["id"]) ? $_GET["id"] : null;
-    $action = empty($id) ? "guardar" : "actualizar";
-    $categorias = getCategorias();
+    $action = empty($id) ? "guardar" : "seleccionar";
     $talles = getTalles();
-    $generos = getGeneros();
-    $tipos = getTipos();
-    $marcas = getMarcas();
     $productos = getProductos();
     $producto = array();
+    $stocks = getStocks();
+    $stock = array();
     if($action == "actualizar"){
+        $stock = getStock($id);
+    }
+    if($action == "seleccionar"){
         $producto = getProducto($id);
+        $action = "guardar";
     }
 ?>
 
 <?php require("partials/gestionHeader.php"); ?>
 
-<div class="row">
-                    <div class="col-md-5">
-                        
-                        <div class="agrupador_fotos_productos">                        
-                        
-                        <div class="row fotos_productos_alineados">
+<div class="row">                         
+    <div class="col-md-4">
 
-                            <div class="imagenes_productos_abm">
-                                <img src="img/remera-nike.jpg" alt="Bronce" class="imagenes_alta_producto" >
-                            </div>                        
-                            
-                            <div class="imagenes_productos_abm">
-                                <img src="img/remera-nike.jpg" alt="Oro" class="imagenes_alta_producto">              
-                            </div>                        
-                        </div>
-                            <div class="row">
-                                
-                                <input type="file" title="Agregar foto" data-filename-placement="inside">
-                            
-                            </div>
-                    </div>
-                    </div>
-                         
-                         
-                         
-                    <div class="col-md-7 atributos_productos ">
-                        
-                    <form method="post" action="actions/actions-producto.php" id="form-productos">
-                            
-                        <?php if($id): ?>
-                            <input type="hidden" name="id" value="<?= $id; ?>"/>                      
-                        <?php endif; ?>    
-                        
-                        <label for="descripcion-producto"> Descripcion</label>                             
-                        <input name="descripcion" value="<?= !empty($producto) ? $producto["producto_descripcion"] : ""?>" id="descripcion-producto" type="text" class="texto form-control abm-inputs" placeholder="Descripcion *" >
-                        
-                        <label for="descripcion-producto">Precio</label>                                    
-                        <input name="precio" value="<?= !empty($producto) ? $producto["producto_precio"] : ""?>" id="precio-producto" type="text" class="texto form-control abm-inputs" placeholder="Precio" >
-                        
-                        <label for="marca-producto"> Marca </label>
-                        <br>
-                        <select name="marca" id="marca-producto" class="dropdown-basico abm-inputs">
-                            <option> Seleccione una marca </option>
-                            <?php foreach ($marcas as $marca) {?>
-                            <option value="<?= $marca["id_marca"]; ?>">
-                                <?= $marca["marca_nombre"]; ?>
-                            </option>
-                            <?php } ?>                            
-                        </select>
-                        <br>
-                        <label for="categoria-producto"> Categoria </label>
-                        <br>
-                        <select name = "categoria" id="categoria-producto" class="dropdown-basico abm-inputs">
-                            <option> Seleccione una categoria </option>
-                            <?php foreach ($categorias as $categoria) {?>
-                            <option value="<?= $categoria["id_categoria"]; ?>">
-                                <?= $categoria["categoria_nombre"]; ?>
-                            </option>
-                            <?php } ?>
-                        </select>
-                        <br>
-                        
-                        <label for="tipo-producto"> Tipo de Producto </label>
-                        <br>
-                        <select name = "tipo" id="tipo-producto" class="dropdown-basico abm-inputs">
-                            <option> Seleccione un tipo </option>
-                            <?php foreach ($tipos as $tipo) {?>
-                            <option value="<?= $tipo["id_tipo_producto"]; ?>">
-                                <?= $tipo["nombre_tipo_producto"]; ?>
-                            </option>
-                            <?php } ?>
-                        </select>
-                        <br>
-                        
-                        <label for="genero-producto"> Genero </label>
-                        <br>
-                        <select name = "genero" id="genero-producto" class="dropdown-basico abm-inputs">
-                            <option> Seleccione un genero </option>
-                            <?php foreach ($generos as $genero) {?>
-                            <option value="<?= $genero["id_genero"]; ?>">
-                                <?= $genero["genero_nombre"]; ?>
-                            </option>
-                            <?php } ?>
-                        </select>
-                        <br>
-                        
-                        <label for="talle-producto"> Talle </label>
-                        <br>
-                        <select name = "talle" id="talle-producto" class="dropdown-basico abm-inputs">
-                            <option> Seleccione un talle </option>
-                            <?php foreach ($talles as $talle) {?>
-                            <option value="<?= $talle["id_talle"]; ?>">
-                                <?= $talle["talle_nombre"]; ?>
-                            </option>
-                            <?php } ?>
-                        </select>
-                        <br>
-                        
-                    <input type="submit" class="btn btn-primary" name="action" value="<?= $action; ?>"/>
-                    <input type="submit" class="btn btn-danger" name="action" value="Cancelar"/>    
-                        
-                       </form>
-                        
-                </div>
+        <form method="post" action="actions/actions-stocks.php" id="form-productos">
+
+            <?php if($id): ?>
+                <input type="hidden" name="id" value="<?= $id; ?>"/>                      
+            <?php endif; ?>    
+
+            <label for="descripcion-producto">Producto:
+                <span class="btn-success">
+                    <?= !empty($producto) ? $producto["marca_nombre"] : ""?>
+                    <?= !empty($producto) ? $producto["producto_descripcion"] : ""?>
+                </span>    
+            </label>
+            <br>
+            <br>
+
+            <label for="talle-producto">Talle</label>
+            <br>
+            <select name="talle" id="talle-producto" class="dropdown-basico abm-inputs">
+                <option> Seleccione un talle </option>
+                <?php foreach ($talles as $talle) {?>
+                    <option value="<?= $talle["id_talle"]; ?>">
+                        <?= $talle["talle_nombre"]; ?>
+                    </option>
+                <?php } ?>
+            </select>
+            <br>
+
+            <label for="descripcion-producto">Cantidad</label>                                  
+            <input name="cantidad" value="<?= !empty($stock) ? $stock["cantidad"] : ""?>" id="stock-cantidad" type="text" class="texto form-control abm-inputs" placeholder="Cantidad" >
+
+            <input type="submit" class="btn btn-primary" name="action" value="<?= $action; ?>"/>
+            <input type="submit" class="btn btn-danger" name="action" value="Cancelar"/>    
+
+        </form>
+
+    </div>
+
+    <div class="col-md-7">
+        <table id="listado-tipos" class="table table-hover abm-tablas">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Talle</th>
+                    <th>Cantidad</th>
+                    <th>Modificar / Eliminar</th>
+                </tr>
+                </thead>
+            <tbody>
+                <?php foreach($stocks as $stock){ ?>
+                    <tr>
+                        <td><?= $stock["producto"];?></td>
+                        <td><?= $stock["talle"];?></td>
+                        <td><?= $stock["cantidad"];?></td>
+                        <td>
+                        <form class="form-inline" action="actions/actions-stocks.php" method="post">
+
+                            <input type="hidden" name="id" value="<?= $stock["id_stock"]; ?>"/>
+
+                            <button type="submit" name="action" value="editar" class="btn btn-success editar"><sapan class="glyphicon glyphicon-pencil" aria-hidden="true"></sapan></button>
+
+                            <button type="submit" name="action" value="eliminar" class="btn btn-danger eliminar"><sapan class="glyphicon glyphicon-remove" aria-hidden="true"></sapan></button>
+
+                        </form>
+                    </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+
+    </div>
+
 </div>
 <div class="row">
                         
@@ -132,9 +104,8 @@
             <th>Categoria</th>
             <th>Tipo</th>
             <th>Genero</th>
-            <th>Talle</th>
             <th>Imagenes</th>
-            <th>Modificar / Eliminar</th>
+            <th>Seleccionar</th>
         </tr>
         </thead>
     <tbody>
@@ -146,16 +117,13 @@
                 <td><?= $producto["categoria_nombre"];?></td>
                 <td><?= $producto["nombre_tipo_producto"];?></td>
                 <td><?= $producto["genero_nombre"];?></td>
-                <td><?= $producto["talle_nombre"];?></td>
                 <td><?= $producto["producto_imagen"];?></td>
                 <td>
-                <form class="form-inline" action="actions/actions-producto.php" method="post">
+                <form class="form-inline" action="actions/actions-stocks.php" method="post">
                     
                     <input type="hidden" name="id" value="<?= $producto["id_producto"]; ?>"/>
                     
-                    <button type="submit" name="action" value="editar" class="btn btn-success editar"><sapan class="glyphicon glyphicon-pencil" aria-hidden="true"></sapan></button>
-                    
-                    <button type="submit" name="action" value="eliminar" class="btn btn-danger eliminar"><sapan class="glyphicon glyphicon-remove" aria-hidden="true"></sapan></button>
+                    <button type="submit" name="action" value="seleccionar" class="btn btn-success editar"><sapan class="glyphicon glyphicon-ok" aria-hidden="true"></sapan></button>
                     
                 </form>
             </td>

@@ -106,7 +106,7 @@ function getConnection(){
         $result = $c->query($query);
         return $result->fetch_assoc();
     }
-
+    
     function getProductos(){
         $c = getConnection();
         $query = "SELECT p.id_producto, p.producto_descripcion, m.marca_nombre, p.producto_precio, c.categoria_nombre, pt.nombre_tipo_producto, g.genero_nombre, p.producto_imagen
@@ -123,63 +123,82 @@ function getConnection(){
         }
         return $productos;
     }
-    
-    function createProducto($producto){
+
+    function getStocks(){
         $c = getConnection();
-        $descripcion = $c->real_escape_string($producto['producto_descripcion']);
-        $marca = (int) $c->real_escape_string($producto['producto_marca']);
-        $precio = $c->real_escape_string($producto['producto_precio']);
-        $categoria = (int) $c->real_escape_string($producto['producto_categoria']);
-        $tipoProducto = (int) $c->real_escape_string($producto['producto_tipoProducto']);
-        $genero = (int) $c->real_escape_string($producto['producto_genero']);
+        $query = "SELECT s.id_stock, 
+                            s.producto, 
+                            p.producto_descripcion, 
+                            s.talle, 
+                            t.talle_nombre,   
+                            s.cantidad 
+                FROM `stocks` as s, 
+                        `productos` as p, 
+                        `talles` as t
+                where s.producto = p.id_producto
+                AND s.talle = t.id_talle";
         
-        $query = "INSERT INTO `productos` VALUES (
+        $stocks = array();
+        if( $result = $c->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                
+                $stocks[] = $fila;
+            }
+            $result->free();
+        }
+        return $stocks;
+    }
+    
+    function createStock($stock, $talle_producto){
+        $c = getConnection();
+        $producto = $c->real_escape_string($stock['producto']);
+        $idProducto = $c->real_escape_string($talle_producto['id_productos']);
+        $talle = (int) $c->real_escape_string($stock['talle']);
+        $idTalle = (int) $c->real_escape_string($talle_producto['id_talle']);
+        $cantidad = (int) $c->real_escape_string($stock['cantidad']);
+        
+        $query = "INSERT INTO `stocks` VALUES (
                     DEFAULT,
-                    '$descripcion',
-                    '$marca',
-                    '$precio',
-                    '$categoria',
-                    '$tipoProducto',
-                    '$genero',
-                    NULL)";
+                    '$producto',
+                    '$talle',
+                    '$cantidad')
+                INSERT INTO `talles_productos` VALUES (
+                    DEFAULT,
+                    '$idProducto',
+                    '$idTalle')";
+        
         if($c->query($query)){
-            $producto['id_producto'] = $c->insert_id;
-            return $producto;
+            $stock['id_stock'] = $c->insert_id;
+            return $stock;
         }else{
             echo $c->error;
         }
     }
 
-    function updateProducto($producto){
+    function updateStock($stock){
         $c = getConnection();
-        $id = $c->real_escape_string($producto['id_producto']);
-        $descripcion = $c->real_escape_string($producto['producto_descripcion']);
-        $marca = $c->real_escape_string($producto['producto_marca']);
-        $precio = $c->real_escape_string($producto['producto_precio']);
-        $categoria = $c->real_escape_string($producto['producto_categoria']);
-        $tipoProducto = $c->real_escape_string($producto['producto_tipoProducto']);
-        $genero = $c->real_escape_string($producto['producto_genero']);
+        $id = $c->real_escape_string($stock['id_stock']);
+        $producto = $c->real_escape_string($stock['producto']);
+        $talle = $c->real_escape_string($stock['talle']);
+        $cantidad = $c->real_escape_string($producto['cantidad']);
         
-        $query = "UPDATE `productos` SET
-                    producto_descripcion = '$descripcion',
-                    producto_marca = '$marca',
-                    producto_precio = '$precio',
-                    producto_categoria = '$categoria',
-                    producto_tipoProducto = '$tipoProducto',
-                    producto_genero = '$genero'
-                  WHERE id_producto = $id";
+        $query = "UPDATE `stocks` SET
+                    producto = '$producto',
+                    talle = '$talle',
+                    cantidad = '$cantidad',
+                  WHERE id_stock = $id";
         return $c->query($query);
     }
 
-    function removeProducto($productoId){
+    function removeStock($stockId){
         $c = getConnection();
-        $id = $c->real_escape_string($productoId);
-        $query = "DELETE FROM `productos`
-                  WHERE id_producto = $productoId";
+        $id = $c->real_escape_string($stockId);
+        $query = "DELETE FROM `stocks`
+                  WHERE id_stock = $stockId";
         return $c->query($query);
     }
 
-/*$productos = getProductos();
+/*$productos = getProductos(21);
 
 var_dump ($productos);*/
 
