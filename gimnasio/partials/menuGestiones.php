@@ -42,7 +42,7 @@
                 <a role="menuitem" tabindex="-1" href="abmTipoProducto.php">Producto Tipo</a>
             </li>
             <li role="presentation">
-                <a role="menuitem" tabindex="-1" href="abmCategorias.php">Producto Categoria</a>
+                <a role="menuitem" tabindex="-1" href="abmProdCategoria.php">Producto Categoria</a>
             </li>
             <li role="presentation">
                 <a role="menuitem" tabindex="-1" href="abmGeneroProducto.php">Producto Genero</a>

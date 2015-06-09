@@ -13,7 +13,7 @@
         $categoria["categoria_nombre"] = $request["nombre_categoria"];
         
         if(createCategoria($categoria)){
-            redirect("../abmCategorias.php");
+            redirect("../abmProdCategoria.php");
         }else{
             redirect("../error.php");
         }
@@ -26,7 +26,7 @@
         $categoria["categoria_nombre"] = $request["nombre_categoria"];
        
         if(updateCategoria($categoria)){
-            redirect("../abmCategorias.php");
+            redirect("../abmProdCategoria.php");
         }else{
             redirect("../error.php");
         }
@@ -35,7 +35,7 @@
     function eliminar($request){
         require("../models/productoCategoria.php");
         if(removeCategoria($request["id"])){
-            redirect("../abmCategorias.php");
+            redirect("../abmProdCategoria.php");
         }else{
             redirect("../error.php");
         }
@@ -43,11 +43,11 @@
 
     function editar($request){
         var_dump($request);
-        redirect("../abmCategorias.php?id=" . $request['id']);
+        redirect("../abmProdCategoria.php?id=" . $request['id']);
     }
 
     function listar($request){
-        redirect("../abmCategorias.php");
+        redirect("../abmProdCategoria.php");
     }
 
     $action = $request["action"];
