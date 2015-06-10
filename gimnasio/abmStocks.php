@@ -65,21 +65,19 @@
                     <th>Producto</th>
                     <th>Talle</th>
                     <th>Cantidad</th>
-                    <th>Modificar / Eliminar</th>
+                    <th>Eliminar</th>
                 </tr>
                 </thead>
             <tbody>
                 <?php foreach($stocks as $stock){ ?>
                     <tr>
-                        <td><?= $stock["producto"];?></td>
-                        <td><?= $stock["talle"];?></td>
+                        <td><?= $stock["producto_descripcion"];?></td>
+                        <td><?= $stock["talle_nombre"];?></td>
                         <td><?= $stock["cantidad"];?></td>
                         <td>
                         <form class="form-inline" action="actions/actions-stocks.php" method="post">
 
                             <input type="hidden" name="id" value="<?= $stock["id_stock"]; ?>"/>
-
-                            <button type="submit" name="action" value="editar" class="btn btn-success editar"><sapan class="glyphicon glyphicon-pencil" aria-hidden="true"></sapan></button>
 
                             <button type="submit" name="action" value="eliminar" class="btn btn-danger eliminar"><sapan class="glyphicon glyphicon-remove" aria-hidden="true"></sapan></button>
 

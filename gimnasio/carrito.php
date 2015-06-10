@@ -2,7 +2,6 @@
     require("models/producto.php");
     $id = isset($_GET["id"]) ? $_GET["id"] : null;
     $productos = getProductos();
-    $talles = getTalles();
 ?>
 
 <?php require("partials/header.php"); ?>
@@ -76,7 +75,7 @@
                                 
                                 <select name="talle">
                                     <option> Talle </option>
-                                    <?php foreach ($talles as $talle) {?>
+                                    <?php foreach ($talles=getTallesPorProducto($producto["id_producto"]) as $talle) {?>
                                         <option value="<?= $talle["id_talle"]; ?>">
                                         <?= $talle["talle_nombre"]; ?>
                                         </option>

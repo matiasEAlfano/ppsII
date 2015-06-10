@@ -16,7 +16,7 @@
         $talle_producto["id_productos"] = $request["id"];
         $talle_producto["id_talles"] = $request["talle"];
         
-        if(createStock($stock, $talle_producto)){
+        if(createStock($stock) && createTallesProductos($talle_producto)) {
             redirect("../abmStocks.php");
         }else{
             redirect("../error.php");
@@ -39,7 +39,7 @@
 
     function eliminar($request){
         require("../models/stock.php");
-        if(removeStock($request["id"])){
+        if(removeStock($request["id"]) && removeTalles($request["id"])){
             redirect("../abmStocks.php");
         }else{
             redirect("../error.php");

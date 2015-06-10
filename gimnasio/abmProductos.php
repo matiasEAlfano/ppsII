@@ -3,7 +3,6 @@
     $id = isset($_GET["id"]) ? $_GET["id"] : null;
     $action = empty($id) ? "guardar" : "actualizar";
     $categorias = getCategorias();
-    $talles = getTalles();
     $generos = getGeneros();
     $tipos = getTipos();
     $marcas = getMarcas();

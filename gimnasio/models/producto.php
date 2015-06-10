@@ -25,10 +25,18 @@ function getConnection(){
         return $categorias;
     }
 
-    function getTalles(){
+    function getTallesPorProducto($idProducto){
         $talles = array();
         $c = getConnection();
-        $query = "SELECT id_talle, talle_nombre FROM `talles`";
+        $id = (int)$c->real_escape_string($idProducto);
+        $query = "SELECT id_talle, talle_nombre 
+                    FROM `productos` as p,
+                            `talles` as t,
+                            `talles_productos` as tp
+                    WHERE p.id_producto = tp.id_productos 
+                        AND t.id_talle = tp.id_talles
+                        AND tp.id_productos = $id";
+
         if( $result = $c->query($query) ){
             while($fila = $result->fetch_assoc()){
                 $talles[] = $fila;
