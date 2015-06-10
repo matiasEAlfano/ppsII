@@ -132,7 +132,7 @@
                 <td><?= $producto["categoria_nombre"];?></td>
                 <td><?= $producto["nombre_tipo_producto"];?></td>
                 <td><?= $producto["genero_nombre"];?></td>
-                <td><?= $producto["producto_imagen"];?></td>
+                <td><img src="<?= $producto["producto_imagen"];?>" id="tabla-imagen"></td>
                 <td>
                 <form class="form-inline" action="actions/actions-producto.php" method="post">
                     

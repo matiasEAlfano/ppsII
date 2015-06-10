@@ -9,14 +9,11 @@
     function nueva($request){
         require("../models/stock.php");
         $stock = array();
-        $talle_producto = array();
         $stock["producto"] = $request["id"];
         $stock["talle"] = $request["talle"];
         $stock["cantidad"] = $request["cantidad"];
-        $talle_producto["id_productos"] = $request["id"];
-        $talle_producto["id_talles"] = $request["talle"];
         
-        if(createStock($stock) && createTallesProductos($talle_producto)) {
+        if(createStock($stock)) {
             redirect("../abmStocks.php");
         }else{
             redirect("../error.php");
@@ -39,7 +36,7 @@
 
     function eliminar($request){
         require("../models/stock.php");
-        if(removeStock($request["id"]) && removeTalles($request["id"])){
+        if(removeStock($request["id"])){
             redirect("../abmStocks.php");
         }else{
             redirect("../error.php");

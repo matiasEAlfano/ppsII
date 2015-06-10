@@ -32,10 +32,11 @@ function getConnection(){
         $query = "SELECT id_talle, talle_nombre 
                     FROM `productos` as p,
                             `talles` as t,
-                            `talles_productos` as tp
-                    WHERE p.id_producto = tp.id_productos 
-                        AND t.id_talle = tp.id_talles
-                        AND tp.id_productos = $id";
+                            `stocks` as s
+                    WHERE p.id_producto = s.producto 
+                        AND t.id_talle = s.talle
+                        AND s.producto = $id
+                        order by talle_nombre";
 
         if( $result = $c->query($query) ){
             while($fila = $result->fetch_assoc()){
