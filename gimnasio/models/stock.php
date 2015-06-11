@@ -131,12 +131,16 @@ function getConnection(){
                             p.producto_descripcion, 
                             s.talle, 
                             t.talle_nombre,   
-                            s.cantidad 
+                            s.cantidad,
+                            m.marca_nombre
                 FROM `stocks` as s, 
                         `productos` as p, 
-                        `talles` as t
+                        `talles` as t,
+                        `marcas` as m
                 where s.producto = p.id_producto
-                AND s.talle = t.id_talle";
+                AND s.talle = t.id_talle
+                AND m.id_marca = p.producto_marca
+                order by producto_descripcion";
         
         $stocks = array();
         if( $result = $c->query($query) ){
@@ -149,10 +153,13 @@ function getConnection(){
         return $stocks;
     }
     
-    function getStock($stockId){      
+    function getStock($stock){      
             $c = getConnection();
-            $id = (int) $c->real_escape_string($stockId);
-            $query = "SELECT cantidad FROM `stocks` WHERE id_stock = $id";
+            $id_producto = (int) $c->real_escape_string($stock['producto']);
+            $id_talle = (int) $c->real_escape_string($stock['talle']);
+            $query = "SELECT cantidad FROM `stocks` 
+                    WHERE producto = $id_producto
+                    AND talle = $id_talle";
             $result = $c->query($query);
             return $result->fetch_assoc();
         }
@@ -170,7 +177,7 @@ function getConnection(){
         
         $result = $c->query($noDuplicate);
         
-        if(empty($result)){
+        if($result->num_rows == 0){
             $query = "INSERT INTO `stocks` VALUES (
                         DEFAULT,
                         '$producto',
@@ -196,16 +203,14 @@ function getConnection(){
         $c = getConnection();
         $producto = $c->real_escape_string($stock['producto']);
         $talle = $c->real_escape_string($stock['talle']);
-        $cantidad = $c->real_escape_string($producto['cantidad']);
+        $cantidad = $c->real_escape_string($stock['cantidad']);
         
-        $cantidadProducto = getStock($stock['producto']);
+        $cantidadProducto = getStock($stock)["cantidad"];
         
-        $cantidadProducto = (int)$cantidadProducto + $cantidad;
-
+        $cantidadProducto = $cantidadProducto + $cantidad;
+        
         $query = "UPDATE `stocks` SET
-                    producto = '$producto',
-                    talle = '$talle',
-                    cantidad = '$cantidadProducto',
+                    cantidad = $cantidadProducto
                   WHERE producto = $producto
                   AND talle = $talle";
         
@@ -223,6 +228,4 @@ function getConnection(){
 /*$productos = getProductos(21);
 
 var_dump ($productos);*/
-
-
 ?>

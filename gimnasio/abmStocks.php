@@ -96,6 +96,7 @@
             <thead>
                 <tr>
                     <th>Producto</th>
+                    <th>Marca</th>
                     <th>Talle</th>
                     <th>Cantidad</th>
                     <th>Eliminar</th>
@@ -105,6 +106,7 @@
                 <?php foreach($stocks as $stock){ ?>
                     <tr>
                         <td><?= $stock["producto_descripcion"];?></td>
+                        <td><?= $stock["marca_nombre"];?></td>
                         <td><?= $stock["talle_nombre"];?></td>
                         <td><?= $stock["cantidad"];?></td>
                         <td>

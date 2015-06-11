@@ -12,7 +12,6 @@
         $stock["producto"] = $request["id"];
         $stock["talle"] = $request["talle"];
         $stock["cantidad"] = $request["cantidad"];
-        
         if(createStock($stock)) {
             redirect("../abmStocks.php");
         }else{
