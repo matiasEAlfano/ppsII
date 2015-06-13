@@ -94,17 +94,20 @@ function getConnection(){
         return $marcas;
     }
     
-
+/*
+Gabby quito columnas
+*/
     function getProducto($productoId){      
         $c = getConnection();
         $id = (int) $c->real_escape_string($productoId);
         $query = "SELECT p.id_producto, 
                          p.producto_descripcion, 
-                         m.marca_nombre,
+                         m.id_marca,
                          p.producto_precio,
-                         c.categoria_nombre, 
-                         pt.nombre_tipo_producto, 
-                         g.genero_nombre 
+                         c.id_categoria, 
+                         pt.id_tipo_producto,                                                  
+                         g.genero_nombre,
+                         g.id_genero
                          FROM productos as p , marcas as m , categorias as c , `producto-tipo` as pt , generos as g
                          WHERE p.id_producto = $id AND 
                                p.producto_marca = m.id_marca AND 
