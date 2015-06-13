@@ -13,7 +13,7 @@
         $tipo = array();
         $c = getConnection();
         $id = (int) $c->real_escape_string($tipoId);
-        $query = "SELECT id_tipo_producto, nombre_tipo_producto FROM `producto-tipo` WHERE id_tipo_producto = $id";
+        $query = "SELECT id_tipo_producto, nombre_tipo_producto, id_categoria FROM `producto-tipo` WHERE id_tipo_producto = $id";
         $result = $c->query($query);
         return $result->fetch_assoc();
     }

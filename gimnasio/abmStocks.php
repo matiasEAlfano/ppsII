@@ -37,8 +37,10 @@
             <br>
             <select name="talle" id="talle-producto" class="dropdown-basico abm-inputs">
                 <option> Seleccione un talle </option>
-                <?php foreach ($talles as $talle) {?>
-                    <option value="<?= $talle["id_talle"]; ?>">
+                <?php foreach ($talles as $talle) {
+                    $selected = ($producto["id_talle"]==$talle["id_talle"]) ? "selected='selected'" : "";
+                ?>
+                    <option <?= $selected ?> value="<?= $talle["id_talle"]; ?>">
                         <?= $talle["talle_nombre"]; ?>
                     </option>
                 <?php } ?>

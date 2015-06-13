@@ -27,8 +27,10 @@
         
         <option>-Seleccionar Tipo-</option>
         
-        <?php foreach($tipos as $tipo) {?>
-            <option value= "<?= $tipo["id"];?>"><?= $tipo["descripcion"];?></option>
+        <?php foreach($tipos as $tipo) {
+            $selected = ($actividad["idTipo"]==$tipo["id"]) ? "selected = 'selected'" : "";
+        ?>
+            <option <?= $selected ?>value= "<?= $tipo["id"];?>"><?= $tipo["descripcion"];?></option>
         <?php } ?>
         
     </select>
@@ -38,8 +40,10 @@
         
         <option>-Seleccionar Grupo-</option>
         
-        <?php foreach($grupos as $grupo) {?>
-            <option value= "<?= $grupo["id"];?>"><?= $grupo["grupo"];?></option>
+        <?php foreach($grupos as $grupo) {
+            $selected = ($actividad["idGrupo"]==$grupo["id"]) ? "selected='selected'" : "";
+        ?>
+            <option <?= $selected ?> value= "<?= $grupo["id"];?>"><?= $grupo["grupo"];?></option>
         <?php } ?>
         
     </select>

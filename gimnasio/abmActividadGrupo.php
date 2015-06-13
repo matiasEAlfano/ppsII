@@ -26,8 +26,10 @@
         
         <option>-Seleccionar Tipo-</option>
         
-        <?php foreach($tipos as $tipo) {?>
-            <option value= "<?= $tipo["id"];?>"><?= $tipo["descripcion"];?></option>
+        <?php foreach($tipos as $tipo) {
+            $selected=($grupo["idTipo"]==$tipo["id"]) ? "selected='selected'" : "";
+        ?>
+            <option <?= $selected ?> value= "<?= $tipo["id"];?>"><?= $tipo["descripcion"];?></option>
         <?php } ?>
         
     </select>

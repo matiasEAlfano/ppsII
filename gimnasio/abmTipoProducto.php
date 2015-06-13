@@ -31,8 +31,10 @@
         
         <option>-Seleccionar Categoria-</option>
         
-        <?php foreach($categorias as $categoria) {?>
-            <option value= "<?= $categoria["id_categoria"];?>"><?= $categoria["categoria_nombre"];?></option>
+        <?php foreach($categorias as $categoria) {
+            $selected=($tipo["id_categoria"]==$categoria["id_categoria"]) ? "selected='selected'" : "";
+        ?>
+            <option <?= $selected ?> value= "<?= $categoria["id_categoria"];?>"><?= $categoria["categoria_nombre"];?></option>
         <?php } ?>
         
     </select>
