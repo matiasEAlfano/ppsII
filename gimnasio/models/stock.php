@@ -131,12 +131,16 @@ function getConnection(){
                             p.producto_descripcion, 
                             s.talle, 
                             t.talle_nombre,   
-                            s.cantidad 
+                            s.cantidad,
+                            m.marca_nombre
                 FROM `stocks` as s, 
                         `productos` as p, 
-                        `talles` as t
+                        `talles` as t,
+                        `marcas` as m
                 where s.producto = p.id_producto
-                AND s.talle = t.id_talle";
+                AND s.talle = t.id_talle
+                AND m.id_marca = p.producto_marca
+                order by producto_descripcion";
         
         $stocks = array();
         if( $result = $c->query($query) ){
@@ -149,10 +153,13 @@ function getConnection(){
         return $stocks;
     }
     
-    function getStock($stockId){      
+    function getStock($stock){      
             $c = getConnection();
-            $id = (int) $c->real_escape_string($stockId);
-            $query = "SELECT cantidad FROM `stocks` WHERE id_stock = $id";
+            $id_producto = (int) $c->real_escape_string($stock['producto']);
+            $id_talle = (int) $c->real_escape_string($stock['talle']);
+            $query = "SELECT cantidad FROM `stocks` 
+                    WHERE producto = $id_producto
+                    AND talle = $id_talle";
             $result = $c->query($query);
             return $result->fetch_assoc();
         }
@@ -160,69 +167,53 @@ function getConnection(){
     function createStock($stock){
         $c = getConnection();
         $producto = $c->real_escape_string($stock['producto']);
-        /*$idProducto = $c->real_escape_string($talle_producto['id_productos']);*/
         $talle = (int) $c->real_escape_string($stock['talle']);
-       /* $idTalle = (int) $c->real_escape_string($talle_producto['id_talles']);*/
         $cantidad = (int) $c->real_escape_string($stock['cantidad']);
         
-        $query = "INSERT INTO `stocks` VALUES (
-                    DEFAULT,
-                    '$producto',
-                    '$talle',
-                    '$cantidad')";/*
-                INSERT INTO `talles_productos` VALUES (
-                    DEFAULT,
-                    '$idProducto',
-                    '$idTalle')";*/
+        $noDuplicate = "SELECT id_stock, cantidad
+                        FROM `stocks`
+                        WHERE producto = $producto
+                        AND talle = $talle";
         
-        if($c->query($query)){
-            $stock['id_stock'] = $c->insert_id;
-            /*$talle_producto['id_productos_talles'] = $c->insert_id;*/
-            /*return array($stock, $talle_producto);*/
-            return $stock;
-        }else{
-            echo $c->error;
-        }
-    }
+        $result = $c->query($noDuplicate);
+        
+        if($result->num_rows == 0){
+            $query = "INSERT INTO `stocks` VALUES (
+                        DEFAULT,
+                        '$producto',
+                        '$talle',
+                        '$cantidad')";
 
-function createTallesProductos($talle_producto){
-        $c = getConnection();
-       
-        $idProducto = $c->real_escape_string($talle_producto['id_productos']);
-        $idTalle = (int) $c->real_escape_string($talle_producto['id_talles']);
-       
-        
-        $query = "INSERT INTO `talles_productos` VALUES (
-                    DEFAULT,
-                    '$idProducto',
-                    '$idTalle')";
-        
-        if($c->query($query)){
-            
-            $talle_producto['id_productos_talles'] = $c->insert_id;
-            return array($stock, $talle_producto);
-            return $talle_producto;
+            if($c->query($query)){
+                $stock['id_stock'] = $c->insert_id;
+                return $stock;
+            }else{
+                echo $c->error;
+            }
         }else{
-            echo $c->error;
+           if(updateStock($stock)){
+                redirect("../abmStocks.php");
+            }else{
+                redirect("../error.php");
+            }
         }
     }
 
     function updateStock($stock){
         $c = getConnection();
-        $id = $c->real_escape_string($stock['id_stock']);
         $producto = $c->real_escape_string($stock['producto']);
         $talle = $c->real_escape_string($stock['talle']);
-        $cantidad = $c->real_escape_string($producto['cantidad']);
+        $cantidad = $c->real_escape_string($stock['cantidad']);
         
-        $cantidadProducto = getStock($stock['producto']);
+        $cantidadProducto = getStock($stock)["cantidad"];
         
-        $cantidadProducto = (int)$cantidadProducto + $cantidad;
-
+        $cantidadProducto = $cantidadProducto + $cantidad;
+        
         $query = "UPDATE `stocks` SET
-                    producto = '$producto',
-                    talle = '$talle',
-                    cantidad = '$cantidadProducto',
-                  WHERE id_stock = $id";
+                    cantidad = $cantidadProducto
+                  WHERE producto = $producto
+                  AND talle = $talle";
+        
         return $c->query($query);
     }
 
@@ -234,16 +225,7 @@ function createTallesProductos($talle_producto){
         return $c->query($query);
     }
 
-    function removeTalles($talle_producto){
-        $c = getConnection();
-        $id = $c->real_escape_string($talle_producto);
-        $query = "DELETE FROM `talles_productos`
-                  WHERE id_productos_talles = $id";
-        return $c->query($query);
-    }
 /*$productos = getProductos(21);
 
 var_dump ($productos);*/
-
-
 ?>

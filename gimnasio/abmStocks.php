@@ -7,10 +7,7 @@
     $producto = array();
     $stocks = getStocks();
     $stock = array();
-    if($action == "actualizar"){
-        $stock = getStock($id);
-    }
-    if($action == "seleccionar"){
+        if($action == "seleccionar"){
         $producto = getProducto($id);
         $action = "guardar";
     }
@@ -60,9 +57,46 @@
 
     <div class="col-md-7">
         <table id="listado-tipos" class="table table-hover abm-tablas">
+    <thead>
+        <tr>
+            <th>Descripcion</th>
+            <th>Marca</th>
+            <th>Tipo</th>
+            <th>Imagenes</th>
+            <th>Seleccionar</th>
+        </tr>
+        </thead>
+    <tbody>
+        <?php foreach($productos as $producto){ ?>
+            <tr>
+                <td><?= $producto["producto_descripcion"];?></td>
+                <td><?= $producto["marca_nombre"];?></td>
+                <td><?= $producto["nombre_tipo_producto"];?></td>
+                <td><img src="<?= $producto["producto_imagen"];?>" id="tabla-imagen"></td>
+                <td>
+                <form class="form-inline" action="actions/actions-stocks.php" method="post">
+                    
+                    <input type="hidden" name="id" value="<?= $producto["id_producto"]; ?>"/>
+                    
+                    <button type="submit" name="action" value="seleccionar" class="btn btn-success editar"><sapan class="glyphicon glyphicon-ok" aria-hidden="true"></sapan></button>
+                    
+                </form>
+            </td>
+            </tr>
+        <?php } ?>
+    </tbody>
+</table>
+        
+    </div>
+
+</div>
+
+<div class="row">
+    <table id="listado-tipos" class="table table-hover abm-tablas">
             <thead>
                 <tr>
                     <th>Producto</th>
+                    <th>Marca</th>
                     <th>Talle</th>
                     <th>Cantidad</th>
                     <th>Eliminar</th>
@@ -72,6 +106,7 @@
                 <?php foreach($stocks as $stock){ ?>
                     <tr>
                         <td><?= $stock["producto_descripcion"];?></td>
+                        <td><?= $stock["marca_nombre"];?></td>
                         <td><?= $stock["talle_nombre"];?></td>
                         <td><?= $stock["cantidad"];?></td>
                         <td>
@@ -87,49 +122,6 @@
                 <?php } ?>
             </tbody>
         </table>
-
-    </div>
-
-</div>
-<div class="row">
-                        
-<table id="listado-tipos" class="table table-hover abm-tablas">
-    <thead>
-        <tr>
-            <th>Descripcion</th>
-            <th>Marca</th>
-            <th>Precio</th>
-            <th>Categoria</th>
-            <th>Tipo</th>
-            <th>Genero</th>
-            <th>Imagenes</th>
-            <th>Seleccionar</th>
-        </tr>
-        </thead>
-    <tbody>
-        <?php foreach($productos as $producto){ ?>
-            <tr>
-                <td><?= $producto["producto_descripcion"];?></td>
-                <td><?= $producto["marca_nombre"];?></td>
-                <td><?= $producto["producto_precio"];?></td>
-                <td><?= $producto["categoria_nombre"];?></td>
-                <td><?= $producto["nombre_tipo_producto"];?></td>
-                <td><?= $producto["genero_nombre"];?></td>
-                <td><?= $producto["producto_imagen"];?></td>
-                <td>
-                <form class="form-inline" action="actions/actions-stocks.php" method="post">
-                    
-                    <input type="hidden" name="id" value="<?= $producto["id_producto"]; ?>"/>
-                    
-                    <button type="submit" name="action" value="seleccionar" class="btn btn-success editar"><sapan class="glyphicon glyphicon-ok" aria-hidden="true"></sapan></button>
-                    
-                </form>
-            </td>
-            </tr>
-        <?php } ?>
-    </tbody>
-</table>
-
 </div>                       
                     
 
