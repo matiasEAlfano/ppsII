@@ -11,6 +11,7 @@
     if($action == "actualizar"){
         $producto = getProducto($id);
     }
+
 ?>
 
 <?php require("partials/gestionHeader.php"); ?>
@@ -58,8 +59,10 @@
                         <br>
                         <select name="marca" id="marca-producto" class="dropdown-basico abm-inputs">
                             <option> Seleccione una marca </option>
-                            <?php foreach ($marcas as $marca) {?>
-                            <option value="<?= $marca["id_marca"]; ?>">
+                            <?php foreach ($marcas as $marca) {
+                                $selected = ($producto["id_marca"]==$marca["id_marca"]) ? "selected='selected'" : "";
+                            ?>
+                            <option <?php echo $selected?> value="<?= $marca["id_marca"]; ?>">
                                 <?= $marca["marca_nombre"]; ?>
                             </option>
                             <?php } ?>                            
@@ -69,8 +72,10 @@
                         <br>
                         <select name = "categoria" id="categoria-producto" class="dropdown-basico abm-inputs">
                             <option> Seleccione una categoria </option>
-                            <?php foreach ($categorias as $categoria) {?>
-                            <option value="<?= $categoria["id_categoria"]; ?>">
+                            <?php foreach ($categorias as $categoria) {
+                                $selected = ($producto["id_categoria"]==$categoria["id_categoria"]) ? "selected='selected'" : "";                            
+                            ?>
+                            <option <?php echo $selected?> value="<?= $categoria["id_categoria"]; ?>">
                                 <?= $categoria["categoria_nombre"]; ?>
                             </option>
                             <?php } ?>
@@ -81,8 +86,10 @@
                         <br>
                         <select name = "tipo" id="tipo-producto" class="dropdown-basico abm-inputs">
                             <option> Seleccione un tipo </option>
-                            <?php foreach ($tipos as $tipo) {?>
-                            <option value="<?= $tipo["id_tipo_producto"]; ?>">
+                            <?php foreach ($tipos as $tipo) {
+                                $selected = ($producto["id_tipo_producto"]==$tipo["id_tipo_producto"]) ? "selected='selected'" : "";
+                            ?>
+                            <option <?= $selected ?> value="<?= $tipo["id_tipo_producto"]; ?>">
                                 <?= $tipo["nombre_tipo_producto"]; ?>
                             </option>
                             <?php } ?>
@@ -93,8 +100,10 @@
                         <br>
                         <select name = "genero" id="genero-producto" class="dropdown-basico abm-inputs">
                             <option> Seleccione un genero </option>
-                            <?php foreach ($generos as $genero) {?>
-                            <option value="<?= $genero["id_genero"]; ?>">
+                            <?php foreach ($generos as $genero) {
+                                $selected = ($producto["id_genero"]==$genero["id_genero"]) ? "selected='selected'" : "";
+                            ?>
+                            <option <?= $selected ?> value="<?= $genero["id_genero"]; ?>">
                                 <?= $genero["genero_nombre"]; ?>
                             </option>
                             <?php } ?>
@@ -153,6 +162,7 @@
                     
 
 <script src="js/vendor/jquery-1.11.2.min.js"></script>
+<script src="js/funcionesGenericas.js"></script>
 <!--<script src="js/vendor/bootstrap.min.js"></script>-->
 
 <?php require("partials/gestionFooter.php"); ?>
