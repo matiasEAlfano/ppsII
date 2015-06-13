@@ -23,11 +23,11 @@
                         <div class="row fotos_productos_alineados">
 
                             <div class="imagenes_productos_abm">
-                                <img src="img/remera-nike.jpg" alt="Bronce" class="imagenes_alta_producto" >
+                                <img src="img/productos/remera-nike.jpg" alt="Bronce" class="imagenes_alta_producto" >
                             </div>                        
                             
                             <div class="imagenes_productos_abm">
-                                <img src="img/remera-nike.jpg" alt="Oro" class="imagenes_alta_producto">              
+                                <img src="img/productos/remera-nike.jpg" alt="Oro" class="imagenes_alta_producto">              
                             </div>                        
                         </div>
                             <div class="row">
