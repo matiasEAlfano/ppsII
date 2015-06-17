@@ -178,7 +178,7 @@
                 <div class="col-md-7 col-opciones">
                     <ul class="nav nav-pills nav-justified">
                         <li><a href="index.php" class="menulink">Inicio</a></li>
-                        <li><a href="sedes.php" class="menulink">Sedes</a></li>
+                        <li><a href="sede.php" class="menulink">Sede</a></li>
                         <li><a href="horarios.php" class="menulink">Horarios</a></li>
                         <li><a href="reservas.php" class="menulink">Actividades</a></li>
                         <li><a href="planes.php" class="menulink">Planes</a></li>

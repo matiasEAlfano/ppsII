@@ -103,7 +103,9 @@ Gabby quito columnas
         $query = "SELECT p.id_producto, 
                          p.producto_descripcion, 
                          m.id_marca,
+                         m.marca_nombre,    
                          p.producto_precio,
+                         p.producto_imagen,
                          c.id_categoria, 
                          pt.id_tipo_producto,                                                  
                          g.genero_nombre,
@@ -121,9 +123,23 @@ Gabby quito columnas
 
     function getProductos(){
         $c = getConnection();
-        $query = "SELECT p.id_producto, p.producto_descripcion, m.marca_nombre, p.producto_precio, c.categoria_nombre, pt.nombre_tipo_producto, g.genero_nombre, p.producto_imagen
-        FROM productos as p , marcas as m , categorias as c , `producto-tipo` as pt , generos as g
-        WHERE p.producto_marca = m.id_marca AND p.producto_categoria = c.id_categoria AND p.producto_tipoProducto = pt.id_tipo_producto AND p.producto_genero = g.id_genero
+        $query = "SELECT p.id_producto, 
+                p.producto_descripcion, 
+                m.marca_nombre, 
+                p.producto_precio, 
+                c.categoria_nombre, 
+                pt.nombre_tipo_producto, 
+                g.genero_nombre, 
+                p.producto_imagen
+            FROM productos as p , 
+                marcas as m , 
+                categorias as c , 
+                `producto-tipo` as pt , 
+                generos as g
+            WHERE p.producto_marca = m.id_marca 
+            AND p.producto_categoria = c.id_categoria 
+            AND p.producto_tipoProducto = pt.id_tipo_producto 
+            AND p.producto_genero = g.id_genero
         order by producto_descripcion";
         $productos = array();
         if( $result = $c->query($query) ){

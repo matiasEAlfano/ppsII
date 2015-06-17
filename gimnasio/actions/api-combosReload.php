@@ -19,6 +19,7 @@ function reloadTipoProducto($idCategoria){
 $request = new Request();
 $action = $_GET["action"];
 $idCategoria = $_GET["categoria"];
+    
 switch($action){
     case "reloadTipoProducto":
         return reloadTipoProducto($idCategoria);

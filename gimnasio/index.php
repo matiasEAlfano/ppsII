@@ -2,7 +2,7 @@
         
         <div class="jumbotron flyer">
             
-            <h1>Red de Gimnasios</h1>
+            <h1>Gimnasio de alto rendimiento deportivo</h1>
             <p>La mejor forma de manterte activo y saludable!</p>           
             
         </div>

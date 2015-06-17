@@ -517,3 +517,15 @@ margin-left: 10%;
     border-color: #a6a8aa;
     border-width: thin;
 }
+
+div.growlUI {
+    background: transparent url("img/carrito.png") no-repeat scroll 10px 10px;
+}
+div.growlUI h1, div.growlUI h2 {
+    color: #FFF;
+    padding: 5px 5px 5px 75px;
+    text-align: left;
+}
+h1, h2 .anchors a, .sampleAnchors a {
+    font-family: "trebuchet ms",verdana,arial;
+}

@@ -11,7 +11,7 @@
 
 <?php require("partials/gestionHeader.php"); ?>
 
-<form method="post" action="actions/actions-actividad-tipo.php">
+<form method="post" action="actions/api-actividad-tipo.php">
     
     <?php if($id): ?>
         <input type="hidden" name="id" value="<?= $id; ?>"/>                      
@@ -38,6 +38,6 @@
 
 <script src="js/vendor/jquery-1.11.2.min.js"></script>
 <!--<script src="js/vendor/bootstrap.min.js"></script>-->
-<script src="js/listado.js"></script>
+<script src="js/listado-actividad-tipo.js"></script>
 
 <?php require("partials/gestionFooter.php"); ?>

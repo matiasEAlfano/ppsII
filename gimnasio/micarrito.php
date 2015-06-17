@@ -1,4 +1,10 @@
-<?php require("partials/header.php"); ?>
+<?php 
+session_start();
+require("partials/header.php"); 
+require("models/producto.php"); 
+
+
+?>
         
         <div class="container-fluid cuerpo">
             
@@ -7,18 +13,53 @@
             <div class="container cuerpo-micarrito">
                     
                 <div class="bs-example" data-example-id="hoverable-table">
-                    <table class="table table-hover">
+                    <table id="detalle-carrito" class="table table-hover">
                         <thead>
                             <tr>
                                 <th>Producto</th>
                                 <th>Cantidad</th>
                                 <th>Precion Unitario</th>
                                 <th>Sub-Total</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
 
-                        <tbody id="body-micarrito">
-                            <tr class="item-carrito">
+                    <tbody id="body-micarrito">
+                        <?php  
+                            foreach($_SESSION["carrito"] as $index => $productos){
+                                //$producto_base =
+                                foreach($productos as $index2 => $producto):
+                                    $produc = getProducto($producto["idProducto"]);
+                                    $marca = $produc["marca_nombre"];
+                                    $descripcion = $produc["producto_descripcion"]." (".$marca.")";                                           $imagen = $produc["producto_imagen"];  
+                                    $subtotal = $produc["producto_precio"] * $producto["cantidad"];
+                        ?>
+                        <tr class="item-carrito">
+                        <td>
+                            <div class="img-producto center">
+                                <img src="<?php echo $imagen?>" border="0" title="" alt="" />
+                                <?php echo $descripcion?>
+                            </div>
+                        </td>  
+                            
+                       <td>
+                            <div class="img-producto"><?php echo $producto["cantidad"]?></div>
+                        </td>                             
+
+                        <td>
+                            <div class="detalle-producto">$<?php echo $produc["producto_precio"]?></div>    
+                        </td>
+                        <td>
+                            $<?php echo $subtotal?>    
+                        </td>    
+                        <td>
+                            <div class="edit-producto"><a onclick="removeCarrito('<?php echo $producto["idProducto"]?>');" >Eliminar</a></div>                                                                          
+                        </td>
+                    </tr>
+                                                
+                            <?php endforeach; ?>
+                        <?php } ?>
+                            <!--<tr class="item-carrito">   
                                 <td>
                                     <div class="img-producto">
                                         <img src="img/remera-nike.jpg">
@@ -85,7 +126,7 @@
                                 <td>
                                     <span>$3029</span>
                                 </td>
-                            </tr>
+                            </tr>-->
                         </tbody>
                     </table>
                     
@@ -98,5 +139,9 @@
             </div>
 
         </div>
+
+<script src="js/vendor/jquery-1.11.2.min.js"></script>
+<!--<script src="js/vendor/bootstrap.min.js"></script>-->
+<script src="js/funcionesGenericas.js"></script>
         
 <?php require("partials/footer.php"); ?>
