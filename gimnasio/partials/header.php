@@ -49,7 +49,11 @@
                         <li>
                             <a data-toggle="modal" data-target=".registrar-usuario">Registrarse</a>
                             
+<<<<<<< HEAD
                             <?php require("registrar.php") ?>
+=======
+                            <?php require("registrar.php"); ?>
+>>>>>>> ea7faaa0caf8de8813730b3e778968a37f8829a0
                             
                         </li>                        
                         <?php }else{ ?>

@@ -25,14 +25,15 @@ require("models/producto.php");
                         </thead>
 
                     <tbody id="body-micarrito">
-                        <?php  
-                            foreach($_SESSION["carrito"] as $index => $productos){
-                                //$producto_base =
-                                foreach($productos as $index2 => $producto):
-                                    $produc = getProducto($producto["idProducto"]);
-                                    $marca = $produc["marca_nombre"];
-                                    $descripcion = $produc["producto_descripcion"]." (".$marca.")";                                           $imagen = $produc["producto_imagen"];  
-                                    $subtotal = $produc["producto_precio"] * $producto["cantidad"];
+                        <?php
+                            if(!empty ($_SESSION)){
+                                foreach($_SESSION["carrito"] as $index => $productos){
+                                    //$producto_base =
+                                    foreach($productos as $index2 => $producto):
+                                        $produc = getProducto($producto["idProducto"]);
+                                        $marca = $produc["marca_nombre"];
+                                        $descripcion = $produc["producto_descripcion"]." (".$marca.")";                                           $imagen = $produc["producto_imagen"];  
+                                        $subtotal = $produc["producto_precio"] * $producto["cantidad"];
                         ?>
                         <tr class="item-carrito">
                         <td>
@@ -58,6 +59,7 @@ require("models/producto.php");
                     </tr>
                                                 
                             <?php endforeach; ?>
+                        <?php } ?>
                         <?php } ?>
                             <!--<tr class="item-carrito">   
                                 <td>

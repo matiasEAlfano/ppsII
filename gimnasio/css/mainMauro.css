@@ -110,6 +110,9 @@
     background-color: #d1eaff;
     border-top-style: solid;
     border-top-color: #a6a8aa;
+    position:fixed;
+    bottom:0px;
+    width:100%;
 }
 
 .contenedor-principal .menu-opciones .col-iconos .yt{
