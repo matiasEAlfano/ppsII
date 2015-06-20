@@ -92,8 +92,6 @@
 			}
 		});    
     
-
-
 })(jQuery);
 
 function addCarrito(idProducto){
