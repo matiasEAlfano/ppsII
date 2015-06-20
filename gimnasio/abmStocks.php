@@ -50,7 +50,7 @@
             <label for="descripcion-producto">Cantidad</label>                                  
             <input name="cantidad" value="<?= !empty($stock) ? $stock["cantidad"] : ""?>" id="stock-cantidad" type="text" class="texto form-control abm-inputs" placeholder="Cantidad" >
 
-            <input type="submit" class="btn btn-primary" name="action" value="<?= $action; ?>"/>
+            <input type="submit" class="btn btn-primary" name="action" value="guardar"/>
             <input type="submit" class="btn btn-danger" name="action" value="Cancelar"/>    
 
         </form>

@@ -124,6 +124,63 @@ function getConnection(){
         return $productos;
     }
 
+    function getTallesPorProducto($idProducto){
+        $talles = array();
+        $c = getConnection();
+        $id = (int)$c->real_escape_string($idProducto);
+        $query = "SELECT id_talle, talle_nombre 
+                    FROM `productos` as p,
+                            `talles` as t,
+                            `stocks` as s
+                    WHERE p.id_producto = s.producto 
+                        AND t.id_talle = s.talle
+                        AND s.producto = $id
+                        order by talle_nombre";
+
+        if( $result = $c->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                $talles[] = $fila;
+            }
+            $result->free();
+        }
+        return $talles;
+    }
+    
+    function getProductosInStock(){
+        $c = getConnection();
+        $query = "SELECT p.id_producto, 
+                p.producto_descripcion, 
+                m.marca_nombre, 
+                p.producto_precio, 
+                c.categoria_nombre, 
+                pt.nombre_tipo_producto, 
+                g.genero_nombre, 
+                p.producto_imagen
+            FROM productos as p , 
+                marcas as m , 
+                categorias as c , 
+                `producto-tipo` as pt , 
+                generos as g
+            WHERE p.producto_marca = m.id_marca 
+            AND p.producto_categoria = c.id_categoria 
+            AND p.producto_tipoProducto = pt.id_tipo_producto 
+            AND p.producto_genero = g.id_genero
+        	AND p.id_producto in
+            (SELECT producto FROM `stocks`
+            group by producto)
+            order by p.producto_descripcion";
+        
+        $stocks = array();
+        if( $result = $c->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                
+                $stocks[] = $fila;
+            }
+            $result->free();
+        }
+        return $stocks;
+    }
+
     function getStocks(){
         $c = getConnection();
         $query = "SELECT s.id_stock, 
@@ -169,12 +226,11 @@ function getConnection(){
         $producto = $c->real_escape_string($stock['producto']);
         $talle = (int) $c->real_escape_string($stock['talle']);
         $cantidad = (int) $c->real_escape_string($stock['cantidad']);
-        
+                    
         $noDuplicate = "SELECT id_stock, cantidad
                         FROM `stocks`
                         WHERE producto = $producto
                         AND talle = $talle";
-        
         $result = $c->query($noDuplicate);
         
         if($result->num_rows == 0){

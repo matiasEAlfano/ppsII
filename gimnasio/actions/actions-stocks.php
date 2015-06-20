@@ -12,6 +12,7 @@
         $stock["producto"] = $request["id"];
         $stock["talle"] = $request["talle"];
         $stock["cantidad"] = $request["cantidad"];
+        
         if(createStock($stock)) {
             redirect("../abmStocks.php");
         }else{
@@ -22,7 +23,7 @@
     function actualizar($request){
         require("../models/stock.php");
         $stock = array();
-        $stock["producto"] = $request["descripcion"];
+        $stock["producto"] = $request["id"];
         $stock["talle"] = $request["talle"];
         $stock["cantidad"] = $request["cantidad"];
         

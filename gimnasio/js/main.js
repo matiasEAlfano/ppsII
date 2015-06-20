@@ -28,12 +28,12 @@ $('#myModal').on('shown.bs.modal', function () {
 
 
 
-var myCenter=new google.maps.LatLng(-34.6158527,-58.4333203,11);
+var myCenter=new google.maps.LatLng(-34.6622848,-58.364506,18);
 
 function initialize() {
   var mapProp = {
     center:myCenter,
-    zoom:7,
+    zoom:14,
     mapTypeId:google.maps.MapTypeId.ROADMAP
   };
     var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
