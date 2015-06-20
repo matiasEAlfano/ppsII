@@ -26,7 +26,45 @@
             }); 
     });
     
-        $("#form-login").validate({
+    
+    $("#form-actiTipo").validate({
+			rules: {
+				descripcion: {
+					required: true
+				},   	   
+            },
+			messages: {
+				descripcion: {
+					required: "Por favor ingrese una descripcion del tipo de actividad."				}
+            }
+        });
+    $("#form-actividad-tipo").validate({
+			rules: {
+				descripcion: {
+					required: true
+				},   	   
+            },
+			messages: {
+				descripcion: {
+					required: "Por favor ingrese una descripcion del tipo de actividad."				}
+            }
+        });
+    
+    $("#form-actividad-grupo").validate({
+			rules: {
+				descripcion: {
+					required: true
+				},   	   
+            },
+			messages: {
+				descripcion: {
+					required: "Por favor ingrese una descripcion del tipo de actividad."				}
+            }
+        });
+    
+    
+    
+    $("#form-login").validate({
 			rules: {
 				login_email: {
 					required: true,

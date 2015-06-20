@@ -12,7 +12,7 @@
 
 <?php require("partials/gestionHeader.php"); ?>
 
-<form method="post" action="actions/actions-actividad-grupo.php">
+<form id="form-actividad-grupo" name="form-actividad-grupo" method="post" action="actions/actions-actividad-grupo.php">
     
     <?php if($id): ?>
         <input type="hidden" name="id" value="<?= $id; ?>"/>                      
@@ -21,6 +21,7 @@
     <label>Grupo de Actividad:</label>
     <input name = "descripcion" type="text" class="form-control abm-inputs" id="tipo-actividad" value="<?= !empty($grupo) ? $grupo["descripcion"] : ""?>" placeholder="Grupo">
     
+    <br>
     <label>Tipo:</label>
     <select name = "idTipo" class="form-control abm-inputs">
         

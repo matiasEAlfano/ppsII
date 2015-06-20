@@ -6,6 +6,7 @@ function sendResponse($response){
     echo json_encode($response);
 }
 
+/*
 function nueva($request){
     require("../models/categoria.php");
     $c = new Categoria();
@@ -61,6 +62,7 @@ function eliminar($request){
         ));
     }
 }
+*/
 
 function listar($request){
     require("../models/actiTipo.php");

@@ -11,7 +11,7 @@
 
 <?php require("partials/gestionHeader.php"); ?>
 
-<form method="post" action="actions/api-actividad-tipo.php">
+<form id="form-actiTipo" name="form-actiTipo" method="post" action="actions/api-actividad-tipo.php">
     
     <?php if($id): ?>
         <input type="hidden" name="id" value="<?= $id; ?>"/>                      
@@ -20,6 +20,7 @@
     <label>Tipo de Actividad:</label>
     <input name="descripcion" type="text" class="form-control abm-inputs" id="tipo-actividad" value="<?= !empty($tipo) ? $tipo["descripcion"] : ""?>" placeholder="Tipo">
     
+    <br>
     <input type="submit" class="btn btn-primary" name="action" value="<?= $action; ?>"/>
     
 </form>
