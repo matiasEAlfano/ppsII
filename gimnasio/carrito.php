@@ -1,7 +1,7 @@
 <?php
-    require("models/producto.php");
+    require("models/stock.php");
     $id = isset($_GET["id"]) ? $_GET["id"] : null;
-    $productos = getProductos();
+    $productos = getProductosInStock();
 ?>
 
 <?php require("partials/header.php"); ?>
