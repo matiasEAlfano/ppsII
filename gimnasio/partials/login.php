@@ -1,5 +1,6 @@
+<form id="form-login" action ="actions/action-login.php" method="post">
 <div class="modal fade iniciar-sesion">
-                                
+                         
                                 <div class="modal-dialog">
                                     
                                     <div class="modal-content">
@@ -20,12 +21,12 @@
 
                                                     <div class="form-group">
                                                         <label>Email</label>
-                                                        <input type="email" class="form-control login" placeholder="Email">
+                                                        <input type="email" name="login_email" id="login_email" class="form-control login" placeholder="Email">
                                                     </div>
 
                                                     <div class="form-group">
                                                         <label>Contraseña</label>
-                                                        <input type="password" class="form-control login" id="exampleInputPassword1" placeholder="Contraseña">
+                                                        <input type="password" name="login_clave" id="login_clave" class="form-control login" id="exampleInputPassword1" placeholder="Contraseña">
                                                     </div>
 
                                                 </div>
@@ -45,7 +46,7 @@
                                         <div class="modal-footer">
 
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                            <button onclick="login();" type="button" class="btn btn-primary">INGRESAR</button>
+                                            <button type="submit" class="btn btn-primary">INGRESAR</button>
 
                                         </div>
 
@@ -54,3 +55,4 @@
                                 </div>
                                 
                             </div>
+    </form>

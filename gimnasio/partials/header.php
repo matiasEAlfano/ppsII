@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!doctype html>
 <html class="no-js" lang="">
     <head>
@@ -36,7 +37,9 @@
                 
                 <div class="col-md-6 col-carrito">
                     
+                    
                     <ul class="nav nav-pills">
+                        <?php if(empty($_SESSION["usuario"])) {?>
                         <li>
                             <a data-toggle="modal" data-target=".iniciar-sesion">Ingresar</a>
                             
@@ -46,28 +49,15 @@
                         <li>
                             <a data-toggle="modal" data-target=".registrar-usuario">Registrarse</a>
                             
-                            <div class="modal fade registrar-usuario">
-                                
-                                <div class="modal-dialog">
-                                    
-                                    <div class="modal-content">
-                                    
-                                        <div class="modal-header">
-
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            
-                                            <h4 class="modal-title">REGISTRAR NUEVO USUARIO:</h4>
-
-                                        </div>
-
-                                        <?php require("abmUsuario.php"); ?>
-
-                                    </div>
-                                    
-                                </div>
-                                
-                            </div>
+                            <?php require("registrar.php") ?>
+                            
                         </li>                        
+                        <?php }else{ ?>
+                        <li>
+                            <?php echo "Bienvenido ".$_SESSION["usuario"]["email"] ?>
+                            <a href="partials/logout.php">Cerrar session</a>
+                        </li>         
+                        <?php } ?>
                         <li><a class="navbar-brand" href="carrito.php"><img src="img/carrito.jpg" alt="Carrito" class="img-responsive" "icon-carrito"></a></li>                        
                     </ul>
                     

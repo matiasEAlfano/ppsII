@@ -26,96 +26,73 @@
             }); 
     });
     
-    /*$(".add-to-car").on("click", function(){
-        var producto = {};
-        producto.idProducto = $(".add-producto").val();
-        producto.idTalle = $(".add-talle").val();
-        producto.cantidad = $(".add-cantidad").val();
-        
-        var URI = {};
-        URI.ADD_PRODUCTO = "actions/api-addToCar.php?action=addToCar";
-        
-        $.ajax({
-            url: URI.RELOAD_COMBOS,
-            data: {idProducto: producto.idProducto, 
-                   idTalle: producto.idTalle, 
-                   cantidad: producto.cantidad},
-            method : 'GET',
-            dataType : 'json'
-        }).done(function(res){
-                if(!res.error){
-                    res.data.forEach(function(detalleProducto){
-                        console.log(detalleProducto)
-                        var html='<tr class="item-carrito">\
-                                <td>\
-                                    <div class="img-producto">'+detalleProducto.imagen+'</div>\
-                                    <div class="detalle-producto">'+detalleProducto.tipo+ ''+detalleProducto.marca+ ''+detalleProducto.descripcion+'</div>\
-                                    <div class="edit-producto"><a href="#">Eliminar</a></div>\                                              </td>\
-                                <td>\
-                                    <select>\
-                                        <option value="1">1</option>\
-                                        <option value="2">2</option>\
-                                        <option value="3">3</option>\
-                                        <option value="4">4</option>\
-                                        <option value="5">5</option>\
-                                    </select>\
-                                </td>\
-                                <td>'+detalleProducto.precio+'</td>\
-                            </tr>\
-                            <tr>\
-                                <td colspan="3">\
-                                    <span class="pull-right"><b>Total</b></span>\
-                                </td>\
-                                <td>\
-                                    <span>$3029</span>\
-                                </td>\
-                            </tr>';                        
-                        
-                        $("#detalle-carrito tbody").append(html);    
-                    });
-                    
-                }
-            });
-    });*/
+        $("#form-login").validate({
+			rules: {
+				login_email: {
+					required: true,
+					email: true
+				},    
+				login_clave: {
+					required: true,
+					minlength: 5
+				}   
+            },
+			messages: {
+				login_email: {
+					required: "Por favor ingrese su email",
+					email: "El email no es valido"
+				},     
+				login_clave: {
+					required: "Por favor ingrese una clave",
+					minlength: "Su clave debe contener como minimo 5 caracteres"
+				}
+            }
+        });
     
-            
-    var productos = Array();
-    var producto = {};
-    /*
-    $(".add-to-car").on("click", function(){
-        
-        producto.idProducto = $(".add-producto").val();
-        producto.idTalle = $(".add-talle").val();
-        producto.cantidad = $(".add-cantidad").val();
-        
-        productos.push(producto);
-        
-        console.dir(producto);
-        console.dir(productos);
-    });*/
+		$("#form-registrar").validate({
+			rules: {
+				email: {
+					required: true,
+					email: true
+				},
+				email_repetir: {
+					required: true,
+					email: true,
+                    equalTo: "#email"
+				},   
+				clave: {
+					required: true,
+					minlength: 5
+				},                
+				clave_repetir: {
+					required: true,
+					minlength: 5,
+					equalTo: "#clave"
+				}
+			},
+			messages: {
+				email: {
+					required: "Por favor ingrese su email",
+					email: "El email no es valido"
+				},
+				email_repetir: {
+					required: "Por favor ingrese su email",
+					email: "El email no es validor",
+                    equalTo: "Las emails ingresados no son iguales"
+				},                
+				clave: {
+					required: "Por favor ingrese una clave",
+					minlength: "Su clave debe contener como minimo 5 caracteres"
+				},
+				clave_repetir: {
+					required: "Por favor ingrese una clave",
+					minlength: "Su clave debe contener como minimo 5 caracteres",
+					equalTo: "Las claves ingresadas no son iguales"
+				}
+			}
+		});    
     
-    /*$(".list-car").on("click", function(){
-        
-        for (i=0; i < productos.length; i++){
-            console.dir(productos[i]);
-        }
-        
-        var URI = {};
-        URI.ADD_PRODUCTO = "actions/api-addToCar.php?action=addToCar";
-        
-        $.ajax({
-            url: URI.RELOAD_COMBOS,
-            data: {idProducto: producto.idProducto, 
-                   idTalle: producto.idTalle, 
-                   cantidad: producto.cantidad},
-            method : 'GET',
-            dataType : 'json'
-        }).done(function(res){
-                if(!res.error){
-                    res.data.forEach(function(detalleProducto){
-                        console.log(detalleProducto);
-        
-    });*/
+
 
 })(jQuery);
 
@@ -191,6 +168,8 @@ function login(){
         location.reload();    
     });
         
-    
-    
 } 
+
+  
+    
+

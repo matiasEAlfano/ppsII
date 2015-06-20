@@ -529,3 +529,12 @@ div.growlUI h1, div.growlUI h2 {
 h1, h2 .anchors a, .sampleAnchors a {
     font-family: "trebuchet ms",verdana,arial;
 }
+
+label.error{
+    color: red;
+}
+
+input.error{
+    border: 1px solid red;
+    background-color: bisque;
+}

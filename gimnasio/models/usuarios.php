@@ -25,4 +25,17 @@
         }
     }
 
+ function loginUsuario($usuario){
+        $c = getConnection();
+        $email = $c->real_escape_string($usuario['email']);
+        $clave = $c->real_escape_string($usuario['clave']);
+        $query = "SELECT * FROM `usuarios` WHERE email = '$email' and clave = '$clave'";
+         
+     if($c->query($query)){
+            return true;
+        }else{
+           return false;
+        }
+    }
+
 ?>

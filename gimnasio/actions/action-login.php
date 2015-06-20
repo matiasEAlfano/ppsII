@@ -8,19 +8,20 @@
        die();
     }
 
-    function nueva($request){
+    function login($request){
         
         require("../models/usuarios.php");
         $usuario = array();
-        $usuario["email"] = $request["email"];
-        $usuario["clave"] = $request["clave"];
-        if(createUsuario($usuario)){
-            $_SESSION["usuario"]["email"] = $request["email"];
+        $usuario["email"] = $request["login_email"];
+        $usuario["clave"] = $request["login_clave"];
+        
+        if(loginUsuario($usuario)){
+            $_SESSION["usuario"]["email"] = $request["login_email"];
             redirect("../socio.php");
         }else{
             redirect("../error.php");
         }
     }
 
-    nueva($request);
+    login($request);
 ?>
