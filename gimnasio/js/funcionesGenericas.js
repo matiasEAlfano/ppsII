@@ -63,6 +63,116 @@
         });
     
     
+    $("#form-marcas").validate({
+			rules: {
+				nombre_marca: {
+					required: true
+				},   	   
+            },
+			messages: {
+				nombre_marca: {
+					required: "Por favor ingrese una marca."				}
+            }
+        });
+    
+    $("#form-tipo-producto").validate({
+			rules: {
+				nombre_tipo: {
+					required: true
+				},   	   
+            },
+			messages: {
+				nombre_tipo: {
+					required: "Por favor ingrese una tipo de producto."				}
+            }
+        });
+
+    $("#form-categoria-producto").validate({
+			rules: {
+				nombre_categoria: {
+					required: true
+				},   	   
+            },
+			messages: {
+				nombre_categoria: {
+					required: "Por favor ingrese una categoria de producto."				}
+            }
+        });
+    
+    $("#form-genero-producto").validate({
+			rules: {
+				nombre_genero: {
+					required: true
+				},   	   
+            },
+			messages: {
+				nombre_genero: {
+					required: "Por favor ingrese un genero de producto."				}
+            }
+        });
+    
+    $("#form-talle-producto").validate({
+			rules: {
+				nombre_talle: {
+					required: true
+				},   	   
+            },
+			messages: {
+				nombre_talle: {
+					required: "Por favor ingrese un talle de producto."				}
+            }
+        });   
+
+    $("#form-actividades").validate({
+			rules: {
+				nombre: {
+					required: true
+				},   	   
+            },
+			messages: {
+				nombre: {
+					required: "Por favor ingrese un nombre de actividad."				}
+            }
+        });
+    
+    $("#form-productos-stock").validate({
+			rules: {
+                cantidad:{
+                    requred: true,
+                    digits: true
+                }   	   
+            },
+			messages: {
+				   cantidad:{
+                    required: "Por favor ingrese cantidad.",
+                    digits: "Solo se permiten numeros enteros."
+                }
+            }
+        });
+
+    $("#form-productos").validate({
+			rules: {
+				descripcion: {
+					required: true
+				},
+                precio: {
+					required: true,
+                    number: true
+				}
+            },
+			messages: {
+				descripcion: {
+					required: "Por favor ingrese una descripcion."				
+                },
+                precio:{
+                    required: "Por favor ingrese precio.",
+                    number: "Solo se permiten numeros y un punto para separar decimales Ej: (12.99)"                
+                }
+             
+            }
+        });
+    
+    
     
     $("#form-login").validate({
 			rules: {

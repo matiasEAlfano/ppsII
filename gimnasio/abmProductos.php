@@ -51,9 +51,11 @@
                         
                         <label for="descripcion-producto"> Descripcion</label>                             
                         <input name="descripcion" value="<?= !empty($producto) ? $producto["producto_descripcion"] : ""?>" id="descripcion-producto" type="text" class="texto form-control abm-inputs" placeholder="Descripcion *" >
+                        <br>
                         
                         <label for="precio-producto">Precio</label>                                    
                         <input name="precio" value="<?= !empty($producto) ? $producto["producto_precio"] : ""?>" id="precio-producto" type="text" class="texto form-control abm-inputs" placeholder="Precio" >
+                        <br>
                         
                         <label for="marca-producto"> Marca </label>
                         <br>

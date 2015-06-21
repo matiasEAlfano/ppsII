@@ -17,7 +17,7 @@
     }
 ?>
 
-<form method="post" action="actions/actions_tipos_productos.php">
+<form id="form-tipo-producto" method="post" action="actions/actions_tipos_productos.php">
     
     <?php if($id): ?>
         <input type="hidden" name="id_tipo" value="<?= $id; ?>"/>                      
@@ -25,6 +25,7 @@
     
     <label>Nombre tipo de producto: </label>
     <input name = "nombre_tipo" type="text" class="form-control abm-inputs" id="nombre_tipo" value="<?= !empty($tipo) ? $tipo["nombre_tipo_producto"] : ""?>" placeholder="Ingrese tipo de producto">
+    <br>
     
     <label>Categoria:</label>
     <select name = "idCategoria" class="form-control abm-inputs">

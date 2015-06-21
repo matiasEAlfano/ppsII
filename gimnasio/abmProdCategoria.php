@@ -13,7 +13,7 @@
 ?>
 <?php require("partials/gestionHeader.php"); ?>
 
-<form method="post" action="actions/actions_categorias.php">
+<form id="form-categoria-producto" method="post" action="actions/actions_categorias.php">
     
     <?php if($id): ?>
         <input type="hidden" name="id_categoria" value="<?= $id; ?>"/>                      
@@ -21,6 +21,7 @@
     
     <label>Nombre de Categoria: </label>
     <input name = "nombre_categoria" type="text" class="form-control abm-inputs" id="categoria_nombre" value="<?= !empty($categoria) ? $categoria["categoria_nombre"] : ""?>" placeholder="Ingrese categoria">
+    <br>
     <input type="submit" class="btn btn-primary" name="action" value="<?= $action; ?>"/>
     <input type="submit" class="btn btn-danger" name="action" value="Cancelar"/>
     

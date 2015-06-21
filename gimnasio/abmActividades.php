@@ -13,7 +13,7 @@
 
 <?php require("partials/gestionHeader.php"); ?>
 
-<form method="post" action="actions/actions-actividades.php">
+<form id="form-actividades" method="post" action="actions/actions-actividades.php">
     
     <?php if($id): ?>
         <input type="hidden" name="id" value="<?= $id; ?>"/>                      
@@ -21,6 +21,7 @@
     
     <label>Actividad:</label>
     <input name = "nombre" type="text" class="form-control abm-inputs" id="actividad" value="<?= !empty($actividad) ? $actividad["nombre"] : ""?>" placeholder="Actividad">
+    <br>
     
     <label>Tipo:</label>
     <select name = "idTipo" class="form-control abm-inputs">

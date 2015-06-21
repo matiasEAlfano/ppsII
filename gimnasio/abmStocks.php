@@ -18,7 +18,7 @@
 <div class="row">                         
     <div class="col-md-4">
 
-        <form method="post" action="actions/actions-stocks.php" id="form-productos">
+        <form method="post" action="actions/actions-stocks.php" id="form-productos-stock">
 
             <?php if($id): ?>
                 <input type="hidden" name="id" value="<?= $id; ?>"/>                      
@@ -48,8 +48,8 @@
             <br>
 
             <label for="descripcion-producto">Cantidad</label>                                  
-            <input name="cantidad" value="<?= !empty($stock) ? $stock["cantidad"] : ""?>" id="stock-cantidad" type="text" class="texto form-control abm-inputs" placeholder="Cantidad" >
-
+            <input name="cantidad" value="<?= !empty($stock) ? $stock["cantidad"] : ""?>" id="stock-cantidad" class="texto form-control abm-inputs" placeholder="Cantidad" >
+            <br>
             <input type="submit" class="btn btn-primary" name="action" value="guardar"/>
             <input type="submit" class="btn btn-danger" name="action" value="Cancelar"/>    
 

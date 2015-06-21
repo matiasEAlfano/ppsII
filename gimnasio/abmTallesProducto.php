@@ -11,7 +11,7 @@
         $talle = getTalle($id);
     }
 ?>
-<form method="post" action="actions/actions_talles.php">
+<form id="form-talle-producto" method="post" action="actions/actions_talles.php">
     
     <?php if($id): ?>
         <input type="hidden" name="id_talle" value="<?= $id; ?>"/>                      
@@ -19,6 +19,7 @@
     
     <label>Nombre del Talle: </label>
     <input name = "nombre_talle" type="text" class="form-control abm-inputs" id="nombre_talle" value="<?= !empty($talle) ? $talle["talle_nombre"] : ""?>" placeholder="Ingrese talle">
+    <br>
     <input type="submit" class="btn btn-primary" name="action" value="<?= $action; ?>"/>
     <input type="submit" class="btn btn-danger" name="action" value="Cancelar"/>
     
