@@ -26,6 +26,9 @@
             }); 
     });
     
+     $.validator.addMethod("sinValorSeleccionado", function(value, element, arg){
+  return arg != value;
+ }, "Value must not equal arg.");
     
     $("#form-actiTipo").validate({
 			rules: {
@@ -134,8 +137,9 @@
 					required: "Por favor ingrese un nombre de actividad."				}
             }
         });
-    
    
+    
+    
     $("#form-productos-stock").validate({       
         
         /*ignore: "",*/
@@ -144,17 +148,18 @@
                     required: true,
                     digits: true
                 },
-                idMatias:{
-                    required:true            
+                talle:{
+                    sinValorSeleccionado:"Seleccione un talle"            
                 }
+            
             },
 			messages: {
 				   cantidad:{
                     required: "Por favor ingrese cantidad.",
                     digits: "Solo se permiten numeros enteros."
                 },
-                  idMatias:{
-                    required: "Por favor seleccione un producto."
+                  talle:{
+                    sinValorSeleccionado: "Por favor seleccione un talle."
                 }
             }
         });
@@ -177,6 +182,18 @@
                 precio: {
 					required: true,
                     number: true
+				},
+                marca: {
+					sinValorSeleccionado: "Seleccione una marca"
+				},
+                categoria: {
+					sinValorSeleccionado: "Seleccione una categoria"
+				},
+                tipo: {
+					sinValorSeleccionado: "Seleccione un tipo"
+				},
+                genero: {
+					sinValorSeleccionado: "Seleccione un genero"
 				}
             },
 			messages: {
@@ -186,7 +203,19 @@
                 precio:{
                     required: "Por favor ingrese precio.",
                     number: "Solo se permiten numeros y un punto para separar decimales Ej: (12.99)"                
-                }
+                },
+                marca: {
+					sinValorSeleccionado: "Por favor seleccione una marca."
+				},
+                categoria: {
+					sinValorSeleccionado: "Por favor seleccione una categoria."
+				},
+                tipo: {
+					sinValorSeleccionado: "Por favor seleccione un tipo."
+				},
+                genero: {
+					sinValorSeleccionado: "Por favor seleccione un genero."
+				}
              
             }
         });
@@ -206,12 +235,12 @@
             },
 			messages: {
 				login_email: {
-					required: "Por favor ingrese su email",
-					email: "El email no es valido"
+					required: "Por favor ingrese su email.",
+					email: "El email no es valido."
 				},     
 				login_clave: {
-					required: "Por favor ingrese una clave",
-					minlength: "Su clave debe contener como minimo 5 caracteres"
+					required: "Por favor ingrese una clave.",
+					minlength: "Su clave debe contener como minimo 5 caracteres."
 				}
             }
         });
@@ -239,22 +268,22 @@
 			},
 			messages: {
 				email: {
-					required: "Por favor ingrese su email",
-					email: "El email no es valido"
+					required: "Por favor ingrese su email.",
+					email: "El email no es valido."
 				},
 				email_repetir: {
-					required: "Por favor ingrese su email",
-					email: "El email no es validor",
-                    equalTo: "Las emails ingresados no son iguales"
+					required: "Por favor ingrese su email.",
+					email: "El email no es validor.",
+                    equalTo: "Las emails ingresados no son iguales."
 				},                
 				clave: {
-					required: "Por favor ingrese una clave",
-					minlength: "Su clave debe contener como minimo 5 caracteres"
+					required: "Por favor ingrese una clave.",
+					minlength: "Su clave debe contener como minimo 5 caracteres."
 				},
 				clave_repetir: {
-					required: "Por favor ingrese una clave",
-					minlength: "Su clave debe contener como minimo 5 caracteres",
-					equalTo: "Las claves ingresadas no son iguales"
+					required: "Por favor ingrese una clave.",
+					minlength: "Su clave debe contener como minimo 5 caracteres.",
+					equalTo: "Las claves ingresadas no son iguales."
 				}
 			}
 		});
