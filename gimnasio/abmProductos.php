@@ -51,12 +51,9 @@
                         
                         <label for="descripcion-producto"> Descripcion</label>                             
                         <input name="descripcion" value="<?= !empty($producto) ? $producto["producto_descripcion"] : ""?>" id="descripcion-producto" type="text" class="texto form-control abm-inputs" placeholder="Descripcion *" >
-                        <br>
-                        
                         <label for="precio-producto">Precio</label>                                    
                         <input name="precio" value="<?= !empty($producto) ? $producto["producto_precio"] : ""?>" id="precio-producto" type="text" class="texto form-control abm-inputs" placeholder="Precio" >
-                        <br>
-                        
+                                                
                         <label for="marca-producto"> Marca </label>
                         <br>
                         <select name="marca" id="marca-producto" class="dropdown-basico abm-inputs">
@@ -67,7 +64,7 @@
                             <option <?php echo $selected?> value="<?= $marca["id_marca"]; ?>">
                                 <?= $marca["marca_nombre"]; ?>
                             </option>
-                            <?php } ?>                            
+                            <?php } ?>
                         </select>
                         <br>
                         <label for="categoria-producto"> Categoria </label>
@@ -86,7 +83,7 @@
                         
                         <label for="tipo-producto"> Tipo de Producto </label>
                         <br>
-                        <select name = "tipo" id="tipo-producto" class="dropdown-basico abm-inputs">
+                        <select name="tipo" id="tipo-producto" class="dropdown-basico abm-inputs">
                             <option> Seleccione un tipo </option>
                             <?php foreach ($tipos as $tipo) {
                                 $selected = ($producto["id_tipo_producto"]==$tipo["id_tipo_producto"]) ? "selected='selected'" : "";
@@ -111,7 +108,7 @@
                             <?php } ?>
                         </select>
                         <br>
-                        
+                        <br>    
                     <input type="submit" class="btn btn-primary" name="action" value="<?= $action; ?>"/>
                     <input type="submit" class="btn btn-danger" name="action" value="Cancelar"/>    
                         
