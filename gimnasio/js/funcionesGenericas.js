@@ -57,11 +57,18 @@
 			rules: {
 				descripcion: {
 					required: true
-				},   	   
+				},
+                idTipo: {
+					sinValorSeleccionado: "-Seleccionar Tipo-"
+				}
             },
 			messages: {
 				descripcion: {
-					required: "Por favor ingrese una descripcion del tipo de actividad."				}
+					required: "Por favor ingrese una descripcion."	
+                },
+                idTipo: {
+					sinValorSeleccionado: "Por favor seleccione un tipo."
+				}
             }
         });
     
@@ -82,12 +89,19 @@
 			rules: {
 				nombre_tipo: {
 					required: true
-				},   	   
+				},
+                idCategoria: {
+				    sinValorSeleccionado:"-Seleccionar Categoria-"
+				}
             },
 			messages: {
 				nombre_tipo: {
-					required: "Por favor ingrese una tipo de producto."				}
-            }
+					required: "Por favor ingrese una tipo de producto."
+                },
+                 idCategoria: {
+				    sinValorSeleccionado:"Por favor seleccione una categoria."
+				}
+            }    
         });
 
     $("#form-categoria-producto").validate({
@@ -130,14 +144,26 @@
 			rules: {
 				nombre: {
 					required: true
-				},   	   
+				},
+                idTipo: {
+					sinValorSeleccionado:"-Seleccionar Tipo-" 
+				},
+                idGrupo: {
+					sinValorSeleccionado:"-Seleccionar Grupo-" 
+				}
+                
             },
 			messages: {
 				nombre: {
-					required: "Por favor ingrese un nombre de actividad."				}
-            }
-        });
-   
+					required: "Por favor ingrese un nombre de actividad."				              },
+                idTipo: {
+                    sinValorSeleccionado:"Por favor seleccione un tipo." 
+                },
+                idGrupo: {
+                    sinValorSeleccionado:"Por favor seleccione un grupo." 
+                }
+            },
+        });   
     
     
     $("#form-productos-stock").validate({       

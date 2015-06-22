@@ -21,7 +21,6 @@
     
     <label>Actividad:</label>
     <input name = "nombre" type="text" class="form-control abm-inputs" id="actividad" value="<?= !empty($actividad) ? $actividad["nombre"] : ""?>" placeholder="Actividad">
-    <br>
     
     <label>Tipo:</label>
     <select name = "idTipo" class="form-control abm-inputs">

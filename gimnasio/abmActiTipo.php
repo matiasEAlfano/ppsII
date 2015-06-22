@@ -20,7 +20,6 @@
     <label>Tipo de Actividad:</label>
     <input name="descripcion" type="text" class="form-control abm-inputs" id="tipo-actividad" value="<?= !empty($tipo) ? $tipo["descripcion"] : ""?>" placeholder="Tipo">
     
-    <br>
     <input type="submit" class="btn btn-primary" name="action" value="<?= $action; ?>"/>
     
 </form>
