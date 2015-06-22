@@ -300,7 +300,6 @@ function unblock(){
 
 function login(){
     
-    // validar usuario y password
     var usuario = $("#usuario").val();
     var password = $("#password").val();
     

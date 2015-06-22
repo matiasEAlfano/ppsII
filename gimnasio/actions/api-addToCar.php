@@ -41,7 +41,7 @@ switch($action){
 
 function addCarrito($producto){    
     $producto_id = $producto["idProducto"];
-    $_SESSION["carrito"][][$producto_id] = $producto;    
+    $_SESSION["carrito"][][$producto_id] = $producto;
 }
 function removeCarrito($producto){ 
     $producto_id = $producto["idProducto"];

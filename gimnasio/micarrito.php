@@ -1,8 +1,6 @@
 <?php 
 require("partials/header.php"); 
 require("models/producto.php"); 
-
-
 ?>
         
         <div class="container-fluid cuerpo">
@@ -31,7 +29,8 @@ require("models/producto.php");
                                     foreach($productos as $index2 => $producto):
                                         $produc = getProducto($producto["idProducto"]);
                                         $marca = $produc["marca_nombre"];
-                                        $descripcion = $produc["producto_descripcion"]." (".$marca.")";                                           $imagen = $produc["producto_imagen"];  
+                                        $descripcion = $produc["producto_descripcion"]." (".$marca.")";
+                                        $imagen = $produc["producto_imagen"];  
                                         $subtotal = $produc["producto_precio"] * $producto["cantidad"];
                         ?>
                         <tr class="item-carrito">
