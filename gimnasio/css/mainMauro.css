@@ -1,5 +1,4 @@
 /*MAURO*/
-
 #carousel-example-generic{
     margin: 2%;
 }
@@ -18,7 +17,7 @@
     width: 60px;
 }
 
-.cuerpo-micarrito .comprar a{
+.cuerpo-micarrito .comprar a, button{
     float: right;
     margin-right: 15px; 
 }

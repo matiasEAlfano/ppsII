@@ -55,7 +55,12 @@
                         </li>                        
                         <?php }else{ ?>
                         <li>
-                            <?php echo "Bienvenido ".$_SESSION["usuario"]["email"] ?>
+                            <label>
+                                <?php echo "Bienvenido: "?>
+                                <a href="socio.php">
+                                    <?php echo $_SESSION["usuario"]["email"] ?>
+                                </a>    
+                            </label>
                             <a href="partials/logout.php">Cerrar session</a>
                         </li>         
                         <?php } ?>

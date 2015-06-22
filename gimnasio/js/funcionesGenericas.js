@@ -257,7 +257,11 @@
 					equalTo: "Las claves ingresadas no son iguales"
 				}
 			}
-		});    
+		});
+    
+        $("#btn-comprar").on("click", function(){
+            alert("Debe ingresar sesion para poder realizar su compra!");
+        })
     
 })(jQuery);
 

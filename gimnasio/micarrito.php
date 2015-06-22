@@ -131,7 +131,17 @@ require("models/producto.php");
                     </table>
                     
                     <div class="row comprar">
-                        <a href="comprar.php"><button class="btn btn-default" type="button">COMPRAR</button></a>
+                        
+                        <?php if(empty($_SESSION["usuario"])) {?>
+                        
+                            <button id="btn-comprar" name="btn-comprar" class="btn btn-default" type="button">COMPRAR</button>
+                            
+                        <?php }else{ ?>
+                        
+                            <a href="comprar.php"><button class="btn btn-default" type="button">COMPRAR</button></a>
+                        
+                        <?php }?>
+                        
                     </div>
 
                 </div>
