@@ -133,4 +133,13 @@ margin-left: 10%;
 width: 100%;
 }
 
+#guardarStock{
+
+    position: absolute;
+}
+
+#cancelarStock{
+    margin-left: 25%;
+
+}
 /**/
