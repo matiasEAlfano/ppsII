@@ -18,18 +18,22 @@
 <div class="row">                         
     <div class="col-md-4">
 
-        <form method="post" action="actions/actions-stocks.php" id="form-productos-stock">
+        <form id="form-productos-stock" method="post" action="actions/actions-stocks.php" >
 
             <?php if($id): ?>
-                <input type="hidden" name="id" value="<?= $id; ?>"/>                      
+                <input id="eligioProducto" type="hidden" name="id" value="<?= $id; ?>"/>                      
             <?php endif; ?>    
 
             <label for="descripcion-producto">Producto:
                 <span class="btn-success">
-                    <?= !empty($producto) ? $producto["marca_nombre"] : ""?>
-                    <?= !empty($producto) ? $producto["producto_descripcion"] : ""?>
+                    <?=!empty($producto) ? $producto["marca_nombre"] : ""?>
+                    <?=!empty($producto) ? $producto["producto_descripcion"] : ""?>
                 </span>    
             </label>
+
+           <!-- <label for="descripcion-producto">Producto:
+                <input name="productoElegido" id="productoElegido" type="text" disabled>
+            </label>-->
             <br>
             <br>
 
@@ -47,10 +51,11 @@
             </select>
             <br>
 
-            <label for="descripcion-producto">Cantidad</label>                                  
-            <input name="cantidad" value="<?= !empty($stock) ? $stock["cantidad"] : ""?>" id="stock-cantidad" class="texto form-control abm-inputs" placeholder="Cantidad" >
+            <label for="stock-cantidad">Cantidad</label>                                  
+            <input name="cantidad" value="<?= !empty($stock) ? $stock["cantidad"] : ""?>" id="stock-cantidad" class="texto form-control abm-inputs" placeholder="Cantidad">
             <br>
-            <input type="submit" class="btn btn-primary" name="action" value="guardar"/>
+            <button id="guardarStock" type="submit" class="btn btn-primary" name="action" value="guardar">Guardar</button>
+            <!--<input id="guardarStock" type="submit" class="btn btn-primary" name="action" value="guardar"/>-->
             <input type="submit" class="btn btn-danger" name="action" value="Cancelar"/>    
 
         </form>

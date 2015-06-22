@@ -135,20 +135,39 @@
             }
         });
     
-    $("#form-productos-stock").validate({
-			rules: {
+   
+    $("#form-productos-stock").validate({       
+        
+        /*ignore: "",*/
+        rules: {
                 cantidad:{
-                    requred: true,
+                    required: true,
                     digits: true
-                }   	   
+                },
+                idMatias:{
+                    required:true            
+                }
             },
 			messages: {
 				   cantidad:{
                     required: "Por favor ingrese cantidad.",
                     digits: "Solo se permiten numeros enteros."
+                },
+                  idMatias:{
+                    required: "Por favor seleccione un producto."
                 }
             }
         });
+    
+     $("#guardarStock").on("click", function (){
+        
+        if(!$("#eligioProducto").val()){
+            alert("Debe seleccionar un producto.");
+            return false;
+        }
+        
+    });
+    
 
     $("#form-productos").validate({
 			rules: {
@@ -315,6 +334,6 @@ function login(){
         
 } 
 
-  
+ 
     
 
