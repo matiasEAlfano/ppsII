@@ -76,7 +76,8 @@
                 
                 <div class="col-md-6 facturacion">
                     
-                    <h3>Datos de Facturacion:</h3>                    
+                    <h3>Datos de Facturacion:</h3>
+                    
                     <label>Nombre:</label><?php echo " " . $datos["datos_usuario_nombre"]?>
                     <br>
                     <label>Apellido:</label><?php echo " " . $datos["datos_usuario_apellido"]?>
@@ -90,6 +91,7 @@
                     <label>Localidad:</label><?php echo " " . $datos["datos_usuario_localidad"]?>
                     <br>
                     <label>Telefono:</label><?php echo " " . $datos["datos_usuario_telefono"]?>
+                    
                 </div>
                     
                 <a href="micarrito.php"><button type="button" class="btn btn-default">Volver a Mi Carrito</button></a>

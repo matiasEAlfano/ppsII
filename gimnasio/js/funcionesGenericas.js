@@ -315,7 +315,7 @@
 		});
     
         $("#btn-comprar-no-user").on("click", function(){
-            $("#message-login").html("<h4 style='color:green;'>Iniciar tu sesion para comprar!</h4>");
+            $("#message-login").html("<h4 style='color:green;'>INICIA SESION PARA COMPRAR!!</h4>");
         })
         
         $("#btn-comprar-no-product").on("click", function(){
@@ -395,8 +395,4 @@ function login(){
         location.reload();    
     });
         
-} 
-
- 
-    
-
+}

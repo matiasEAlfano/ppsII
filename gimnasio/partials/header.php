@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php session_start(); //print_r($_SESSION);?>
 <!doctype html>
 <html class="no-js" lang="">
     <head>
