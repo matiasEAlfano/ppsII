@@ -8,7 +8,7 @@
         
         <div class="container-fluid cuerpo">
             
-            <h2 class="titulo-cuerpo">CARRITO</h2>            
+            <h2 class="titulo-cuerpo">E-SHOP</h2>            
             
             <div class="container cuerpo-carrito">
                 

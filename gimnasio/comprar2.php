@@ -1,11 +1,17 @@
-<?php require("partials/header.php"); ?>
+<?php 
+    require("partials/header.php"); 
+    if($_POST){
+        // enviar datos al modelo
+    }
+
+?>
         
         <div class="container-fluid cuerpo">
             
             <h2 class="titulo-cuerpo">Comprar</h2>            
             
             <div class="container cuerpo-comprar">
-                
+                <!--
                 <div class="col-md-6 retiro">
                     
                     <h3>Retirar por:</h3>
@@ -20,9 +26,9 @@
                         </select>
                     
                 </div>
-                
-                <div class="col-md-6 pagos">
-
+                -->
+                <div class="col-md-12 pagos">
+                    <form method="post" action="">
                         <h3>Forma de Pago:</h3>
                         
                         <label>Tipo de tarjeta:</label>
@@ -71,8 +77,10 @@
                         <label>CCV</label>
                         <input type="text" class="texto form-control">
                     
-                        <a href="comprar3.php"><button type="button" class="btn btn-default">Revisar Orden</button>
-                </div></a>
+                       <button type="submit" class="btn btn-default">Revisar Orden</button>
+                              
+                    </form>  
+                </div>
                 
             </div>
             

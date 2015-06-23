@@ -10,7 +10,7 @@
                     
                     <div class="row">
                         
-                        <li class="#"><a href="ABMperfiles.php">Mi Perfil</a></li>
+                        <li class="#"><a href="abmDatosPersonales.php">Datos Personales</a></li>
                         <li><a href="micarrito.php">Mi Carrito</a></li>
                         <li><a>Resumen de Facturas</a></li>
                         <li><a href="calificarActividad.php">Calificar</a></li>

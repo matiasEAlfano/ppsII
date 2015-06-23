@@ -288,8 +288,12 @@
 			}
 		});
     
-        $("#btn-comprar").on("click", function(){
-            alert("Debe ingresar sesion para poder realizar su compra!");
+        $("#btn-comprar-no-user").on("click", function(){
+            $("#message-login").html("<h4 style='color:green;'>Iniciar tu sesion para comprar!</h4>");
+        })
+        
+        $("#btn-comprar-no-product").on("click", function(){
+            alert("No tienes productos en tu carrito!");
         })
     
 })(jQuery);

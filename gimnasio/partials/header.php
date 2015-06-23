@@ -1,5 +1,4 @@
-<?php session_start(); 
-//print_r($_SESSION); exit;?>
+<?php session_start(); ?>
 <!doctype html>
 <html class="no-js" lang="">
     <head>
@@ -42,7 +41,7 @@
                     <ul class="nav nav-pills">
                         <?php if(empty($_SESSION["usuario"])) {?>
                         <li>
-                            <a data-toggle="modal" data-target=".iniciar-sesion">Ingresar</a>
+                            <a onclick="$('#message-login').html('');" data-toggle="modal" data-target=".iniciar-sesion">Ingresar</a>
                             
                             <?php require("login.php"); ?>
                             

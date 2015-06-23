@@ -8,16 +8,24 @@
        die();
     }
 
-    function login($request){
+    function login($request){   
         
         require("../models/usuarios.php");
         $usuario = array();
         $usuario["email"] = $request["login_email"];
         $usuario["clave"] = $request["login_clave"];
         
-        if(loginUsuario($usuario)){
-            $_SESSION["usuario"]["email"] = $request["login_email"];
-            redirect("../socio.php");
+        if($idUsuario = loginUsuario($usuario)){
+            $_SESSION["usuario"]["id"] = $idUsuario["id"];
+            $_SESSION["usuario"]["email"] = $idUsuario["email"];
+            $_SESSION["usuario"]["clave"] = $idUsuario["clave"];
+            
+            if($_SERVER["HTTP_REFERER"]=="http://localhost/ppsII/gimnasio/micarrito.php"){
+                redirect("../comprar.php");
+            }else{
+                redirect("../socio.php");
+            }
+            
         }else{
             redirect("../error.php");
         }
