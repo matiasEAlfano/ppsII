@@ -21,7 +21,6 @@
     <label>Grupo de Actividad:</label>
     <input name = "descripcion" type="text" class="form-control abm-inputs" id="tipo-actividad" value="<?= !empty($grupo) ? $grupo["descripcion"] : ""?>" placeholder="Grupo">
     
-    <br>
     <label>Tipo:</label>
     <select name = "idTipo" class="form-control abm-inputs">
         

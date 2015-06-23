@@ -19,7 +19,7 @@
     
     <label>Nombre de Marca: </label>
     <input name = "nombre_marca" type="text" class="form-control abm-inputs" id="marca_nombre" value="<?= !empty($marca) ? $marca["marca_nombre"] : ""?>" placeholder="Ingrese marca">
-    <br>
+   
     <input type="submit" class="btn btn-primary" name="action" value="<?= $action; ?>"/>
     <input type="submit" class="btn btn-danger" name="action" value="Cancelar"/>
     

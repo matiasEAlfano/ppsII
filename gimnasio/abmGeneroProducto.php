@@ -19,7 +19,7 @@
     
     <label>Nombre del genero: </label>
     <input name = "nombre_genero" type="text" class="form-control abm-inputs" id="nombre_genero" value="<?= !empty($genero) ? $genero["genero_nombre"] : ""?>" placeholder="Ingrese genero">
-    <br>
+    
     <input type="submit" class="btn btn-primary" name="action" value="<?= $action; ?>"/>
     <input type="submit" class="btn btn-danger" name="action" value="Cancelar"/>
     

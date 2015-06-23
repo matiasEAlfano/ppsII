@@ -56,7 +56,7 @@
             <br>
             <button id="guardarStock" type="submit" class="btn btn-primary" name="action" value="guardar">Guardar</button>
             <!--<input id="guardarStock" type="submit" class="btn btn-primary" name="action" value="guardar"/>-->
-            <input type="submit" class="btn btn-danger" name="action" value="Cancelar"/>    
+            <input id="cancelarStock" type="submit" class="btn btn-danger" name="action" value="Cancelar"/>    
 
         </form>
 

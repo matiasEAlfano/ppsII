@@ -25,7 +25,6 @@
     
     <label>Nombre tipo de producto: </label>
     <input name = "nombre_tipo" type="text" class="form-control abm-inputs" id="nombre_tipo" value="<?= !empty($tipo) ? $tipo["nombre_tipo_producto"] : ""?>" placeholder="Ingrese tipo de producto">
-    <br>
     
     <label>Categoria:</label>
     <select name = "idCategoria" class="form-control abm-inputs">
