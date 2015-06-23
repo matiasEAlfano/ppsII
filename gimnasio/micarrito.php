@@ -88,7 +88,7 @@ require("models/producto.php");
                             <a><button id="btn-comprar-no-product" name="btn-comprar-no-product" class="btn btn-success">COMPRAR</button></a>
                         <?php } ?>
                         
-                        <a href="carrito.php">
+                        <a href="e-shop.php">
                             <button class="btn btn-default">Volver al e-Shop</button>
                         </a>
                         

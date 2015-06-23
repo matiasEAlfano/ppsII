@@ -152,7 +152,7 @@
                                 
                             </div>
                         </li>                        
-                        <li><a class="navbar-brand" href="carrito.php"><img src="img/carrito.jpg" alt="Carrito" class="img-responsive" "icon-carrito"></a></li>                        
+                        <li><a class="navbar-brand" href="e-shop.php"><img src="img/carrito.jpg" alt="Carrito" class="img-responsive" "icon-carrito"></a></li>                        
                     </ul>
                     
                 </div>

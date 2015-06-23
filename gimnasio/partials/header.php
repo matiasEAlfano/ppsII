@@ -63,7 +63,7 @@
                             <a href="partials/logout.php">Cerrar session</a>
                         </li>         
                         <?php } ?>
-                        <li><a class="navbar-brand" href="carrito.php"><img src="img/carrito.jpg" alt="Carrito" class="img-responsive" "icon-carrito"></a></li>                        
+                        <li><a class="navbar-brand" href="micarrito.php"><img src="img/carrito.jpg" alt="Carrito" class="img-responsive" "icon-carrito"></a></li>                        
                     </ul>
                     
                 </div>
@@ -88,12 +88,13 @@
 
                 <div class="col-md-10 col-opciones">
                     <ul class="nav nav-pills nav-justified">
-                        <li><a href="index.php" class="menulink">Inicio</a></li>
-                        <li><a href="sede.php" class="menulink">Sede</a></li>
-                        <li><a href="horarios.php" class="menulink">Horarios</a></li>
-                        <li><a href="reservas.php" class="menulink">Actividades</a></li>
-                        <li><a href="planes.php" class="menulink">Planes</a></li>
-                        <li><a href="contacto.php" class="menulink">Contacto</a></li>
+                        <li><a href="index.php" class="menulink"><b>Inicio</b></a></li>
+                        <li><a href="e-shop.php" class="menulink"><b>e-Shop</b></a></li>
+                        <li><a href="sede.php" class="menulink"><b>Sede</b></a></li>
+                        <li><a href="horarios.php" class="menulink"><b>Horarios</b></a></li>
+                        <li><a href="reservas.php" class="menulink"><b>Actividades</b></a></li>
+                        <li><a href="planes.php" class="menulink"><b>Planes</b></a></li>
+                        <li><a href="contacto.php" class="menulink"><b>Contacto</b></a></li>
                     </ul>            
                 </div>
 
