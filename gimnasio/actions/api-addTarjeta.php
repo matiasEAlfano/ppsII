@@ -23,11 +23,19 @@ switch($action){
 }
 
 function addTarjeta($request){    
+<<<<<<< HEAD
     $_SESSION["tarjeta"]["idtipo-tarjeta"] = $request["tipo_tarjeta"];
     $_SESSION["tarjeta"]["numero-tarjeta"] = $request["numero_tarjeta"];
     $_SESSION["tarjeta"]["mes-expiracion"] = $request["mes-expiracion"];
     $_SESSION["tarjeta"]["ano-expiracion"] = $request["ano-expiracion"];
     $_SESSION["tarjeta"]["tarjeta-ccv"] = $request["tarjeta_ccv"];
+=======
+    $_SESSION["tarjeta"]["idtipo-tarjeta"] = $request["tipo-tarjeta"];
+    $_SESSION["tarjeta"]["numero-tarjeta"] = $request["numero-tarjeta"];
+    $_SESSION["tarjeta"]["mes-expiracion"] = $request["mes-expiracion"];
+    $_SESSION["tarjeta"]["ano-expiracion"] = $request["ano-expiracion"];
+    $_SESSION["tarjeta"]["tarjeta-ccv"] = $request["ano-expiracion"];
+>>>>>>> a87da8f3a0e8f7864b4bb752e214381d9f19e1ec
     
     redirect("../comprar3.php");
 }

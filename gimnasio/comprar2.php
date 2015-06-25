@@ -31,13 +31,22 @@
                 -->
                 <div class="col-md-12 pagos">
                     
+<<<<<<< HEAD
                     <form id="form-datos-tarjeta" name=""form-datos-tarjeta"" method="post" action="actions/api-addTarjeta.php">
+=======
+                    <form method="post" action="actions/api-addTarjeta.php">
+>>>>>>> a87da8f3a0e8f7864b4bb752e214381d9f19e1ec
                         
                         <h3>Forma de Pago:</h3>
                         
                         <label>Tipo de tarjeta:</label>
+<<<<<<< HEAD
                         <select name="tipo_tarjeta">
                             <option></option>
+=======
+                        <select name="tipo-tarjeta">
+                            <option value="0"></option>
+>>>>>>> a87da8f3a0e8f7864b4bb752e214381d9f19e1ec
                             <?php foreach($tipos as $tipo){ ?>
                                 <option value="<?= $tipo["id_tarjetas_tipo"]?>">
                                     <?= $tipo["tarjetas_tipo"]; ?>
@@ -47,7 +56,11 @@
 
                         <br>
                         <label>Numero de tarjeta:</label>
+<<<<<<< HEAD
                         <input name="numero_tarjeta" type="text" class="form-control abm-inputs" maxlength="16" placeholder="ingrese los 16 digitos del frente">
+=======
+                        <input name="numero-tarjeta" type="text" class="form-control abm-inputs" maxlength="16" placeholder="ingrese los 16 digitos del frente">
+>>>>>>> a87da8f3a0e8f7864b4bb752e214381d9f19e1ec
 
                         <label>Fecha de expiracion:</label>
                         <select name="mes-expiracion">
@@ -83,7 +96,11 @@
 
                         <br>
                         <label>CCV</label>
+<<<<<<< HEAD
                         <input name="tarjeta_ccv" type="text" class="form-control abm-inputs" maxlength = "5" placeholder="ccv">
+=======
+                        <input name="tarjeta-ccv" type="text" class="form-control abm-inputs" maxlength = "5" placeholder="ccv">
+>>>>>>> a87da8f3a0e8f7864b4bb752e214381d9f19e1ec
                     
                         <a href="comprar.php">
                             <button type="button" class="btn btn-default">Volver</button>

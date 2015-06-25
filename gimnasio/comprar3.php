@@ -4,7 +4,10 @@
     require("models/datos-usuario.php");
     $du = new DatosUsuario;
     $datos = $du->getDatosPersonales($_SESSION["usuario"]["id"]);
+<<<<<<< HEAD
     $datosTarjeta = $du->getDatosTarjeta($_SESSION["tarjeta"]["idtipo-tarjeta"]);
+=======
+>>>>>>> a87da8f3a0e8f7864b4bb752e214381d9f19e1ec
 ?>
         
         <div class="container-fluid cuerpo">
@@ -78,27 +81,43 @@
                 <div class="col-md-6 pagos">
                 
                     <div class="row">
+<<<<<<< HEAD
                         <h2>Datos del comprador:</h2>
+=======
+                        <h2>Facturar A:</h2>
+>>>>>>> a87da8f3a0e8f7864b4bb752e214381d9f19e1ec
                         
                         <h3>Nombre: <b><?php echo $datos["datos_usuario_nombre"]?></b></h3>
                         <h3>Apellido: <b><?php echo $datos["datos_usuario_apellido"]?></b></h3>
                         <h3>Dni: <b><?php echo $datos["datos_usuario_dni"]?></b></h3>
                         
+<<<<<<< HEAD
                         <h2>Forma de pago:</h2>
                         
                         <h3>Tarjeta: <b><?php echo $datosTarjeta["tarjetas_tipo"]?></b></h3>
+=======
+                        <h2>Forma de Pago:</h2>
+                        
+                        <h3>Tarjeta: <b><?php echo $_SESSION["tarjeta"]["idtipo-tarjeta"]?></b></h3>
+>>>>>>> a87da8f3a0e8f7864b4bb752e214381d9f19e1ec
                         <h3>Numero: <b><?php echo $_SESSION["tarjeta"]["numero-tarjeta"]?></b></h3>
                     </div>
                     
                     <a href="comprar2.php">
                         <button type="button" class="btn btn-default">Volver</button>
                     </a>
+<<<<<<< HEAD
                     <form method="post" action="actions/api-realizar-compra.php">
                         <button name="action" value="comprar" type="submit" class="btn btn-default" >Confirmar compra</button>
                     </form>
                     
                     <!--<button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm">Confirmar compra</button>-->
                     
+=======
+                    
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm">Confirmar compra</button>
+                    
+>>>>>>> a87da8f3a0e8f7864b4bb752e214381d9f19e1ec
                     <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                           <div class="modal-dialog modal-sm">
                                 <div class="modal-content">

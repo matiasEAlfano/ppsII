@@ -26,6 +26,7 @@ class DatosUsuario
         return $datos->fetch_assoc();
     }
     
+
     public function getDatosTarjeta($idTipoTarjeta){
         $query = "SELECT tarjetas_tipo
                     FROM `tarjetas-tipo`

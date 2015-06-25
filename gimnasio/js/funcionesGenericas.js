@@ -314,6 +314,7 @@
 			}
 		});
     
+<<<<<<< HEAD
         $("#form-datos-tarjeta").validate({
             rules: {
 				numero_tarjeta: {
@@ -350,6 +351,15 @@
 			}
 		});
     
+=======
+        $("#btn-comprar-no-user").on("click", function(){
+            $("#message-login").html("<h4 style='color:green;'>INICIA SESION PARA COMPRAR!!</h4>");
+        })
+        
+        $("#btn-comprar-no-product").on("click", function(){
+            alert("No tienes productos en tu carrito!");
+        })
+>>>>>>> a87da8f3a0e8f7864b4bb752e214381d9f19e1ec
     
         $("#btn-comprar-no-user").on("click", function(){
             $("#message-login").html("<h4 style='color:green;'>INICIA SESION PARA COMPRAR!!</h4>");

@@ -2,8 +2,12 @@
     require("partials/header.php"); 
     require("models/datos-usuario.php");
     $du = new DatosUsuario;
+<<<<<<< HEAD
     $datosUsuario = $du->getDatosPersonales($_SESSION["usuario"]["id"]);
     
+=======
+    $datos = $du->getDatosPersonales($_SESSION["usuario"]["id"]);
+>>>>>>> a87da8f3a0e8f7864b4bb752e214381d9f19e1ec
 ?>            
         
         <div class="container-fluid cuerpo">
@@ -34,6 +38,7 @@
                     <label>Usuario:</label><?php echo " " . $_SESSION["usuario"]["email"]?>
                     
                     <h4>Datos personales:</h4>
+<<<<<<< HEAD
                     <label>Nombre:</label><?php echo " " . $datosUsuario["datos_usuario_nombre"]?>
                     <br>
                     <label>Apellido:</label><?php echo " " . $datosUsuario["datos_usuario_apellido"]?>
@@ -49,6 +54,21 @@
                     <label>Localidad:</label><?php echo " " . $datosUsuario["datos_usuario_localidad"]?>
                     <br>
                     <label>Telefono:</label><?php echo " " . $datosUsuario["datos_usuario_telefono"]?>
+=======
+                    <label>Nombre:</label><?php echo " " . $datos["datos_usuario_nombre"]?>
+                    <br>
+                    <label>Apellido:</label><?php echo " " . $datos["datos_usuario_apellido"]?>
+                    <br>
+                    <label>Dni:</label><?php echo " " . $datos["datos_usuario_dni"]?>
+                    <br>
+                    <label>Direccion:</label><?php echo " " . $datos["datos_usuario_direccion"]?>
+                    <br>
+                    <label>CP:</label><?php echo " " . $datos["datos_usuario_cp"]?>
+                    <br>
+                    <label>Localidad:</label><?php echo " " . $datos["datos_usuario_localidad"]?>
+                    <br>
+                    <label>Telefono:</label><?php echo " " . $datos["datos_usuario_telefono"]?>
+>>>>>>> a87da8f3a0e8f7864b4bb752e214381d9f19e1ec
                     
                     
                     

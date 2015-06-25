@@ -24,7 +24,11 @@ require("models/producto.php");
                         <tbody id="body-micarrito">
                             <?php
                                 $total = 0;
+<<<<<<< HEAD
                                 if(!empty($_SESSION["carrito"])){
+=======
+                                if(!empty ($_SESSION)){
+>>>>>>> a87da8f3a0e8f7864b4bb752e214381d9f19e1ec
                                     foreach($_SESSION["carrito"] as $index => $productos){
                                         //$producto_base =
                                         foreach($productos as $index2 => $producto):
