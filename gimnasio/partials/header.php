@@ -1,5 +1,4 @@
-<?php session_start(); 
-//print_r($_SESSION); exit;?>
+<?php session_start(); //print_r($_SESSION);?>
 <!doctype html>
 <html class="no-js" lang="">
     <head>
@@ -14,7 +13,7 @@
         <link rel="stylesheet" href="css/mainMatias.css">
         <link rel="stylesheet" href="css/mainMauro.css">
         <!--        El siguiente Script agrega la API de Google Maps al sitio web:-->
-        <script src="http://maps.googleapis.com/maps/api/js"></script>
+        <!--<script src="http://maps.googleapis.com/maps/api/js"></script>-->
         
         
         <!--[if lt IE 9]>
@@ -42,7 +41,7 @@
                     <ul class="nav nav-pills">
                         <?php if(empty($_SESSION["usuario"])) {?>
                         <li>
-                            <a data-toggle="modal" data-target=".iniciar-sesion">Ingresar</a>
+                            <a onclick="$('#message-login').html('');" data-toggle="modal" data-target=".iniciar-sesion">Ingresar</a>
                             
                             <?php require("login.php"); ?>
                             
@@ -64,7 +63,7 @@
                             <a href="partials/logout.php">Cerrar session</a>
                         </li>         
                         <?php } ?>
-                        <li><a class="navbar-brand" href="carrito.php"><img src="img/carrito.jpg" alt="Carrito" class="img-responsive" "icon-carrito"></a></li>                        
+                        <li><a class="navbar-brand" href="micarrito.php"><img src="img/carrito.jpg" alt="Carrito" class="img-responsive" "icon-carrito"></a></li>                        
                     </ul>
                     
                 </div>
@@ -89,12 +88,13 @@
 
                 <div class="col-md-10 col-opciones">
                     <ul class="nav nav-pills nav-justified">
-                        <li><a href="index.php" class="menulink">Inicio</a></li>
-                        <li><a href="sede.php" class="menulink">Sede</a></li>
-                        <li><a href="horarios.php" class="menulink">Horarios</a></li>
-                        <li><a href="reservas.php" class="menulink">Actividades</a></li>
-                        <li><a href="planes.php" class="menulink">Planes</a></li>
-                        <li><a href="contacto.php" class="menulink">Contacto</a></li>
+                        <li><a href="index.php" class="menulink"><b>Inicio</b></a></li>
+                        <li><a href="e-shop.php" class="menulink"><b>e-Shop</b></a></li>
+                        <li><a href="sede.php" class="menulink"><b>Sede</b></a></li>
+                        <li><a href="horarios.php" class="menulink"><b>Horarios</b></a></li>
+                        <li><a href="reservas.php" class="menulink"><b>Actividades</b></a></li>
+                        <li><a href="planes.php" class="menulink"><b>Planes</b></a></li>
+                        <li><a href="contacto.php" class="menulink"><b>Contacto</b></a></li>
                     </ul>            
                 </div>
 

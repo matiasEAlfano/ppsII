@@ -1,5 +1,5 @@
 <form id="form-login" action ="actions/action-login.php" method="post">
-<div class="modal fade iniciar-sesion">
+    <div class="modal fade iniciar-sesion">
                          
                                 <div class="modal-dialog">
                                     
@@ -18,7 +18,7 @@
                                             <div class="form-group">
 
                                                 <div class="email_login">
-
+                                                    <div id="message-login"></div>
                                                     <div class="form-group">
                                                         <label>Email</label>
                                                         <input type="email" name="login_email" id="login_email" class="form-control login" placeholder="Email">

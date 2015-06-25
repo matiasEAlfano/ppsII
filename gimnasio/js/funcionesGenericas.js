@@ -314,10 +314,51 @@
 			}
 		});
     
-        $("#btn-comprar").on("click", function(){
-            alert("Debe ingresar sesion para poder realizar su compra!");
-        })
+        $("#form-datos-tarjeta").validate({
+            rules: {
+				numero_tarjeta: {
+					required: true,
+                    number: true,
+                    minlength: 16,
+				},
+				tarjeta_ccv: {
+					required: true,
+					number: true,
+                    minlength: 3,
+                    maxlength: 5
+				},
+                tipo_tarjeta: {
+                    sinValorSeleccionado: ""
+                }
+				
+			},
+			messages: {
+				numero_tarjeta: {
+					required: "Por favor ingrese los 16 digitos de su tarjeta.",
+					number: "El numero no es valido.",
+                    minlength: "Faltan digitos por ingresar."
+                    
+				},
+				tarjeta_ccv: {
+					required: "Por favor ingrese el codigo de seguridad de la tarjeta.",
+					number: "El codigo no es validor.",
+                    minlength: "Faltan digitos por ingresar."
+				},
+                tipo_tarjeta: {
+                    sinValorSeleccionado: "Por favor seleccione una tarjeta."
+                }
+			}
+		});
     
+    
+        $("#btn-comprar-no-user").on("click", function(){
+            $("#message-login").html("<h4 style='color:green;'>INICIA SESION PARA COMPRAR!!</h4>");
+        })
+        
+        $("#btn-comprar-no-product").on("click", function(){
+            alert("No tienes productos en tu carrito!");
+        })
+        
 })(jQuery);
 
 function addCarrito(idProducto){
@@ -368,6 +409,10 @@ function okProducto(){
   $.growlUI('Carrito', 'Se agrego un nuevo producto!'); 
 }
 
+function okCompra(){
+  $.growlUI('Carrito', 'Su compra fue exitosa!'); 
+}
+
 function block(){
     $.blockUI({message: "Espere un momento por favor ..."}); 
 }
@@ -391,8 +436,4 @@ function login(){
         location.reload();    
     });
         
-} 
-
- 
-    
-
+}

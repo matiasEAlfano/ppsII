@@ -24,18 +24,31 @@
             echo $c->error;
         }
     }
+    
+    function loginUsuario($usuario){
+            $c = getConnection();
+            $email = $c->real_escape_string($usuario['email']);
+            $clave = $c->real_escape_string($usuario['clave']);
+            $query = "SELECT id, email, clave FROM `usuarios` WHERE email = '$email' and clave = '$clave'";
+            $r = $c->query($query);
 
- function loginUsuario($usuario){
-        $c = getConnection();
-        $email = $c->real_escape_string($usuario['email']);
-        $clave = $c->real_escape_string($usuario['clave']);
-        $query = "SELECT * FROM `usuarios` WHERE email = '$email' and clave = '$clave'";
-         
-     if($c->query($query)){
-            return true;
-        }else{
-           return false;
+            if($r){
+                return $r->fetch_assoc();
+            }else{
+               return false;
+            }
         }
-    }
 
-?>
+     /*function loginUsuario($usuario){
+            $c = getConnection();
+            $email = $c->real_escape_string($usuario['email']);
+            $clave = $c->real_escape_string($usuario['clave']);
+            $query = "SELECT id, email, clave FROM `usuarios` WHERE email = '$email' and clave = '$clave'";
+
+         if($c->query($query)){
+                return true;
+            }else{
+               return false;
+            }
+        }*/
+

@@ -17,7 +17,7 @@
     width: 60px;
 }
 
-.cuerpo-micarrito .comprar a, button{
+.cuerpo-micarrito .comprar a{
     float: right;
     margin-right: 15px; 
 }
@@ -203,5 +203,9 @@
 
 #tabla-imagen{
     height: 25%;
+}
+
+#listar-datos-usuario h4{
+    color: blue;
 }
 /**/

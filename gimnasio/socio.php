@@ -1,16 +1,27 @@
-<?php require("partials/header.php"); ?>            
-        
+<?php 
+require("partials/header.php"); 
+$messagecompra = "";
+if(isset($_GET["c"])){
+    if($_GET["c"]=="ok"){
+        $messagecompra = "Su compra fue exitosa!";
+    }
+}
+?>                    
         <div class="container-fluid cuerpo">
             
             <h2 class="titulo-cuerpo">Mi Cuenta</h2>            
-            
+            <?php if($messagecompra!=""):?>
+            <div id="compra-exitosa" class="compra-exitosa" onclick="$('#compra-exitosa').slideToggle();"> 
+                <?php echo $messagecompra; ?>
+            </div>
+            <?php endif; ?>
             <div class="container cuerpo-socio">
                 
                 <div class="col-md-3">
                     
                     <div class="row">
                         
-                        <li class="#"><a href="ABMperfiles.php">Mi Perfil</a></li>
+                        <li class="#"><a href="abmDatosPersonales.php">Datos Personales</a></li>
                         <li><a href="micarrito.php">Mi Carrito</a></li>
                         <li><a>Resumen de Facturas</a></li>
                         <li><a href="calificarActividad.php">Calificar</a></li>
