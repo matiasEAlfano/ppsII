@@ -1,32 +1,39 @@
-<?php require("partials/header.php"); ?>
+<form id="form-registrar" method="post" action="actions/actions-usuarios.php">
+    
+<div class="modal-body">
 
-        <div class="container-fluid cuerpo">
+    <div class="form-group">
+
+        <div class="email_login">            
             
-            <h2 class="titulo-cuerpo">Registro Usuario</h2>            
-            
-            <div class="container cuerpo-planes">
-                
-<!--                ACA VA TODO EL CODIGO!!-->
-                <div class="row cuerpo-registro">    
-                    <div class="col-md-6 ">
-                        <img id="gym" src="img/gimnasio-hotel-elimar.jpg" alt="Registro" class="lGym img-responsive"/>
-                        
-                    </div>
-                    <div class="col-md-6 ">
-                        <input type="text" class="texto form-control" placeholder="Nombre *" >
-                        <input type="text" class="texto form-control" placeholder="DNI *" >
-                        <input type="text" class="texto form-control" placeholder="e-mail *" >
-                        <input type="text" class="texto form-control" placeholder="Telefono " >
-                        <input type="text" class="texto form-control" placeholder="Direccion " >
-                        <input type="text" class="texto form-control" placeholder="Codigo Postal " >           
-                        
-                        <input class="pull-right" type="button" value="Enviar">
-                    </div>
-                </div>
-                
-                
+            <div class="form-group">
+                <label>E-mail *</label>
+                <input type="email" class="form-control login" id="email" name="email" value="<?= !empty($usuario) ? $usuario["email"] : ""?>" placeholder="E-mail">
             </div>
-            
+
+            <div class="form-group">
+                <label>Repetir E-mail *</label>
+                <input type="email" name="email_repetir" id="email_repetir" class="form-control login" placeholder="Repetir Email">
+            </div>
+
+            <div class="form-group">
+                <label>Crear contraseña *</label>
+                <input type="password" class="form-control login" id="clave" name = "clave" value="<?= !empty($usuario) ? $usuario["clave"] : ""?>" placeholder="Crear contraseña">
+            </div>
+
+            <div class="form-group">
+                <label>Confirmar contraseña *</label>
+                <input type="password" name="clave_repetir" id="clave_repetir" class="form-control login" placeholder="Confirmar contraseña">
+            </div>
         </div>
 
-<?php require("partials/footer.php"); ?>
+    </div>
+
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+    <button type="submit" class="btn btn-primary">REGISTRAR CUENTA</button>
+</div>
+
+</form>
