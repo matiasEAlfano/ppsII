@@ -17,27 +17,30 @@
 <?php require("partials/gestionHeader.php"); ?>
 
 <div class="row">
-                    <div class="col-md-5">
-                        
-                        <div class="agrupador_fotos_productos">                        
-                        
-                        <div class="row fotos_productos_alineados">
+    <div class="col-md-5">
 
-                            <div class="imagenes_productos_abm">
-                                <img src="img/productos/remera-nike.jpg" alt="Bronce" class="imagenes_alta_producto" >
-                            </div>                        
-                            
-                            <div class="imagenes_productos_abm">
-                                <img src="img/productos/remera-nike.jpg" alt="Oro" class="imagenes_alta_producto">              
-                            </div>                        
-                        </div>
-                            <div class="row">
-                                
-                                <input type="file" title="Agregar foto" data-filename-placement="inside">
-                            
-                            </div>
-                    </div>
-                    </div>
+        <form method="post" action="actions/imagenes.php?action=subir" id="uploadForm" enctype="multipart/form-data">
+        
+            <div class="agrupador_fotos_productos">                        
+            
+                <div class="row fotos_productos_alineados">
+
+                    <div class="imagenes_productos_abm">
+                        
+                    </div>                        
+                    
+                                          
+                </div>
+                <div class="row">
+                    
+                    <input name="imagen" type="file" value="Seleccionar imagen" />
+                    <br/>
+                    <input class="btn btn-primary" type="submit" value="Subir" />
+                
+                </div>
+            </div>
+        </form>
+    </div>
                          
                          
                          
