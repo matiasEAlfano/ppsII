@@ -38,8 +38,6 @@
             data.append(key, value);
         });
 
-        var miVariable = null;
-        
         $.ajax({
             url: URI.UPLOAD,
             type: 'POST',
@@ -52,7 +50,5 @@
             loadImgs();
         });
     };
-    
-    loadImgs();
     
 })(jQuery)
