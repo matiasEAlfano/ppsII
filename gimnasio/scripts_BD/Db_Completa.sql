@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.12
+-- version 4.3.11
 -- http://www.phpmyadmin.net
 --
--- Servidor: localhost
--- Tiempo de generación: 25-06-2015 a las 15:18:43
--- Versión del servidor: 5.5.41-0ubuntu0.14.04.1
--- Versión de PHP: 5.5.9-1ubuntu4.9
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 27-06-2015 a las 20:02:16
+-- Versión del servidor: 5.6.24
+-- Versión de PHP: 5.6.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -156,14 +156,15 @@ CREATE TABLE IF NOT EXISTS `datos-usuario` (
   `datos_usuario_cp` varchar(5) COLLATE utf8_bin NOT NULL,
   `datos_usuario_localidad` varchar(25) COLLATE utf8_bin NOT NULL,
   `datos_usuario_telefono` varchar(12) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `datos-usuario`
 --
 
 INSERT INTO `datos-usuario` (`id_datos_usuario`, `id_usuario`, `datos_usuario_nombre`, `datos_usuario_apellido`, `datos_usuario_dni`, `datos_usuario_direccion`, `datos_usuario_cp`, `datos_usuario_localidad`, `datos_usuario_telefono`) VALUES
-(1, 1, 'mauro', 'neagoe', '28000001', 'j b alberdi 1800', '1636', 'mordor', '1560008000');
+(1, 1, 'mauro', 'neagoe', '28000001', 'j b alberdi 1800', '1636', 'mordor', '1560008000'),
+(2, 2, 'Matias', 'Alfano', '35669885', 'Av Mitre 680', '1822', 'Avellaneda', '1136524521');
 
 -- --------------------------------------------------------
 
@@ -177,7 +178,7 @@ CREATE TABLE IF NOT EXISTS `detalle-ventas` (
   `id_producto` int(11) NOT NULL,
   `id_talle` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `detalle-ventas`
@@ -189,7 +190,9 @@ INSERT INTO `detalle-ventas` (`id_detalle`, `id_venta`, `id_producto`, `id_talle
 (9, 44, 23, 3, 1),
 (10, 44, 17, 21, 2),
 (11, 45, 20, 30, 1),
-(12, 45, 21, 5, 1);
+(12, 45, 21, 5, 1),
+(13, 46, 21, 5, 1),
+(14, 46, 20, 30, 3);
 
 -- --------------------------------------------------------
 
@@ -210,6 +213,18 @@ INSERT INTO `generos` (`id_genero`, `genero_nombre`) VALUES
 (1, 'Hombre'),
 (2, 'Mujer'),
 (3, 'Unisex');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `imagenes`
+--
+
+CREATE TABLE IF NOT EXISTS `imagenes` (
+  `id` int(11) NOT NULL,
+  `path` varchar(100) NOT NULL,
+  `file_name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -334,7 +349,7 @@ CREATE TABLE IF NOT EXISTS `stocks` (
   `producto` int(11) NOT NULL,
   `talle` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `stocks`
@@ -352,13 +367,14 @@ INSERT INTO `stocks` (`id_stock`, `producto`, `talle`, `cantidad`) VALUES
 (17, 19, 2, 6),
 (18, 19, 5, 20),
 (19, 19, 4, 15),
-(20, 19, 6, 19),
+(20, 19, 6, 30),
 (21, 17, 23, 18),
 (22, 17, 25, 4),
 (28, 20, 30, 30),
 (29, 22, 3, 18),
 (30, 23, 3, 24),
-(31, 23, 4, 0);
+(31, 23, 4, 0),
+(32, 22, 4, 15);
 
 -- --------------------------------------------------------
 
@@ -438,14 +454,15 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `id` int(11) NOT NULL,
   `email` varchar(35) COLLATE utf8_bin NOT NULL,
   `clave` varchar(25) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `email`, `clave`) VALUES
-(1, 'mauro_ssj@hotmail.com', 'admin');
+(1, 'mauro_ssj@hotmail.com', 'admin'),
+(2, 'matias@gmail.com', '123456');
 
 -- --------------------------------------------------------
 
@@ -473,7 +490,7 @@ CREATE TABLE IF NOT EXISTS `ventas` (
   `id_venta` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `fecha_venta` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `ventas`
@@ -481,7 +498,8 @@ CREATE TABLE IF NOT EXISTS `ventas` (
 
 INSERT INTO `ventas` (`id_venta`, `id_usuario`, `fecha_venta`) VALUES
 (44, 1, '2015-06-23'),
-(45, 1, '2015-06-24');
+(45, 1, '2015-06-24'),
+(46, 2, '2015-06-26');
 
 --
 -- Índices para tablas volcadas
@@ -534,6 +552,12 @@ ALTER TABLE `detalle-ventas`
 --
 ALTER TABLE `generos`
   ADD PRIMARY KEY (`id_genero`);
+
+--
+-- Indices de la tabla `imagenes`
+--
+ALTER TABLE `imagenes`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `marcas`
@@ -634,17 +658,22 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `datos-usuario`
 --
 ALTER TABLE `datos-usuario`
-  MODIFY `id_datos_usuario` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id_datos_usuario` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `detalle-ventas`
 --
 ALTER TABLE `detalle-ventas`
-  MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+  MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT de la tabla `generos`
 --
 ALTER TABLE `generos`
   MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT de la tabla `imagenes`
+--
+ALTER TABLE `imagenes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `marcas`
 --
@@ -674,7 +703,7 @@ ALTER TABLE `profesores`
 -- AUTO_INCREMENT de la tabla `stocks`
 --
 ALTER TABLE `stocks`
-  MODIFY `id_stock` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
+  MODIFY `id_stock` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT de la tabla `talles`
 --
@@ -689,7 +718,7 @@ ALTER TABLE `tarjetas-tipo`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `usuarios-tarjetas`
 --
@@ -699,7 +728,7 @@ ALTER TABLE `usuarios-tarjetas`
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=46;
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=47;
 --
 -- Restricciones para tablas volcadas
 --
