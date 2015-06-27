@@ -25,15 +25,15 @@
             
                 <div class="row fotos_productos_alineados">
 
-                    <div class="imagenes_productos_abm">
+                    <div id="listadoProductos"class="imagenes_productos_abm">
                         
                     </div>                        
                     
                                           
                 </div>
-                <div class="row">
+                <div class="row upload-imagen">
                     
-                    <input name="imagen" type="file" value="Seleccionar imagen" />
+                    <input id="seleccionarImagen" name="imagen" type="file" value="Seleccionar imagen" />
                     <br/>
                     <input class="btn btn-primary" type="submit" value="Subir" />
                 

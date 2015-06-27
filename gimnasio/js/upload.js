@@ -18,7 +18,7 @@
             if(!response.error){
                 $("#listadoProductos").html("");
                 response.data.forEach(function(item){
-                    $("#listadoProductos").append('<li><img src="' + item.path + "/" + item.id  + "/" + item.file_name + '" /></li>');
+                    $("#listadoProductos").append('<a href="#" class="thumbnail" ><img src="' + item.path + "/" + item.id  + "/" + item.file_name + '" /></a>');
                 });
             }
         });
