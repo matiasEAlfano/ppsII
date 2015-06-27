@@ -1,11 +1,26 @@
 <?php 
 require("partials/header.php"); 
-require("models/producto.php"); 
+require("models/producto.php");
+$messagecompra = "";
+/*$fail_Talle = getTalle($_GET["talle"]);*/
+
+if(isset($_GET["c"]) && isset($_GET["producto"])){
+    if($_GET["c"]=="fail"){
+        $fail_Producto = $_GET["producto"];
+        $messagecompra = "Lamentamos informar que nos hemos quedado sin Stock del producto resaltado. Para continuar, por favor elimine el producto de su carrito.";
+    }
+}
 ?>
         
         <div class="container-fluid cuerpo">
             
-            <h2 class="titulo-cuerpo">Mi Carrito</h2>            
+            <h2 class="titulo-cuerpo">Mi Carrito</h2>
+            
+            <?php if($messagecompra!=""):?>
+            <div id="compra-fallida" class="compra-fallida" onclick="$('#compra-fallida').slideToggle();"> 
+                <?php echo $messagecompra; ?>
+            </div>
+            <?php endif; ?>
             
             <div class="container cuerpo-micarrito">
                     
@@ -35,7 +50,7 @@ require("models/producto.php");
                                             $subtotal = $produc["producto_precio"] * $producto["cantidad"];
                                             $total += $subtotal;
                             ?>
-                            <tr class="item-carrito">
+                            <tr class="item-carrito" style="<?= isset($_GET["c"]) && $fail_Producto == $producto["idProducto"] ? "border: 3px solid red; color: red; background-color: antiquewhite;" : "" ?>">
                                 <td>
                                     <div class="img-producto center">
                                         <img src="<?php echo $imagen?>" border="0" title="" alt="" />
