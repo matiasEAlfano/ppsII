@@ -1,0 +1,55 @@
+/*CARLOS*/
+
+.cuerpo-registro{
+    padding: 30px 0px 30px;  
+}
+
+.cuerpo-registro .texto{
+    margin: 10px 0px 10px;
+}
+
+#gym{
+    width: 90%;
+    height: auto;
+    
+}
+
+.cuerpo-tabla tr td{
+    text-align: center;
+}
+
+.cabecera-tabla tr th{
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+#agregarPerfil{
+    padding-top: 10px;
+}
+
+.tipoH2{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.titulo{
+    margin-top: 20px;
+    background-color: #d1eaff;
+}
+
+.titulo-nombre{
+    padding-left: 100%;
+}
+
+.img-marca{
+    max-height: 200px;
+}
+
+.cuerpo-tabla tr td select{
+    background-color: #e1ebf4;
+    border: none;
+}
+
+
+/**/
