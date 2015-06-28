@@ -90,7 +90,7 @@
                     <ul class="nav nav-pills nav-justified">
                         <li><a href="index.php" class="menulink"><b>Inicio</b></a></li>
                         <li><a href="e-shop.php" class="menulink"><b>e-Shop</b></a></li>
-                        <li><a href="sede.php" class="menulink"><b>Sede</b></a></li>
+                        <li><a href="sede.php" class="menulink"><b>El Gym</b></a></li>
                         <li><a href="horarios.php" class="menulink"><b>Horarios</b></a></li>
                         <li><a href="reservas.php" class="menulink"><b>Actividades</b></a></li>
                         <li><a href="planes.php" class="menulink"><b>Planes</b></a></li>

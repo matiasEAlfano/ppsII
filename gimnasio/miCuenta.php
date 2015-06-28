@@ -23,9 +23,9 @@ if(isset($_GET["c"])){
                     
                     <div class="row">
                         <ul id="option_list">
-                            <li class="#"><a onclick="$('#datos_personales')" name="datos_personales" value="hola">Datos Usuario</a></li>
+                            <li><a class="datos-usuario" data-tag-id="<?= $_SESSION["usuario"]["id"]; ?>">Datos Usuario</a></li>
                             <li><a href="micarrito.php">Mi Carrito</a></li>
-                            <li><a>Resumen de Facturas</a></li>
+                            <li><a class="mis-compras" data-tag-id="<?= $_SESSION["usuario"]["id"]; ?>">Mis Compras</a></li>
                             <li><a href="calificarActividad.php">Calificar</a></li>
                             <a href="reservas.php"><button type="button" class="btn btn-primary">Reserva de Actividades</button></a>
                         </ul>
@@ -33,7 +33,7 @@ if(isset($_GET["c"])){
                     
                 </div>
                 
-                <div class="col-md-5">
+                <div class="col-md-5" id="listar-datos-usuario">
                     
                     
                     

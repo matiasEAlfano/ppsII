@@ -1,53 +1,88 @@
 (function($){
     
-    /*$("#datos_personales").on("click", function(){
-            alert("Datos Personales");
-    });*/
-    $("#datos_personales", function(id){
-        alert($id);
+    $datosUsuario = $("#listar-datos-usuario");
+    
+    $("#option_list").on("click", ".datos-usuario", function(){
+        var id = $(this).data("tag-id");
+        showDatosPersonales(id);
+    });
+    
+    $("#option_list").on("click", ".datos-usuario", function(){
+        var id = $(this).data("tag-id");
+        showMisCompras(id);
     });
     
     
     var URI = {
-        DATOS_PERSONALES: 'actions/api-MiCuenta.php' 
+        MI_CUENTA: 'actions/api-miCuenta.php'
     };
+    
+    
+    var showMiscompras = function(id){
+        var listarCompras = $.ajax({
+            url: URI.MI_CUENTA,
+            method: 'GET',
+            data: {idUsuario: id,
+                   action: 'compras'},
+            dataType: 'json'
+        });
+        
+        listarCompras.done(function(res){
+            console.log(res);
+            if(!res.error){
+                res.data.forEach(function(compra){
+                    var html =
+                        
+                    
+                });
+            }
+        });
+    }
+    
     
     var showDatosPersonales = function(id){
         
         var listarDatos = $.ajax({
-            url: URI.DATOS_PERSONALES,
+            url: URI.MI_CUENTA,
             method: 'GET',
-            data: {idUsuario: id},
+            data: {idUsuario: id,
+                   action: 'listar'},
             dataType: 'json'
         });
         
-        listarDatos.done(function(re){        
-        console.log(res);
+        listarDatos.done(function(res){        
+            console.log(res);
         
             if(!res.error){
                 res.data.forEach(function(dato){
                     var html = '<h3>Datos Personales</h3>\
                                 <h4>Datos de cuenta:</h4>\
-                        <label>Usuario:</label><?php echo " " . $_SESSION["usuario"]["email"]?>\
+                        <label>Usuario:</label>'+dato.email+'\
                         <h4>Datos personales:</h4>\
-                        <label>Nombre:</label><?php echo " " . $datosUsuario["datos_usuario_nombre"]?>\
+                        <label>Nombre:</label>'+dato.nombre+'\
                         <br>\
-                        <label>Apellido:</label><?php echo " " . $datosUsuario["datos_usuario_apellido"]?>\
+                        <label>Apellido:</label>'+dato.apellido+'\
                         <br>\
-                        <label>Dni:</label><?php echo " " . $datosUsuario["datos_usuario_dni"]?>\
+                        <label>Dni:</label>'+dato.dni+'\
                         <br>\
                         <h4>Domicilio:</h4>\
-                        <label>Direccion:</label><?php echo " " . $datosUsuario["datos_usuario_direccion"]?>\
+                        <label>Direccion:</label>'+dato.direccion+'\
                         <br>\
-                        <label>CP:</label><?php echo " " . $datosUsuario["datos_usuario_cp"]?>\
+                        <label>CP:</label>'+dato.cp+'\
                         <br>\
-                        <label>Localidad:</label><?php echo " " . $datosUsuario["datos_usuario_localidad"]?>\
+                        <label>Localidad:</label>'+dato.localidad+'\
                         <br>\
-                        <label>Telefono:</label><?php echo " " . $datosUsuario["datos_usuario_telefono"]?>';
+                        <label>Telefono:</label>'+dato.telefono+'';
 
-                    $datos.append(html);
+                    $datosUsuario.append(html);
                 });
+            }else{
+                alert("ocurrio un error");
             }
+        });
+        
+        listarDatos.fail(function(res){
+            alert("ocurrio un error");
         });
     }
     
