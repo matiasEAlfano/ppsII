@@ -8,6 +8,8 @@ function redirect($url){
     }
 
 $action = $request["action"];
+
+
 switch($action){
     case "add":
         return addTarjeta($request);

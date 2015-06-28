@@ -41,13 +41,25 @@ switch($action){
 
 function addCarrito($producto){    
     $producto_id = $producto["idProducto"];
-    $_SESSION["carrito"][][$producto_id] = $producto;
+    /*$_SESSION["carrito"][][$producto_id] = $producto;*/
+    $_SESSION["carrito"][] = $producto;
 }
+
+
 function removeCarrito($producto){ 
     $producto_id = $producto["idProducto"];
+    $talle_id = $producto["idTalle"];
+    $cantidad = $producto["cantidad"];
+    
     for($i=0; $i<count($_SESSION["carrito"]); $i++){
-        if(isset($_SESSION["carrito"][$i][$producto_id])){
-            unset($_SESSION["carrito"][$i][$producto_id]);    
+        
+        if($_SESSION["carrito"][$i]["idProducto"] == $producto_id
+           && $_SESSION["carrito"][$i]["idTalle"] == $talle_id
+        && $_SESSION["carrito"][$i]["cantidad"] == $cantidad){
+            
+            unset($_SESSION["carrito"][$i]);
+            //Esto me reorganiza el array para que no me queden espacios vacios:
+            $_SESSION["carrito"] = array_values($_SESSION["carrito"]);
         }
     } 
 }

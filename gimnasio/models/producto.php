@@ -9,6 +9,15 @@ function getConnection(){
             return $mysqli;
         }
     }
+
+    function getTalle($talleId){
+        $talle = array();
+        $c = getConnection();
+        $id = (int) $c->real_escape_string($talleId);
+        $query = "SELECT id_talle, talle_nombre FROM `talles` WHERE id_talle = $id";
+        $result = $c->query($query);
+        return $result->fetch_assoc();
+    }
     
     function getCategorias(){
         $categorias = array();

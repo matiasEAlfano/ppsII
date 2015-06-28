@@ -9,12 +9,14 @@ if(isset($_GET["c"])){
 ?>                    
         <div class="container-fluid cuerpo">
             
-            <h2 class="titulo-cuerpo">Mi Cuenta</h2>            
+            <h2 class="titulo-cuerpo">Mi Cuenta</h2>
+            
             <?php if($messagecompra!=""):?>
             <div id="compra-exitosa" class="compra-exitosa" onclick="$('#compra-exitosa').slideToggle();"> 
                 <?php echo $messagecompra; ?>
             </div>
             <?php endif; ?>
+            
             <div class="container cuerpo-socio">
                 
                 <div class="col-md-3">

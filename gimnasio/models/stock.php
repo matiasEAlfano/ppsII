@@ -128,7 +128,7 @@ function getConnection(){
         $talles = array();
         $c = getConnection();
         $id = (int)$c->real_escape_string($idProducto);
-        $query = "SELECT id_talle, talle_nombre 
+        $query = "SELECT id_talle, talle_nombre, cantidad 
                     FROM `productos` as p,
                             `talles` as t,
                             `stocks` as s

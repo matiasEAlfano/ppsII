@@ -29,12 +29,17 @@
         $usuario = $_SESSION["usuario"];
         $tarjeta = $_SESSION["tarjeta"];
 
-        $exito = $rc->addCabeceraVenta($usuario, $compras);
-        if($exito){
+        $exito = $rc->stockControl($compras, $usuario);
+
+        if($exito == "compraExitosa"){
             unset($_SESSION["carrito"]);
-            unset($_SESSION["tarjeta"]);
+            redirect("../socio.php?c=ok");
+        }else{
+            $idProducto = $exito["idProducto"];
+            $idTalle = $exito["idTalle"];
+            redirect("../micarrito.php?c=fail&producto=$idProducto&talle=$idTalle");
         }
-        redirect("../socio.php?c=ok");
+        
     }
 
 

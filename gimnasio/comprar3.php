@@ -28,42 +28,47 @@
 
                         <tbody>
                             <?php
-                                $total=0;
-                                if(!empty ($_SESSION["carrito"])){
+                                $total = 0;
+                                if(!empty($_SESSION["carrito"])){
                                     foreach($_SESSION["carrito"] as $index => $productos){
-                                        //$producto_base =
-                                        foreach($productos as $index2 => $producto):
-                                            $produc = getProducto($producto["idProducto"]);
-                                            $marca = $produc["marca_nombre"];
-                                            $descripcion = $produc["producto_descripcion"]." (".$marca.")";
-                                            $imagen = $produc["producto_imagen"];  
-                                            $subtotal = $produc["producto_precio"] * $producto["cantidad"];
+                                            $producto = getProducto($productos["idProducto"]);
+                                            $talle = getTalle($productos["idTalle"]);
+                                            $marca = $producto["marca_nombre"];
+                                            $descripcion = $producto["producto_descripcion"]." (".$marca.")";
+                                            $imagen = $producto["producto_imagen"];  
+                                            $subtotal = $producto["producto_precio"] * $productos["cantidad"];
                                             $total += $subtotal;
                             ?>
-                            <tr class="item-carrito">
+                            <tr class="item-carrito" style="<?= isset($_GET["c"]) && $fail_Producto == $producto["idProducto"] ? "border: 3px solid red; color: red; background-color: antiquewhite;" : "" ?>">
                                 <td>
                                     <div class="img-producto center">
                                         <img src="<?php echo $imagen?>" border="0" title="" alt="" />
+                                        <br>
                                         <?php echo $descripcion?>
                                     </div>
-                                </td>  
+                                </td>
+                                    
+                                <td>
+                                   <div class="img-producto center">
+                                        <?php echo $talle["talle_nombre"] ?>
+                                    </div> 
+                                </td>
 
                                <td>
-                                    <div class="img-producto"><?php echo $producto["cantidad"]?></div>
+                                    <div class="img-producto"><?php echo $productos["cantidad"]?></div>
                                 </td>                             
 
                                 <td>
-                                    <div class="detalle-producto">$<?php echo $produc["producto_precio"]?></div>    
+                                    <div class="detalle-producto">$<?php echo $producto["producto_precio"]?></div>    
                                 </td>
                                 <td>
                                     $<?php echo $subtotal?>    
                                 </td>    
                             </tr>
-                            <?php endforeach; ?>
                             <?php } ?>
                             <?php } ?>
                             <tr>
-                                <td colspan="3">
+                                <td colspan="4">
                                     <span class="pull-right"><b>Total</b></span>
                                 </td>
                                 <td>

@@ -359,6 +359,10 @@
             alert("No tienes productos en tu carrito!");
         })
         
+        $(".confirmar_compra").on("click", function(event){
+            alert("hola");
+        });
+        
 })(jQuery);
 
 function addCarrito(idProducto){
@@ -392,11 +396,13 @@ function addCarrito(idProducto){
     });
 }
 
-function removeCarrito(idProducto){
-        
+function removeCarrito(idProducto, idTalle, cantidad){
+    alert(idProducto + " " + idTalle);
     $.ajax({
         url: "actions/api-addToCar.php",
         data: {idProducto: idProducto,
+               idTalle: idTalle,
+               cantidad: cantidad,
                action: "remove"},
         method : 'GET'
     }).done(function(res){

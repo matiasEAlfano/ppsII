@@ -538,6 +538,7 @@ input.error{
     border: 1px solid red;
     background-color: bisque;
 }
+
 .compra-exitosa{
     color:green;
     text-align: center;
@@ -545,6 +546,17 @@ input.error{
     padding: 10px;
     border: 1px solid green;
     width: 200px;
+    margin: 0 auto;
+    border-radius: 5px;    
+}
+
+.compra-fallida{
+    color:red;
+    text-align: center;
+    font-size: 14px;
+    padding: 10px;
+    border: 1px solid red;
+    width: 70%;
     margin: 0 auto;
     border-radius: 5px;    
 }

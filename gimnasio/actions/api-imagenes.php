@@ -8,9 +8,7 @@ function sendResponse($response){
 function guardarArchivo($file, $imgId){
     $uploaddir = "../img/";
     $imgDir = $uploaddir . $imgId;
-    if(mkdir($imgDir, 0777, true)){
-
-        echo("hola");        
+    if(mkdir($imgDir, 0777, true)){       
         return move_uploaded_file($file['tmp_name'], $imgDir . "/" . $file['name']);
     }
     return false;
@@ -44,6 +42,7 @@ function subir(){
                 ));
             }else{
                 //TODO: eliminar de la base la imagen creada para consistencia con fileSistem (hacer un metodo para eliminar lo que agregue a la base de datos)
+                deleteImagen($result);
                 sendResponse(array(
                     "error" => false,
                     "mensaje" => "Error al guardar imagen en disco"
