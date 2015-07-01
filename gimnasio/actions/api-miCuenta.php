@@ -22,10 +22,10 @@ switch($action){
 }
 
 function listarDatos($request){
-    request("../models/miCuenta.php");
+    require("../models/miCuenta.php");
+    $idUsuario = $request->idUsuario;
     $mc = new MiCuenta();
-    $datos = $mc->listarDatosUsuario($request->idUsuario);    
-    if($datos){
+    if($datos = $mc->listarDatosUsuario($idUsuario)){
         sendResponse(array(
             "error" => false,
             "mensaje" => "",

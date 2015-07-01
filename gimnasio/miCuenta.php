@@ -21,9 +21,10 @@ if(isset($_GET["c"])){
                 
                 <div class="col-md-3">
                     
-                    <div class="row">
+                    <div class="row" id="panel_usuario">
                         <ul id="option_list">
-                            <li><a class="datos-usuario" data-tag-id="<?= $_SESSION["usuario"]["id"]; ?>">Datos Usuario</a></li>
+                            <input type="hidden" class="id_usuario" name="id_usuario" value="<?php echo $_SESSION["usuario"]["id"]; ?>">
+                            <li><a class="datos_usuario">Datos Usuario</a></li>
                             <li><a href="micarrito.php">Mi Carrito</a></li>
                             <li><a class="mis-compras" data-tag-id="<?= $_SESSION["usuario"]["id"]; ?>">Mis Compras</a></li>
                             <li><a href="calificarActividad.php">Calificar</a></li>

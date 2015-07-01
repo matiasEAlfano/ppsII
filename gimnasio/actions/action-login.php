@@ -24,7 +24,7 @@
             if($_SERVER["HTTP_REFERER"]=="http://localhost/ppsII/gimnasio/micarrito.php"){
                 redirect("../comprar.php");
             }else{
-                redirect("../socio.php");
+                redirect("../miCuenta.php");
             }
             
         }else{

@@ -10,27 +10,22 @@ class MiCuenta
     }
     
     public function listarDatosUsuario($idUsuario){
-        $query = "SELECT    id_usuario,
-                            email,
-                            datos_usuario_nombre,
-                            datos_usuario_apellido,
-                            datos_usuario_dni,
-                            datos_usuario_direccion,
-                            datos_usuario_cp,
-                            datos_usuario_localidad,
-                            datos_usuario_telefono
-                    FROM `datos-usuario`,
-                        `usuarios`
-                    WHERE id_usuario = '$idUsuario'";
+        $query = "SELECT    du.id_usuario,
+                            u.email,
+                            du.datos_usuario_nombre,
+                            du.datos_usuario_apellido,
+                            du.datos_usuario_dni,
+                            du.datos_usuario_direccion,
+                            du.datos_usuario_cp,
+                            du.datos_usuario_localidad,
+                            du.datos_usuario_telefono
+                    FROM `datos-usuario` as du,
+                        `usuarios` as u
+                    WHERE u.id = '$idUsuario'
+					AND u.id = du.id_usuario";
         
-        if( $result = $this->connection->query($query) ){
-            while($fila = $result->fetch_assoc()){
-                $datos[] = $fila;
-            }
-            
-            $result->free();
-        }
-        return $datos;
+        $datos = $this->connection->query($query);
+        return $datos->fetch_assoc(); 
     }
 
 
