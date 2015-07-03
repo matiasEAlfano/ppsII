@@ -74,6 +74,7 @@
                                 <p>
                                     <b class="precio">$<?= $producto["producto_precio"]; ?></b>
                                 </p>
+                                <input type="hidden" name="precio_<?php echo $producto["id_producto"]?>" id="precio_<?php echo $producto["id_producto"]?>" value="<?= $producto["producto_precio"]; ?>">
                                 
                                 <select class="add-talle" name="talle_<?php echo $producto["id_producto"]?>" id="talle_<?php echo $producto["id_producto"]?>">
                                     <option value="0"> Talle </option>

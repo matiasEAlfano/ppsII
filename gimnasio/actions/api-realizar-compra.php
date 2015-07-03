@@ -10,7 +10,7 @@
     $action = $request["action"];
     switch($action){
         case "comprar":
-            return realizarCompra();
+            return realizarCompra($request);
             break;
         default:
             sendResponse(array(
@@ -20,7 +20,7 @@
             break;
     }
 
-    function realizarCompra(){    
+    function realizarCompra($request){    
         
         require("../models/realizarCompra.php");
         $rc = new RealizarCompra();
@@ -28,8 +28,9 @@
         $compras = $_SESSION["carrito"];
         $usuario = $_SESSION["usuario"];
         $tarjeta = $_SESSION["tarjeta"];
+        $total = $request["total"];
 
-        $result = $rc->stockControl($compras, $usuario);
+        $result = $rc->stockControl($compras, $usuario, $total, $tarjeta);
 
         if($result == "compraExitosa"){
             unset($_SESSION["carrito"]);

@@ -1,6 +1,6 @@
 (function($){
     
-    $listarDatosUsuario = $("#listar-datos-usuario");
+    $listar = $("#listar");
     $panel = $("#panel_usuario");
     
     $panel.on("click", ".datos_usuario", function(){
@@ -9,17 +9,18 @@
         listarDatosPersonales(id);
     });
     
-    /*$("#option_list").on("click", ".datos-usuario", function(){
-        var id = $(this).data("tag-id");
-        showMisCompras(id);
-    });*/
+    $panel.on("click", ".mis_compras", function(){
+        var id = $(".id_usuario").val();
+        listarMisCompras(id);
+    });
     
     
     var URI = {
         MI_CUENTA: 'actions/api-miCuenta.php'
     };    
     
-    var showMiscompras = function(id){
+    
+    var listarMisCompras = function(id){
         var listarCompras = $.ajax({
             url: URI.MI_CUENTA,
             method: 'GET',
@@ -29,35 +30,74 @@
         });
         
         listarCompras.done(function(res){
-            console.log(res);
+
+            
             if(!res.error){
+                
+                $listar.html("");
+                var html="";
+                var indice = 0; 
+                var cantidad = res.data.length - 1;
                 res.data.forEach(function(compra){
-                    var html = 'asd';
-                        
                     
+                    if(indice==0){
+                        html += '<table class="table table-hover">\
+                                <thead>\
+                                    <tr>\
+                                        <th>Fecha</th>\
+                                        <th>Medio de Pago</th>\
+                                        <th>Total</th>\
+                                    </tr>\
+                                </thead>\
+                                <tbody>';
+                    }
+                    html += '<tr id="24">\
+                                <td>'+compra.fecha_venta+'</td>\
+                                <td>'+compra.tarjetas_tipo+": <br>"+compra.tarjeta_numero+'</td>\
+                                <td>'+"$"+compra.total_venta+'</td>\
+                            </tr>\
+                            <tr id="24o" class="hidden"><td colspan=3>Este es mi detalle</td></tr>';
+                    
+                    if( cantidad==indice){
+                        html += '</tbody>\
+                            </table>';                        
+                        $listar.append(html);
+                    }
+                    indice++;                   
                 });
+                
+                
             }
+        });
+        
+        listarCompras.fail(function(res){
+            console.error("Error a traer las compras");
+            console.log(res);
         });
     }
     
+    $listar.on("click", "#24", function(){        
+        $("#24o").slideToggle();
+        $("#24o").removeClass("hidden");
+    });
     
     var listarDatosPersonales = function(id){
         
-        var listar = $.ajax({
+        var listarDatos = $.ajax({
             url: URI.MI_CUENTA,
             method: 'GET',
             data: {idUsuario: id,
-                   action: 'listar'},
+                   action: 'datosPersonales'},
             dataType: 'json'
         });
         
-        listar.done(function(res){        
+        listarDatos.done(function(res){        
             
             console.log(res);
         
             if(!res.error){
                 
-                $listarDatosUsuario.html("");
+                $listar.html("");
                 
                 var dato = res.data;
                 var html = '<h3>Datos Personales</h3>\
@@ -79,7 +119,7 @@
                             <br>\
                             <label>Telefono:</label>'+" "+dato.datos_usuario_telefono+'';
 
-                $listarDatosUsuario.append(html);
+                $listar.append(html);
                 
             }else{
                 alert("ocurrio un error");

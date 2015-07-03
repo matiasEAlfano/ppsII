@@ -20,7 +20,7 @@
                                 <th>Producto</th>
                                 <th>Talle</th>
                                 <th>Cantidad</th>
-                                <th>Precion Unitario</th>
+                                <th>Precio Unitario</th>
                                 <th>Sub-Total</th>
                             </tr>
                         </thead>

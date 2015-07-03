@@ -10,9 +10,14 @@ $request = new Request();
 $action = $request->action;
 
 switch($action){
-    case "listar":
+    case "datosPersonales":
         listarDatos($request);
         break;
+    
+    case "compras":
+        listarCompras($request);
+        break;
+    
     default:
         sendResponse(array(
             "error" => true,
@@ -20,6 +25,26 @@ switch($action){
         ));
         break;
 }
+
+function listarCompras($request){
+    require("../models/miCuenta.php");
+    $idUsuario = $request->idUsuario;
+    $mc = new MiCuenta();
+    
+    if($datos = $mc->listarComprasUsuario($idUsuario)){
+        sendResponse(array(
+            "error" => false,
+            "mensaje" => "",
+            "data" => $datos
+        ));
+    }else{
+        sendResponse(array(
+            "error" => true,
+            "mensaje" => "Error al obtener datos de personales"
+        ));
+    }
+}
+
 
 function listarDatos($request){
     require("../models/miCuenta.php");

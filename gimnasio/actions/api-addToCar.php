@@ -24,6 +24,7 @@ $producto = array();
 $producto["idProducto"] = $_GET["idProducto"];
 $producto["idTalle"] = $_GET["idTalle"];
 $producto["cantidad"] = $_GET["cantidad"];
+$producto["precio"] = $_GET["precio"];
 
 switch($action){
     case "add":

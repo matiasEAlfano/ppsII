@@ -560,3 +560,6 @@ input.error{
     margin: 0 auto;
     border-radius: 5px;    
 }
+.hidden{
+    display: none;
+}

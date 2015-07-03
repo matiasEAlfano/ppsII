@@ -371,6 +371,10 @@ function addCarrito(idProducto){
     
     var cantidad_producto = "cantidad_" + idProducto;
     
+    var precio_producto = "precio_" + idProducto;
+    
+    var precio = $("#" + precio_producto).val();
+    
     var talle = $("#" + talle_producto).val();
     
     if(talle==0){
@@ -389,6 +393,7 @@ function addCarrito(idProducto){
         data: {idProducto: idProducto, 
                idTalle: talle, 
                cantidad: cantidad,
+               precio: precio,
                action: "add"},
         method : 'GET'
     }).done(function(res){

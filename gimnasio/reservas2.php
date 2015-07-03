@@ -1,4 +1,14 @@
-<?php require("partials/header.php"); ?>
+<?php require("partials/header.php"); 
+require("models/actividades.php");
+require("models/calendario.php");
+$actividades = getActividades();
+
+
+if($_POST){
+$calendarios = getCalendarios($_POST);  
+}
+
+?>
         
         <div class="container-fluid cuerpo">
             
@@ -6,42 +16,58 @@
             
             <div class="container cuerpo-reservas">
                 
+                <form method="post">
+                    
                 <div class="row menu-reservas">
                     
                     <div class="col-md-3 col-actividad">
                         <label>Actividad:</label>
-                        <select  class="form-control">
+                        <select name="actividad" class="form-control">
                             <option>- Todas -</option>
-                            <option value="1" selected="true">IndoorCycle</option>
-                            <option value="2">BodyCombat</option>
-                            <option value="3">Localizada</option>
-                            <option value="4">Yoga</option>
-                            <option value="5">Aquiagym</option>
+                            <?php foreach($actividades as $actividad){?>
+                                
+                            <option value="<?php echo $actividad["id"] ?>"> <?php echo $actividad["nombre"] ?></option>
+                            
+                            
+                            <?php }?>
                         </select>
                     </div>
                     
                     <div class="col-md-3 col-sede">
-                        <label>Sede:</label>
-                        <select class="form-control">
+                        <label>Profesor:</label>
+                        <select name="profesor" class="form-control">
                             <option>- Todas -</option>
-                            <option value="1">Pilar</option>
-                            <option value="2" selected="true">Microcentro</option>
-                            <option value="3">Martinez</option>
-                            <option value="4">Palermo</option>
-                            <option value="5">Belgrano</option>
+                                 
+                                
+                            <option value="1">Matias Alfano</option>
+                            <option value="2">Roco Duro</option>
+                            
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-3 col-sede">
+                        <label>Dia:</label>
+                        <select name="dia" class="form-control">
+                            <option>- Todos -</option>
+                                 
+                            <option value="1">Lunes</option>
+                            <option value="2">Martes</option>
+                            
                         </select>
                     </div>
                     
                     <div class="col-md-3 col-dia">
-                        <label>Día: </label>
-                        <input type="date" class="form-control">
+                        <label>Fecha: </label>
+                        <input type="fecha" class="form-control">
                     </div>
                     
                     <div class="col-md-3 col-horario">
-                        <button class="btn btn-primary" type="button">Buscar</button>
+                        <button class="btn btn-primary" type="submit">Buscar</button>
                     </div>
                     
                 </div>
+                    
+                </form>
                 
                 <div class="row">
                     <table class="table table-bordered">
@@ -56,8 +82,11 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
+                            <?php foreach($calendarios as $calendario): ?>
+                            
                             <tr>
-                                <td>IndoorCycle</td>
+                                <td><?php echo $calendario["nombre"]?></td>
                                 <td>Microcentro</td>
                                 <td>Martes</td>
                                 <td>10:00AM</td>
@@ -67,7 +96,10 @@
 </button></td>
                                 <td></td>
                             </tr>
-                            <tr>
+                            
+                            <?php endforeach;?>
+                            
+                           <!-- <tr>
                                 <td>IndoorCycle</td>
                                 <td>Microcentro</td>
                                 <td>Martes</td>
@@ -115,7 +147,7 @@
                                           </div>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr>-->
                         
                         </tbody>
                     

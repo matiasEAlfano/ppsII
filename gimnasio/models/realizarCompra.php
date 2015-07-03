@@ -10,7 +10,7 @@ class RealizarCompra{
     }
     
     
-    public function stockControl($compras, $usuario){
+    public function stockControl($compras, $usuario, $total, $tarjeta){
         
         for($i=0; $i<count($compras); $i++){
             
@@ -33,11 +33,11 @@ class RealizarCompra{
                 }    
         }
         
-        return $this->stockUpdate($compras, $usuario);
+        return $this->stockUpdate($compras, $usuario, $total, $tarjeta);
     }
     
     
-    public function stockUpdate($compras, $usuario){
+    public function stockUpdate($compras, $usuario, $total, $tarjeta){
         
         for($i=0; $i<count($compras); $i++){
                 
@@ -54,19 +54,24 @@ class RealizarCompra{
                     }
         }
         
-        return $this->addCabeceraVenta($usuario, $compras);       
+        return $this->addCabeceraVenta($usuario, $compras, $total, $tarjeta);       
     }
     
     
-    public function addCabeceraVenta($usuario, $compras){
+    public function addCabeceraVenta($usuario, $compras, $total, $tarjeta){
         $idUsuario = $this->connection->real_escape_string($usuario["id"]);
+        $tipo_tarjeta = $this->connection->real_escape_string($tarjeta["idtipo-tarjeta"]);
+        $numero_tarjeta = $this->connection->real_escape_string($tarjeta["numero-tarjeta"]);
         
         $fecha = date('Y-m-d');
         
         $query = "INSERT INTO `ventas` VALUES (
                     DEFAULT,
                     '$idUsuario',
-                    '$fecha')";
+                    '$fecha',
+                    '$tipo_tarjeta',
+                    '$numero_tarjeta',
+                    '$total')";
         
         
         if($this->connection->query($query)){
@@ -84,25 +89,27 @@ class RealizarCompra{
         
         for($i=0; $i<count($compras); $i++){
             
-                    $idProducto = $this->connection->real_escape_string($compras[$i]["idProducto"]);
-                    $idTalle = $this->connection->real_escape_string($compras[$i]["idTalle"]);
-                    $cantidad = $this->connection->real_escape_string($compras[$i]["cantidad"]);
+            $idProducto = $this->connection->real_escape_string($compras[$i]["idProducto"]);
+            $idTalle = $this->connection->real_escape_string($compras[$i]["idTalle"]);
+            $cantidad = $this->connection->real_escape_string($compras[$i]["cantidad"]);
+            $precio = $this->connection->real_escape_string($compras[$i]["precio"]);
 
-                    $query = "INSERT INTO `detalle-ventas` 
-                            (id_detalle, id_venta, id_producto, id_talle, cantidad) 
-                            VALUES (
-                        DEFAULT,
-                        '$idVenta',
-                        '$idProducto',
-                        '$idTalle',
-                        '$cantidad')";
+            $query = "INSERT INTO `detalle-ventas` 
+                    (id_detalle, id_venta, id_producto, id_talle, cantidad, precio) 
+                    VALUES (
+                DEFAULT,
+                '$idVenta',
+                '$idProducto',
+                '$idTalle',
+                '$cantidad',
+                '$precio')";
 
-                    if($this->connection->query($query)){
-                        //$usuario['id'] = $this->connection->insert_id;
-                        
-                    }else{
-                        return false;
-                    }                        
+            if($this->connection->query($query)){
+                //$usuario['id'] = $this->connection->insert_id;
+
+            }else{
+                return false;
+            }                        
         }    
         
         return "compraExitosa";

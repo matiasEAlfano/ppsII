@@ -20,13 +20,14 @@
                         <thead>
                             <tr>
                                 <th>Producto</th>
+                                <th>Talle</th>
                                 <th>Cantidad</th>
-                                <th>Precion Unitario</th>
+                                <th>Precio Unitario</th>
                                 <th>Sub-Total</th>
                             </tr>
                         </thead>
 
-                        <tbody>
+                        <tbody id="body-micarrito">
                             <?php
                                 $total = 0;
                                 if(!empty($_SESSION["carrito"])){
@@ -72,9 +73,10 @@
                                     <span class="pull-right"><b>Total</b></span>
                                 </td>
                                 <td>
-                                    <span>$<?php echo $total?></span>
+                                    <span>$<?php echo $total ?></span>
                                 </td>
                             </tr>
+                            
                         </tbody>
                     </table>                    
                     
@@ -99,6 +101,7 @@
                         <button type="button" class="btn btn-default">Volver</button>
                     </a>
                     <form method="post" action="actions/api-realizar-compra.php">
+                        <input type="hidden" name="total" value="<?php echo $total; ?>">
                         <button name="action" value="comprar" type="submit" class="btn btn-default" >Confirmar compra</button>
                     </form>
                     
