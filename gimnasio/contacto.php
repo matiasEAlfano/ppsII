@@ -27,22 +27,6 @@
                         </label>
                         </div>
                         
-                        <input type="text" class="texto form-control" placeholder="Nro Socio">
-                        
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Seleccionar...">
-                            <div class="input-group-btn">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Sede <span class="caret"></span></button>
-                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                    <li><a href="#">Pilar</a></li>
-                                    <li><a href="#">Microcentro</a></li>
-                                    <li><a href="#">Matinez</a></li>
-                                    <li><a href="#">Palermo</a></li>
-                                    <li><a href="#">Belgrano</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        
                         <textarea placeholder="Mensaje" rows="7" cols="40"></textarea>
                         
                         <div class="btnEnviar">

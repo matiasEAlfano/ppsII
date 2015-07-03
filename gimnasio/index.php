@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="row sedes">
-                            <h3>Nuestros Gimnasios</h3>
+                            <h3>Nuestro Gimnasio</h3>
                         </div>                        
                         <div id="googleMap"></div>             
                     </div>

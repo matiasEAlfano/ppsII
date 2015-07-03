@@ -58,29 +58,24 @@ if(isset($_GET["c"])){
                                     <tr>
                                       <th>Actividad</th>
                                       <th>Fecha</th>
-                                      <th>Sede</th>
                                     </tr>
                                   </thead>
                                   <tbody>
                                     <tr>
                                       <td>Bodycombat</td>
                                       <td>10/05/2015</td>
-                                      <td>Pilar</td>
                                     </tr>
                                     <tr>
                                       <td>IndoorCycle</td>
                                       <td>12/05/2015</td>
-                                      <td>Microcentro</td>
                                     </tr>
                                     <tr>
                                       <td>Localizada</td>
                                       <td>13/05/2015</td>
-                                      <td>Pilar</td>
                                     </tr>
                                     <tr>
                                       <td>Aquagym</td>
                                       <td>17/05/2015</td>
-                                      <td>Pilar</td>
                                     </tr>
                                   </tbody>
                             </table>

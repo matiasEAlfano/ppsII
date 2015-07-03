@@ -9,7 +9,7 @@
 
                         <div class="col-md-6">
                             <div class="row sedes">
-                                <h3>Sedes</h3>
+                                <h3>???</h3>
                             </div>
                         </div>
 
