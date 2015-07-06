@@ -94,7 +94,7 @@
                         <h2>Forma de pago:</h2>
                         
                         <h3>Tarjeta: <b><?php echo $datosTarjeta["tarjetas_tipo"]?></b></h3>
-                        <h3>Numero: <b><?php echo $_SESSION["tarjeta"]["numero-tarjeta"]?></b></h3>
+                        <h3>Numero: <b><?php echo "xxxx-".substr($_SESSION["tarjeta"]["numero-tarjeta"], 12); ?></b></h3>
                     </div>
                     
                     <a href="comprar2.php">

@@ -10,18 +10,51 @@ class MiCuenta
     }
     
     public function listarComprasUsuario($idUsuario){
-        $query = "SELECT v.fecha_venta, 
+        $query = "SELECT v.id_venta,
+                        v.fecha_venta, 
                         tp.tarjetas_tipo, 
                         v.tarjeta_numero, 
                         v.total_venta
-                FROM `ventas` as v, `tarjetas-tipo` as tp
-                WHERE v.id_usuario = '$idUsuario'
-                AND v.tarjeta_tipo = id_tarjetas_tipo";
+                        FROM `ventas` as v, `tarjetas-tipo` as tp
+                        WHERE v.id_usuario = '$idUsuario'
+                        AND v.tarjeta_tipo = id_tarjetas_tipo
+                        order by v.id_venta desc";
             
         $datos = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
                 $datos[] = $fila;
+            }
+            $result->free();
+        }
+        
+        for($i=0; $i<count($datos); $i++){
+            $idVenta = $datos[$i]["id_venta"];
+            $datos[$i]["detalle"] = $this->listarDetalleCompras($idVenta);
+        }
+        return $datos;
+    }
+    
+    public function listarDetalleCompras($idVenta){
+        $query = "SELECT p.producto_descripcion,
+                        m.marca_nombre,
+                        t.talle_nombre,
+                        dv.cantidad,
+                        dv.precio,
+                        p.producto_imagen
+                    FROM `detalle-ventas` dv,
+                        `productos` p,
+                        `talles` t,
+                        `marcas` m
+                    WHERE dv.id_venta = '$idVenta'
+                    AND p.id_producto = dv.id_producto
+                    AND t.id_talle = dv.id_talle
+                    AND m.id_marca = p.producto_marca";                    
+        
+        $datos = array();
+        if( $result = $this->connection->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                $datos[] = $fila;                                 
             }
             $result->free();
         }

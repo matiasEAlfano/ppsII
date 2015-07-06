@@ -60,11 +60,13 @@ class Usuarios{
     }
 
     public function createUser($usuario){
+        $id_tipo = $this->connection->real_escape_string($usuario['id_tipo']);
         $email = $this->connection->real_escape_string($usuario['email']);
         $clave = $this->connection->real_escape_string($usuario['clave']);
         
             $query = "INSERT INTO `usuarios` VALUES (
                         DEFAULT,
+                        '$id_tipo',
                         '$email',
                         '$clave')";
             
@@ -79,7 +81,9 @@ class Usuarios{
     public function loginUsuario($usuario){
             $email = $this->connection->real_escape_string($usuario['email']);
             $clave = $this->connection->real_escape_string($usuario['clave']);
-            $query = "SELECT id, email, clave FROM `usuarios` WHERE email = '$email' and clave = '$clave'";
+            $query = "SELECT id, id_usuario_tipo, email, clave FROM `usuarios` 
+                    WHERE email = '$email' 
+                    AND clave = '$clave'";
             $r = $this->connection->query($query);
 
             if($r){

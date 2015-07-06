@@ -519,7 +519,7 @@ margin-left: 10%;
 }
 
 div.growlUI {
-    background: transparent url("img/carrito.png") no-repeat scroll 10px 10px;
+    background: transparent url("img/check_mark.png") no-repeat scroll 10px 10px;
 }
 div.growlUI h1, div.growlUI h2 {
     color: #FFF;

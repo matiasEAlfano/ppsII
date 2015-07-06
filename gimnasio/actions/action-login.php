@@ -18,6 +18,7 @@
         
         if($idUsuario = $user->loginUsuario($usuario)){
             $_SESSION["usuario"]["id"] = $idUsuario["id"];
+            $_SESSION["usuario"]["id_tipo"] = $idUsuario["id_usuario_tipo"];
             $_SESSION["usuario"]["email"] = $idUsuario["email"];
             $_SESSION["usuario"]["clave"] = $idUsuario["clave"];
             

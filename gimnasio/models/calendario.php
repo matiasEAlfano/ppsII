@@ -6,17 +6,16 @@
         
         $profesor = $post["profesor"];
         if($profesor > 0){
-            $where .= 'and p.id_profesor=$profesor';  
+            $where .= 'and p.id_profesor='.$profesor;  
         }
         $actividad = $post["actividad"];
                 if($actividad > 0){
-            $where .= 'and a.id_actividad=$actividad';  
+            $where .= 'and a.id_actividad='.$actividad;  
         }
         $dia = $post["dia"];
-                if($dia > 0){
+        if($dia > 0){
             
         }
-        $fecha = $post["fecha"];
         
         
         
@@ -25,6 +24,7 @@
                             INNER JOIN `profesores` p on p.id_profesor = pa.id_profesor
                             INNER JOIN `actividades` a on a.id = pa.id_actividad
                             WHERE $where";
+        
         $calendarios = array();
         if( $result = $c->query($query) ){
             while($fila = $result->fetch_assoc()){

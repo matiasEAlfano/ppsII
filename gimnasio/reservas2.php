@@ -5,7 +5,8 @@ $actividades = getActividades();
 
 
 if($_POST){
-$calendarios = getCalendarios($_POST);  
+    $calendarios = getCalendarios($_POST);  
+   
 }
 
 ?>
@@ -36,9 +37,7 @@ $calendarios = getCalendarios($_POST);
                     <div class="col-md-3 col-sede">
                         <label>Profesor:</label>
                         <select name="profesor" class="form-control">
-                            <option>- Todas -</option>
-                                 
-                                
+                            <option>- Todas -</option>                            
                             <option value="1">Matias Alfano</option>
                             <option value="2">Roco Duro</option>
                             

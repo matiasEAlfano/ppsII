@@ -30,7 +30,7 @@
         });
         
         listarCompras.done(function(res){
-
+                console.log(res.data);
             
             if(!res.error){
                 
@@ -38,10 +38,11 @@
                 var html="";
                 var indice = 0; 
                 var cantidad = res.data.length - 1;
+                
                 res.data.forEach(function(compra){
                     
                     if(indice==0){
-                        html += '<table class="table table-hover">\
+                        html += '<table class="table">\
                                 <thead>\
                                     <tr>\
                                         <th>Fecha</th>\
@@ -49,24 +50,53 @@
                                         <th>Total</th>\
                                     </tr>\
                                 </thead>\
-                                <tbody>';
+                                <tbody id="body-micarrito">';
                     }
-                    html += '<tr id="24">\
-                                <td>'+compra.fecha_venta+'</td>\
-                                <td>'+compra.tarjetas_tipo+": <br>"+compra.tarjeta_numero+'</td>\
-                                <td>'+"$"+compra.total_venta+'</td>\
-                            </tr>\
-                            <tr id="24o" class="hidden"><td colspan=3>Este es mi detalle</td></tr>';
                     
-                    if( cantidad==indice){
+                    html += '<tr>\
+                                <td>'+compra.fecha_venta+'</td>\
+                                <td>'+compra.tarjetas_tipo+": <br>xxxx-"+compra.tarjeta_numero.substring(12, 16)+'</td>\
+                                <td>'+"$"+compra.total_venta+'</td>\
+                                <td>\
+                                    <input type="hidden" class="id_venta" name="id_venta_'+compra.id_venta+'" value="'+compra.id_venta+'">\
+                                    <a role="button" data-toggle="collapse" href="#'+compra.id_venta+'" aria-expanded="false" aria-controls="collapseExample">Detalle</a>\
+                                </td>\
+                            </tr>\
+                            <tr class="collapse" id="'+compra.id_venta+'">\
+                                <td colspan="4">\
+                                    <table class="table">\
+                                        <thead>\
+                                            <tr>\
+                                                <th>Producto</th>\
+                                                <th>Talle</th>\
+                                                <th>Cantidad</th>\
+                                                <th>Precio Unitario</th>\
+                                            </tr>\
+                                        </thead>\
+                                        <tbody>';
+                    
+                    for($i=0; $i<compra["detalle"].length; $i++){
+                        
+                                    html += '<tr>\
+                                                <td><img style="width: 60px" src='+compra["detalle"][$i].producto_imagen+'><br>'+compra["detalle"][$i].producto_descripcion+" ("+compra["detalle"][$i].marca_nombre+')</td>\
+                                                <td>'+compra["detalle"][$i].talle_nombre+'</td>\
+                                                <td>'+compra["detalle"][$i].cantidad+'</td>\
+                                                <td>'+compra["detalle"][$i].precio+'</td>\
+                                            </tr>';
+                    }
+                    
+                    html +=   '</tbody>\
+                            </table>\
+                        </td>\
+                    </tr>';
+                    
+                    if(cantidad==indice){
                         html += '</tbody>\
                             </table>';                        
                         $listar.append(html);
                     }
                     indice++;                   
-                });
-                
-                
+                });               
             }
         });
         
@@ -76,10 +106,11 @@
         });
     }
     
-    $listar.on("click", "#24", function(){        
+    /*$listar.on("click", "tr a", function(){
+        alert($(".id_venta").val());
         $("#24o").slideToggle();
         $("#24o").removeClass("hidden");
-    });
+    });*/
     
     var listarDatosPersonales = function(id){
         
