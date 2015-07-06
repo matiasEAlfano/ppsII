@@ -34,13 +34,13 @@ if(isset($_GET["c"])){
                     
                 </div>
                 
-                <div class="col-md-5" id="listar">
+                <div class="col-md-6" id="listar">
                     
                     
                     
                 </div>
                 
-                <div class="col-md-4">
+                <div class="col-md-3">
                     
                     <div class="row">
                         <label>Ultima Actividad calificada:</label>                    

@@ -59,7 +59,7 @@
                                 <td>'+"$"+compra.total_venta+'</td>\
                                 <td>\
                                     <input type="hidden" class="id_venta" name="id_venta_'+compra.id_venta+'" value="'+compra.id_venta+'">\
-                                    <a role="button" data-toggle="collapse" href="#'+compra.id_venta+'" aria-expanded="false" aria-controls="collapseExample">Detalle</a>\
+                                    <a class="btn btn-default" role="button" data-toggle="collapse" href="#'+compra.id_venta+'" aria-expanded="false" aria-controls="collapseExample">Detalle</a>\
                                 </td>\
                             </tr>\
                             <tr class="collapse" id="'+compra.id_venta+'">\
