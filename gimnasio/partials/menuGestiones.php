@@ -11,7 +11,7 @@
                 <a role="menuitem" tabindex="-1" href="abmActividades.php">Actividades</a>
             </li>
             <li role="presentation">
-                <a role="menuitem" tabindex="-1" href="abmSedes.php">Sedes</a>
+                <a role="menuitem" tabindex="-1" href="abmCalendario.php">Calendario</a>
             </li>
             <li role="presentation">
                 <a role="menuitem" tabindex="-1" href="abmProductos.php">Productos</a>
