@@ -42,7 +42,8 @@
                 res.data.forEach(function(compra){
                     
                     if(indice==0){
-                        html += '<table class="table">\
+                        html += '<h3>Mis Compras:</h3><br>\
+                                <table class="table">\
                                 <thead>\
                                     <tr>\
                                         <th>Fecha</th>\
@@ -71,6 +72,7 @@
                                                 <th>Talle</th>\
                                                 <th>Cantidad</th>\
                                                 <th>Precio Unitario</th>\
+                                                <th>Sub-Total</th>\
                                             </tr>\
                                         </thead>\
                                         <tbody>';
@@ -81,7 +83,8 @@
                                                 <td><img style="width: 60px" src='+compra["detalle"][$i].producto_imagen+'><br>'+compra["detalle"][$i].producto_descripcion+" ("+compra["detalle"][$i].marca_nombre+')</td>\
                                                 <td>'+compra["detalle"][$i].talle_nombre+'</td>\
                                                 <td>'+compra["detalle"][$i].cantidad+'</td>\
-                                                <td>'+compra["detalle"][$i].precio+'</td>\
+                                                <td>$'+compra["detalle"][$i].precio+'</td>\
+                                                <td>$'+compra["detalle"][$i].cantidad * compra["detalle"][$i].precio+'</td>\
                                             </tr>';
                     }
                     
@@ -131,7 +134,7 @@
                 $listar.html("");
                 
                 var dato = res.data;
-                var html = '<h3>Datos Personales</h3>\
+                var html = '<h3>Mis Datos:</h3><br>\
                             <h4>Datos de cuenta:</h4>\
                             <label>Usuario:</label>'+" "+dato.email+'\
                             <h4>Datos personales:</h4>\

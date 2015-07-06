@@ -24,11 +24,11 @@ if(isset($_GET["c"])){
                     <div class="row" id="panel_usuario">
                         <ul id="option_list">
                             <input type="hidden" class="id_usuario" name="id_usuario" value="<?php echo $_SESSION["usuario"]["id"]; ?>">
-                            <li><a class="datos_usuario">Datos Usuario</a></li>
+                            <li><a class="datos_usuario">Mis Datos</a></li>
                             <li><a href="micarrito.php">Mi Carrito</a></li>
                             <li><a class="mis_compras">Mis Compras</a></li>
                             <li><a href="calificarActividad.php">Calificar</a></li>
-                            <a href="reservas.php"><button type="button" class="btn btn-primary">Reserva de Actividades</button></a>
+                            <a href="reservas2.php"><button type="button" class="btn btn-primary">Reserva de Actividades</button></a>
                         </ul>
                     </div>
                     

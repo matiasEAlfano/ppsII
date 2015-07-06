@@ -28,11 +28,14 @@
                         ag.id as 'id-grupo', 
                         ag.idtipo, 
                         ag.descripcion as grupo  
-                        FROM `actividades` as a, `actividad-grupo` as ag, `actividad-tipo` as at
-                        where a.idTipo = at.id 
-                        AND a.idGrupo = ag.id
-                        AND ag.idTipo = at.id
-                        order by a.nombre";
+                FROM `actividades` as a, 
+                    `actividad-grupo` as ag, 
+                    `actividad-tipo` as at
+                WHERE a.idTipo = at.id 
+                AND a.idGrupo = ag.id
+                AND ag.idTipo = at.id
+                order by a.nombre";
+        
         $actividades = array();
         if( $result = $c->query($query) ){
             while($fila = $result->fetch_assoc()){
