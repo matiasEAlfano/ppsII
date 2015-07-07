@@ -50,28 +50,28 @@
                         
                         <div class="form-group">
                             <label>Nombre y Apellido</label>
-                            <input id="nombre" type="text" value="<?= !empty($profesor) ? $profesor["profesor_nombre_apellido"] : ""?>" name="profesor_nombre_apellido" class="form-control" placeholder="Nombre y Aprellido">
+                            <input id="nombre" type="text" value="<?= !empty($profesor) ? $profesor["profesor_nombre_apellido"] : ""?>" name="profesor_nombre_apellido" class="form-control abm-inputs" placeholder="Nombre y Aprellido">
                         </div>
                         
                         <div class="form-group">
                             <label>DNI</label>
-                            <input id="dni" type="text" value="<?= !empty($profesor) ? $profesor["profesor_dni"] : ""?>" name="profesor_dni" class="form-control" placeholder="Numero">
+                            <input id="dni" type="text" value="<?= !empty($profesor) ? $profesor["profesor_dni"] : ""?>" name="profesor_dni" class="form-control abm-inputs" placeholder="Numero">
                         </div>
                         
                         <div class="form-group">
                             <label>Direccion</label>
-                            <input id="direccion" type="text" value="<?= !empty($profesor) ? $profesor["profesor_direccion"] : ""?>" name="profesor_direccion" class="form-control" placeholder="Calle, Numero, Dto., Piso.">
+                            <input id="direccion" type="text" value="<?= !empty($profesor) ? $profesor["profesor_direccion"] : ""?>" name="profesor_direccion" class="form-control abm-inputs" placeholder="Calle, Numero, Dto., Piso.">
                         </div>
                         
                         
                         <div class="form-group">
                             <label>Telefono </label>
-                            <input id="telefono" type="text" value="<?= !empty($profesor) ? $profesor["profesor_telefono"] : ""?>" name="profesor_telefono" class="form-control" placeholder="Tel.">
+                            <input id="telefono" type="text" value="<?= !empty($profesor) ? $profesor["profesor_telefono"] : ""?>" name="profesor_telefono" class="form-control abm-inputs" placeholder="Tel.">
                         </div>
                         
                         <div class="form-group">
                             <label>Email</label>
-                            <input id="mail" type="text" value="<?= !empty($profesor) ? $profesor["profesor_mail"] : ""?>" name ="profesor_mail" class="form-control" placeholder="Email">
+                            <input id="mail" type="text" value="<?= !empty($profesor) ? $profesor["profesor_mail"] : ""?>" name ="profesor_mail" class="form-control abm-inputs" placeholder="Email">
                         </div>
 
                         <input id="id" type="hidden" name="id" value="<?= !empty($profesor) ? $profesor["id_profesor"] : ""?>"/>
