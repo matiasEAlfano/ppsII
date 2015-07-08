@@ -13,6 +13,7 @@
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/block-ui.js"></script>
         <script src="js/funcionesGenericas.js"></script>
+        <script src="js/clockpicker.js"></script>
         <!--<script src="js/upload.js"></script>-->
 <!--        <script src="js/main.js"></script>-->
     </body>

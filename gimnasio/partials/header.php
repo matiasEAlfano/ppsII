@@ -12,6 +12,8 @@
         <link rel="stylesheet" href="css/mainCharly.css">
         <link rel="stylesheet" href="css/mainMatias.css">
         <link rel="stylesheet" href="css/mainMauro.css">
+        <link rel="stylesheet" href="css/standalone.css">
+        <link rel="stylesheet" href="css/clockpicker.css">
         <!--        El siguiente Script agrega la API de Google Maps al sitio web:-->
         <!--<script src="http://maps.googleapis.com/maps/api/js"></script>-->
         

@@ -49,19 +49,19 @@
         <div class="panel-heading">Dias de la semana.</div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-md-2">Lunes <br><input type="checkbox" name="keywords" value="__option__"></div>
-                <div class="col-md-2">Martes <br><input type="checkbox" name="keywords" value="__option__"></div>
-                <div class="col-md-2">Miercoles <br><input type="checkbox" name="keywords" value="__option__"></div>
-                <div class="col-md-2">Jueves <br><input type="checkbox" name="keywords" value="__option__"></div>
-                <div class="col-md-2">Viernes <br><input type="checkbox" name="keywords" value="__option__"></div>
-                <div class="col-md-2">Sabado <br><input type="checkbox" name="keywords" value="__option__"></div>
+                <div class="col-md-2">Lunes <br><input id="chkLunes" type="checkbox" name="keywords" value="__option__"></div>
+                <div class="col-md-2">Martes <br><input id="chkMartes" type="checkbox" name="keywords" value="__option__"></div>
+                <div class="col-md-2">Miercoles <br><input id="chkMiercoles" type="checkbox" name="keywords" value="__option__"></div>
+                <div class="col-md-2">Jueves <br><input id="chkJueves"type="checkbox" name="keywords" value="__option__"></div>
+                <div class="col-md-2">Viernes <br><input id="chkViernes" type="checkbox" name="keywords" value="__option__"></div>
+                <div class="col-md-2">Sabado <br><input id="chkSabado" type="checkbox" name="keywords" value="__option__"></div>
             </div>
         </div>
     </div>
 
     <!--AGRUPADOR LUNES-->
     
-     <div class="panel panel-success panelesPersonalizados">
+     <div id="lunes" class="panel panel-success panelesPersonalizados hidden left">
         <div class="panel-heading">Lunes.</div>
         <div class="panel-body">
             
@@ -72,9 +72,9 @@
                     <span class="glyphicon glyphicon-time"></span>
                 </span>
             </div>
-            <script type="text/javascript">
+            <!--<script type="text/javascript">
                 $('.clockpicker').clockpicker();
-            </script>
+            </script>-->
             
             <label>Intervalo: </label>
             <div class="row">
@@ -90,7 +90,7 @@
     
     <!--AGRUPADOR MARTES-->
     
-    <div class="panel panel-success panelesPersonalizados">
+    <div id="martes" class="panel panel-success panelesPersonalizados hidden left">
         <div class="panel-heading">Martes.</div>
         <div class="panel-body">
             
@@ -101,9 +101,9 @@
                     <span class="glyphicon glyphicon-time"></span>
                 </span>
             </div>
-            <script type="text/javascript">
+            <!--<script type="text/javascript">
                 $('.clockpicker').clockpicker();
-            </script>
+            </script>-->
             
             <label>Intervalo: </label>
             <div class="row">
@@ -118,7 +118,7 @@
     </div>
     
     <!--AGRUPADOR MIERCOLES-->
-    <div class="panel panel-success panelesPersonalizados">
+    <div id="miercoles" class="panel panel-success panelesPersonalizados hidden left">
         <div class="panel-heading">Miercoles.</div>
         <div class="panel-body">
             
@@ -129,9 +129,9 @@
                     <span class="glyphicon glyphicon-time"></span>
                 </span>
             </div>
-            <script type="text/javascript">
+            <!--<script type="text/javascript">
                 $('.clockpicker').clockpicker();
-            </script>
+            </script>-->
             
             <label>Intervalo: </label>
             <div class="row">
@@ -146,7 +146,7 @@
     </div>
     
     <!--AGRUPADOR JUEVES-->
-    <div class="panel panel-success panelesPersonalizados">
+    <div id="jueves" class="panel panel-success panelesPersonalizados hidden left">
         <div class="panel-heading">Jueves.</div>
         <div class="panel-body">
             
@@ -157,9 +157,9 @@
                     <span class="glyphicon glyphicon-time"></span>
                 </span>
             </div>
-            <script type="text/javascript">
+            <!--<script type="text/javascript">
                 $('.clockpicker').clockpicker();
-            </script>
+            </script>-->
             
             <label>Intervalo: </label>
             <div class="row">
@@ -174,7 +174,7 @@
     </div>
     
     <!--AGRUPADOR VIERNES-->
-    <div class="panel panel-success panelesPersonalizados">
+    <div id="viernes" class="panel panel-success panelesPersonalizados hidden left">
         <div class="panel-heading">Viernes.</div>
         <div class="panel-body">
             
@@ -185,9 +185,9 @@
                     <span class="glyphicon glyphicon-time"></span>
                 </span>
             </div>
-            <script type="text/javascript">
+            <!--<script type="text/javascript">
                 $('.clockpicker').clockpicker();
-            </script>
+            </script>-->
             
             <label>Intervalo: </label>
             <div class="row">
@@ -202,7 +202,7 @@
     </div>
     
     <!--AGRUPADOR SABADO-->
-    <div class="panel panel-success panelesPersonalizados">
+    <div id="sabado" class="panel panel-success panelesPersonalizados hidden">
         <div class="panel-heading">Sabado.</div>
         <div class="panel-body">
             
@@ -213,9 +213,9 @@
                     <span class="glyphicon glyphicon-time"></span>
                 </span>
             </div>
-            <script type="text/javascript">
+            <!--<script type="text/javascript">
                 $('.clockpicker').clockpicker();
-            </script>
+            </script>-->
             
             <label>Intervalo: </label>
             <div class="row">
@@ -229,10 +229,10 @@
     </div>
     </div>
     
-    
+    <div class="col-md-12">
     <input type="submit" class="btn btn-primary" name="action" value="<?= $action; ?>"/>
     <input type="submit" class="btn btn-danger" name="action" value="Cancelar"/>
-    
+    </div>
 </form>
 
 <table class="table table-hover abm-tablas">
@@ -265,7 +265,6 @@
 </table>
 
 <?php require("partials/gestionFooter.php"); ?>
-                   
 
 
 

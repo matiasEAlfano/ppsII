@@ -1,5 +1,66 @@
 (function($){
     
+    
+    $("#chkLunes").on("click", function() {
+        
+        if($("#chkLunes").is(":checked")) {
+            $("#lunes").removeClass("hidden");
+        }else{
+            $("#lunes").addClass("hidden");
+        }
+        
+    });
+    
+    $("#chkMartes").on("click", function() {
+        
+        if($("#chkMartes").is(":checked")) {
+            $("#martes").removeClass("hidden");
+        }else{
+            $("#martes").addClass("hidden");
+        }
+        
+    });
+    
+     $("#chkMiercoles").on("click", function() {
+        
+        if($("#chkMiercoles").is(":checked")) {
+            $("#miercoles").removeClass("hidden");
+        }else{
+            $("#miercoles").addClass("hidden");
+        }
+        
+    });
+    
+    $("#chkJueves").on("click", function() {
+        
+        if($("#chkJueves").is(":checked")) {
+            $("#jueves").removeClass("hidden");
+        }else{
+            $("#jueves").addClass("hidden");
+        }
+        
+    });
+    
+    $("#chkViernes").on("click", function() {
+        
+        if($("#chkViernes").is(":checked")) {
+            $("#viernes").removeClass("hidden");
+        }else{
+            $("#viernes").addClass("hidden");
+        }
+        
+    });
+    
+    $("#chkSabado").on("click", function() {
+        
+        if($("#chkSabado").is(":checked")) {
+            $("#sabado").removeClass("hidden");
+        }else{
+            $("#sabado").addClass("hidden");
+        }
+        
+    });
+    
     $("#categoria-producto").on("change", function() {
 
         var idCategoria = $("#categoria-producto").val();
