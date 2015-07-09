@@ -7,6 +7,12 @@
         listarBusqueda();
     });
     
+    //intento de manejar combos desde un unico evento:
+    /*$form.on("change", ".combo", function(event){
+        alert($(this).find);
+        var idActividad = $(this).val();
+        filtroPorActividad(idActividad);
+    });*/
     
     $form.on("change", "#cboActividad", function(event){
         var idActividad = $(this).val();
@@ -49,12 +55,13 @@
                     var html = '<tr>\
                                     <td>'+dato.nombre+'</td>\
                                     <td>'+dato.profesor_nombre_apellido+'</td>\
-                                    <td>Martes</td>\
-                                    <td>10:00AM</td>\
-                                    <td>24</td>\
-                                    <td><button type="button" class="btn btn-success" aria-label="Left Align" data-toggle="modal" data-target=".bs-example-modal-sm">\
-      <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>\
-    </button></td>\
+                                    <td>Martes - '+dato.fecha_profesor_actividad+'</td>\
+                                    <td>'+dato.horario_desde_profesor_actividad+' a '+dato.horario_hasta_profesor_actividad+'</td>\
+                                    <td>'+dato.cupo+'</td>\
+                                    <td>\
+                                        <input type="hidden" name="id_calendario_profesor_actividad" value="'+dato.id_calendario_profesor_actividad+'">\
+                                        <button type="button" class="btn btn-success" aria-label="Left Align" data-toggle="modal" data-target=".bs-example-modal-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>\
+                                    </td>\
                                 </tr>';
                     
                     $(".calendarios tbody").append(html);

@@ -22,21 +22,21 @@ if($_POST){
 
                         <div class="col-md-3 col-actividad">
                             <label>Actividad:</label>
-                            <select id="cboActividad" name="actividad" class="form-control">
+                            <select id="cboActividad" name="actividad" class="form-control combo">
                                 
                             </select>
                         </div>
 
                         <div class="col-md-3 col-profesor">                        
                             <label>Profesor:</label>
-                            <select id="cboProfesor" name="profesor" class="form-control">
+                            <select id="cboProfesor" name="profesor" class="form-control combo">
                                                            
                             </select>
                         </div>
 
                         <div class="col-md-3 col-dia">
                             <label>Dia:</label>
-                            <select id="cboDia" name="dia" class="form-control">
+                            <select id="cboDia" name="dia" class="form-control combo">
                                 
                             </select>
                         </div>
