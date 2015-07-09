@@ -14,30 +14,29 @@ if($_POST){
             
             <div class="container cuerpo-reservas">
                 
-                <form id="form-buscar">
+                
                     
-                    <div class="row menu-reservas">
+                <div class="row menu-reservas">
+                        
+                    <form id="form-buscar">
 
                         <div class="col-md-3 col-actividad">
                             <label>Actividad:</label>
-                            <select name="actividad" class="form-control">
-                                <option value="0">- Todas -</option>
+                            <select id="cboActividad" name="actividad" class="form-control">
                                 
                             </select>
                         </div>
 
                         <div class="col-md-3 col-profesor">                        
                             <label>Profesor:</label>
-                            <select name="profesor" class="form-control">
-                                <option value="0">- Todos -</option>
+                            <select id="cboProfesor" name="profesor" class="form-control">
                                                            
                             </select>
                         </div>
 
                         <div class="col-md-3 col-dia">
                             <label>Dia:</label>
-                            <select name="dia" class="form-control">
-                                <option value="0">- Todos -</option>                            
+                            <select id="cboDia" name="dia" class="form-control">
                                 
                             </select>
                         </div>
@@ -47,13 +46,18 @@ if($_POST){
                             <input type="fecha" class="form-control">
                         </div>
 
-                        <div class="col-md-3 col-horario">
+                        <div class="col-md-3 col-buscar">
                             <button id="btnBuscar" class="btn btn-primary" type="submit">Buscar</button>
                         </div>
-
-                    </div>
+                        
+                    </form>
                     
-                </form>
+                    <div class="col-md-3">
+                        <a href="reservas.php"><button id="btnCancelar" type="button" class="btn btn-danger">Cancelar</button></a>
+                    </div>
+                </div>
+                    
+                
                 
                 <div class="row calendarios">
                     <table class="table table-bordered">

@@ -22,12 +22,58 @@ switch($action){
     case "listar":
         listarBusqueda($request);
         break;
+    case "filtroPorActividad":
+        filtroPorActividad($request);
+        break;
+    case "filtroPorProfesor":
+        filtroPorProfesor($request);
+        break;
     default:
         sendResponse(array(
             "error" => true,
             "mensaje" => "Request mal formado"
         ));
         break;
+}
+
+
+function filtroPorProfesor($request){
+    require("../models/reservas.php");
+    $r = new Reservas();
+    $id = $request->id;
+    
+    if($datos = $r->filtroPorProfesor($id)){
+        sendResponse(array(
+            "error" => false,
+            "mensaje" => "",
+            "data" => $datos
+        ));
+    }else{
+        sendResponse(array(
+            "error" => true,
+            "mensaje" => "Error al obtener datos de personales"
+        ));
+    }
+}
+
+
+function filtroPorActividad($request){
+    require("../models/reservas.php");
+    $r = new Reservas();
+    $id = $request->id;
+    
+    if($datos = $r->filtroPorActividad($id)){
+        sendResponse(array(
+            "error" => false,
+            "mensaje" => "",
+            "data" => $datos
+        ));
+    }else{
+        sendResponse(array(
+            "error" => true,
+            "mensaje" => "Error al obtener datos de personales"
+        ));
+    }
 }
 
 

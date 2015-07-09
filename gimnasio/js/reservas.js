@@ -5,13 +5,29 @@
     $form.on("submit", function(event){
         event.preventDefault();
         listarBusqueda();
-    })
+    });
+    
+    
+    $form.on("change", "#cboActividad", function(event){
+        var idActividad = $(this).val();
+        filtroPorActividad(idActividad);
+    });
+    
+    
+    $form.on("change", "#cboProfesor", function(event){
+        var idProfesor = $(this).val();
+        filtroPorProfesor(idProfesor);
+    });
+    
     
     var URI = {
         COMBO_ACTIVIDADES: "actions/api-reservas.php?action=getActividades",
         COMBO_PROFESORES: "actions/api-reservas.php?action=getProfesores",
         COMBO_DIAS: "actions/api-reservas.php?action=getDias",
-        LISTAR: "actions/api-reservas.php?action=listar"
+        LISTAR: "actions/api-reservas.php?action=listar",
+        FILTRO_ACTIVIDAD: "actions/api-reservas.php?action=filtroPorActividad",
+        FILTRO_PROFESOR: "actions/api-reservas.php?action=filtroPorProfesor",
+        FILTRO_DIA: "actions/api-reservas.php?action="
     }
     
     
@@ -51,9 +67,10 @@
         });
     }
     
+    
     var cargarCombos = function(){
         
-        //carca Cobo de Actividades:
+        //carga Combo de Actividades:
         var listarActividades = $.ajax({
             url: URI.COMBO_ACTIVIDADES,
             method: 'get',
@@ -63,11 +80,12 @@
         listarActividades.done(function(res){
             console.log(res);
             
-            if(!res.error){
+            if(!res.error){                
+                var html = '<option value="0">- Todas -</option>'
+                $(".col-actividad select").append(html);
                 
                 res.data.forEach(function(actividad){
-                    var html = '<option value="'+actividad.id+'">'+actividad.nombre+'</option>';
-                    
+                    var html = '<option value="'+actividad.id_actividad+'">'+actividad.nombre+'</option>';           
                     $(".col-actividad select").append(html);
                     
                 });
@@ -78,7 +96,7 @@
         });
         
         
-        //carca Cobo de Profesores:
+        //carga Combo de Profesores:
         var listarProfesores = $.ajax({
             url: URI.COMBO_PROFESORES,
             method: 'get',
@@ -89,16 +107,18 @@
             console.log(res);
             
             if(!res.error){
+                var html = '<option value="0">- Todos -</option>'
+                $(".col-profesor select").append(html);
+                
                 res.data.forEach(function(profesor){
                     var html = '<option value="'+profesor.id_profesor+'">'+profesor.profesor_nombre_apellido+'</option>';
-                    
                     $(".col-profesor select").append(html);
                 });
             }
         });
         
         
-        //carca Cobo de Dias:
+        //carga Combo de Dias:
         var listarDias = $.ajax({
             url: URI.COMBO_DIAS,
             method: 'get',
@@ -109,15 +129,85 @@
             console.log(res);
             
             if(!res.error){
+                var html = '<option value="0">- Todos -</option>'
+                $(".col-dia select").append(html);
+                
                 res.data.forEach(function(dia){
-                    var html = '<option value="'+dia.id_dia+'">'+dia.dia_nombre+'</option>';
-                    
+                    var html = '<option value="'+dia.id_dia+'">'+dia.dia_nombre+'</option>';               
                     $(".col-dia select").append(html);                    
                 });
             }
         });
         
     }
+    
+    
+    var filtroPorActividad = function(id){
+        
+        var cargar = $.ajax({
+            url: URI.FILTRO_ACTIVIDAD,
+            method: 'get',
+            data: {id: id},
+            dataType: 'json'
+        });
+
+        cargar.done(function(res){
+            console.log(res);
+
+            if(!res.error){                    
+                $(".col-profesor select").html("");
+                var html = '<option value="0">- Todos -</option>';
+                $(".col-profesor select").append(html);
+
+                res.data.forEach(function(profesor){
+                    var html = '<option value="'+profesor.id_profesor+'">'+profesor.profesor_nombre_apellido+'</option>';
+
+                    $(".col-profesor select").append(html);
+                });
+            }else{
+                console.error("Ocurrio un error");
+                alert("No hay profesores asignados a la actividad seleccionada!")
+            }
+        });
+
+        cargar.fail(function(res){
+            console.log(res);
+        });
+    }
+    
+    
+    var filtroPorProfesor = function(id){
+        var cargar = $.ajax({
+            url: URI.FILTRO_PROFESOR,
+            method: 'get',
+            data: {id: id},
+            dataType: 'json'
+        });
+
+        cargar.done(function(res){
+            console.log(res);
+
+            if(!res.error){                    
+                $(".col-actividad select").html("");
+                var html = '<option value="0">- Todas -</option>';
+                $(".col-actividad select").append(html);
+
+                res.data.forEach(function(actividad){
+                    var html = '<option value="'+actividad.id_actividad+'">'+actividad.nombre+'</option>';
+
+                    $(".col-actividad select").append(html);
+                });
+            }else{
+                console.error("Ocurrio un error");
+                alert("El profesor seleccionado no dicta la actividad seleccionada!")
+            }
+        });
+
+        cargar.fail(function(res){
+            console.log(res);
+        });
+    }
+        
     
     cargarCombos();
     

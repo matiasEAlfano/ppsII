@@ -15,18 +15,18 @@ class Reservas
         
         $profesor = $request->profesor;
         if($profesor > 0){
-            $where .= 'and p.id_profesor='.$profesor;  
+            $where .= 'and pa.id_profesor='.$profesor;  
         }
         
         $actividad = $request->actividad;
         if($actividad > 0){
-            $where .= 'and a.id_actividad='.$actividad;  
+            $where .= 'and pa.id_actividad='.$actividad;  
         }
         
         $dia = $request->dia;
         if($dia > 0){
             
-        }       
+        }
         
         $query = "SELECT a.nombre, 
                         p.profesor_nombre_apellido 
@@ -49,9 +49,76 @@ class Reservas
     
     
     public function getProfesores(){
-        $query = "SELECT id_profesor,
-                        profesor_nombre_apellido
-                FROM `profesores`
+        
+        $query = "SELECT pa.id_profesor,
+                        p.profesor_nombre_apellido
+                FROM `profesores` p, 
+                    `profesor-actividad` pa
+				WHERE pa.id_profesor = p.id_profesor
+				GROUP BY pa.id_profesor
+                ORDER BY profesor_nombre_apellido";
+        
+        $datos = array();
+        
+        if($result = $this->connection->query($query)){
+        
+            while($fila = $result->fetch_assoc()){
+                $datos[] = $fila;
+            }
+            
+            $result->free();
+        }
+        
+        return $datos;
+    }
+    
+    
+    public function filtroPorProfesor($id){
+        $where = '1=1 ';
+        
+        if($id > 0){
+            $where .= 'and pa.id_profesor='.$id;  
+        }
+        
+        $query = "SELECT pa.id_actividad,
+                        a.nombre
+                FROM `actividades` a, 
+                    `profesor-actividad` pa
+				WHERE pa.id_actividad = a.id
+				AND $where
+				GROUP BY pa.id_actividad
+                ORDER BY a.nombre";
+        
+        $datos = array();
+        
+        if($result = $this->connection->query($query)){
+        
+            while($fila = $result->fetch_assoc()){
+                $datos[] = $fila;
+            }
+            
+            $result->free();
+        }
+        
+        return $datos;
+    }
+    
+    
+    public function filtroPorActividad($id){
+        
+        $where = '1=1 ';
+        
+        if($id > 0){
+            $where .= 'and pa.id_actividad='.$id;  
+        }
+        
+        $query = "SELECT pa.id_profesor,
+                        p.profesor_nombre_apellido
+                FROM `profesores` p, 
+                    `profesor-actividad` pa
+				WHERE pa.id_profesor = p.id_profesor
+				AND $where
+				GROUP BY pa.id_profesor
                 ORDER BY profesor_nombre_apellido";
         
         $datos = array();
@@ -91,23 +158,14 @@ class Reservas
     
     
     public function getActividades(){
-        $query = "SELECT a.id, 
-                        a.nombre, 
-                        a.idtipo, 
-                        a.idgrupo, 
-                        at.id as 'id-tipo', 
-                        at.descripcion as tipo, 
-                        ag.id as 'id-grupo', 
-                        ag.idtipo, 
-                        ag.descripcion as grupo  
-                FROM `actividades` as a, 
-                    `actividad-grupo` as ag, 
-                    `actividad-tipo` as at
-                WHERE a.idTipo = at.id 
-                AND a.idGrupo = ag.id
-                AND ag.idTipo = at.id
-                order by a.nombre";
-        
+        $query = "SELECT pa.id_actividad, 
+                        a.nombre
+                FROM `actividades` a,
+                    `profesor-actividad` pa
+                WHERE pa.id_actividad = a.id
+                GROUP BY pa.id_actividad
+                ORDER BY a.nombre";
+            
         $datos = array();
         
         if($result = $this->connection->query($query)){
