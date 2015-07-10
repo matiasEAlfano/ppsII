@@ -28,12 +28,58 @@ switch($action){
     case "filtroPorProfesor":
         filtroPorProfesor($request);
         break;
+    case "reserva":
+        reserva($request);
+        break;
+    case "confirmar":
+        confirmarReserva($request);
+        break;
     default:
         sendResponse(array(
             "error" => true,
             "mensaje" => "Request mal formado"
         ));
         break;
+}
+
+
+function reserva($request){
+    require("../models/reservas.php");
+        $r = new Reservas();
+        $id = $request->id_calendario_profesor_actividad;
+
+        if($datos = $r->reserva($id)){
+            sendResponse(array(
+                "error" => false,
+                "mensaje" => "",
+                "data" => $datos
+            ));
+        }else{
+            sendResponse(array(
+                "error" => true,
+                "mensaje" => "Error al obtener datos de reserva"
+            ));
+        }
+}
+
+
+function confirmarReserva($request){
+    require("../models/reservas.php");
+    $r = new Reservas();
+    $id = $request->id_calendario_profesor_actividad;
+
+    if($datos = $r->confirmarReserva($id)){
+        sendResponse(array(
+            "error" => false,
+            "mensaje" => "",
+            "data" => $datos
+        ));
+    }else{
+        sendResponse(array(
+            "error" => true,
+            "mensaje" => "Error al obtener datos de reserva"
+        ));
+    }
 }
 
 

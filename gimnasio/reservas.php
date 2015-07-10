@@ -60,7 +60,7 @@ if($_POST){
                 
                 
                 <div class="row calendarios">
-                    <table class="table table-bordered">
+                    <table id="calendario" class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>Actividad</th>
@@ -72,20 +72,25 @@ if($_POST){
                             </tr>
                         </thead>
                         <tbody>                            
-                            <!--ACA SE CONSTRUYE EL CUERPO POR AJAX-->
-                            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <!--ACA SE CONSTRUYE POR AJAX EL CUERPO DEL CALENDARIO-->
+                            <!--EL SIGUIENTE DIV ES EL MODAL DE CONFIRMACION:-->
+                            <div class="modal fade confirmar-reserva" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-sm">
-                                        <div class="modal-content">
+                                        <div class="modal-content contenido">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">x</span></button>
-                                                <h4 class="modal-title">Reserva exitosa!</h4>
+                                                <h4 class="modal-title">Confirmar Reserva?</h4>
                                             </div>
-                                            <div class="modal-body">
-                                                Actividad: <label>IndoorCycle</label><br>
+                                            <div class="modal-body reserva">
+                                                <!--Actividad: <label>IndoorCycle</label><br>
                                                 Sede: <label>Microcentro</label><br>
                                                 Día: <label>12/05/2015</label><br>
-                                                Horario: <label>21:00PM</label>                           
-                                            </div>                                                  
+                                                Horario: <label>21:00PM</label>-->
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button id="confirmar" type="button" class="btn btn-success left">Confirmar</button>
+                                                <button type="button" class="btn btn-danger left">Cancelar</button>
+                                            </div>
                                         </div>
                                   </div>
                             </div>

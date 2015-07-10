@@ -10,6 +10,29 @@ class Reservas
     }
     
     
+    public function reserva($id){
+        $query = "SELECT c.id_calendario_profesor_actividad,
+                        a.nombre, 
+                        p.profesor_nombre_apellido,
+                        c.fecha_profesor_actividad,
+                        c.horario_desde_profesor_actividad,
+                        c.horario_hasta_profesor_actividad
+                FROM `calendario-profesor-actividad` c
+                INNER JOIN `profesor-actividad` pa ON pa.id_profesor_actividad = c.id_profesor_actividad
+                INNER JOIN `profesores` p ON p.id_profesor = pa.id_profesor
+                INNER JOIN `actividades` a ON a.id = pa.id_actividad
+                WHERE c.id_calendario_profesor_actividad = $id";
+        
+        $datos = array();
+        
+        if( $result = $this->connection->query($query) ){
+            return $result->fetch_assoc();
+        }else{
+            return false;
+        }
+    }
+    
+    
     public function listarBusqueda($request){
         $where = '1=1 ';
         
@@ -39,8 +62,9 @@ class Reservas
                 INNER JOIN `profesor-actividad` pa ON pa.id_profesor_actividad = c.id_profesor_actividad
                 INNER JOIN `profesores` p ON p.id_profesor = pa.id_profesor
                 INNER JOIN `actividades` a ON a.id = pa.id_actividad
-                WHERE $where
-                ORDER BY c.fecha_profesor_actividad";
+                WHERE c.cupo > 0
+                AND $where
+                ORDER BY c.fecha_profesor_actividad, c.horario_desde_profesor_actividad";
         
         $datos = array();
         
