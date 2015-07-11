@@ -1,17 +1,89 @@
 (function($){
     
-    $form = $("#form-buscar"); 
-    
-    $form.on("submit", function(event){
-        event.preventDefault();
-        listarBusqueda();
-    })
-    
     var URI = {
         COMBO_ACTIVIDADES: "actions/api-reservas.php?action=getActividades",
         COMBO_PROFESORES: "actions/api-reservas.php?action=getProfesores",
         COMBO_DIAS: "actions/api-reservas.php?action=getDias",
-        LISTAR: "actions/api-reservas.php?action=listar"
+        LISTAR: "actions/api-reservas.php?action=listar",
+        FILTRO_ACTIVIDAD: "actions/api-reservas.php?action=filtroPorActividad",
+        FILTRO_PROFESOR: "actions/api-reservas.php?action=filtroPorProfesor",
+        FILTRO_DIA: "actions/api-reservas.php?action="
+    }
+    
+    
+    $form = $("#form-buscar");
+    $calendario = $(".calendarios tbody");
+    
+    //BUSCA EN FUNCION A LOS FILTROS SELECCIONADOS
+    $form.on("submit", function(event){
+        event.preventDefault();
+        listarBusqueda();
+    });
+        
+    
+    //SELECCIONA DEL CALENDARIO UNA ACTIVIDAD PARA RESERVARLA
+    $calendario.on("click", ".reserva", function(event){        
+        var id = $(this).closest("td").find("input[name='id_calendario_profesor_actividad']").val();
+        reservar(id);
+    });
+    
+    
+    $("#confirmar").on("click", function(event){
+        alert("chau");
+    });
+    
+    
+    //intento de manejar combos desde un unico evento:
+    /*$form.on("change", ".combo", function(event){
+        alert($(this).find);
+        var idActividad = $(this).val();
+        filtroPorActividad(idActividad);
+    });*/
+    
+    //FILTRO POR ACTIVIDAD
+    $form.on("change", "#cboActividad", function(event){
+        var idActividad = $(this).val();
+        filtroPorActividad(idActividad);
+    });
+    
+    //FILTRO POR PROFESOR
+    $form.on("change", "#cboProfesor", function(event){
+        var idProfesor = $(this).val();
+        filtroPorProfesor(idProfesor);
+    });
+    
+    
+    var reservar = function(id){
+        var reserva = $.ajax({
+            url: 'actions/api-reservas.php?action=reserva',
+            method: 'get',
+            data: {id_calendario_profesor_actividad: id},
+            dataType: 'json'
+        });
+        
+        reserva.done(function(res){
+            console.log(res);
+            
+            if(!res.error){
+                
+                $(".confirmar-reserva div.reserva").html("");
+                
+                var html = 'Actividad: <label>'+res.data.nombre+'</label><br>\
+                Profesor: <label>'+res.data.profesor_nombre_apellido+'</label><br>\
+                Día: <label>'+res.data.fecha_profesor_actividad+'</label><br>\
+                Horario: <label>'+res.data.horario_desde_profesor_actividad+' a '+res.data.horario_hasta_profesor_actividad+'</label>';
+                
+                $(".confirmar-reserva div.reserva").append(html);
+                
+            }else{
+                console.error("Ocurrio un error.");
+            }
+        });
+        
+        reserva.fail(function(res){
+            console.error(res);
+        });
+        
     }
     
     
@@ -33,12 +105,13 @@
                     var html = '<tr>\
                                     <td>'+dato.nombre+'</td>\
                                     <td>'+dato.profesor_nombre_apellido+'</td>\
-                                    <td>Martes</td>\
-                                    <td>10:00AM</td>\
-                                    <td>24</td>\
-                                    <td><button type="button" class="btn btn-success" aria-label="Left Align" data-toggle="modal" data-target=".bs-example-modal-sm">\
-      <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>\
-    </button></td>\
+                                    <td>Martes - '+dato.fecha_profesor_actividad+'</td>\
+                                    <td>'+dato.horario_desde_profesor_actividad+' a '+dato.horario_hasta_profesor_actividad+'</td>\
+                                    <td>'+dato.cupo+'</td>\
+                                    <td>\
+                                        <input class="idCalendario" type="hidden" name="id_calendario_profesor_actividad" value="'+dato.id_calendario_profesor_actividad+'">\
+                                        <button type="submit" class="btn btn-success reserva" aria-label="Left Align" data-toggle="modal" data-target=".confirmar-reserva"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>\
+                                    </td>\
                                 </tr>';
                     
                     $(".calendarios tbody").append(html);
@@ -51,9 +124,10 @@
         });
     }
     
+    
     var cargarCombos = function(){
         
-        //carca Cobo de Actividades:
+        //carga Combo de Actividades:
         var listarActividades = $.ajax({
             url: URI.COMBO_ACTIVIDADES,
             method: 'get',
@@ -63,11 +137,12 @@
         listarActividades.done(function(res){
             console.log(res);
             
-            if(!res.error){
+            if(!res.error){                
+                var html = '<option value="0">- Todas -</option>'
+                $(".col-actividad select").append(html);
                 
                 res.data.forEach(function(actividad){
-                    var html = '<option value="'+actividad.id+'">'+actividad.nombre+'</option>';
-                    
+                    var html = '<option value="'+actividad.id_actividad+'">'+actividad.nombre+'</option>';           
                     $(".col-actividad select").append(html);
                     
                 });
@@ -78,7 +153,7 @@
         });
         
         
-        //carca Cobo de Profesores:
+        //carga Combo de Profesores:
         var listarProfesores = $.ajax({
             url: URI.COMBO_PROFESORES,
             method: 'get',
@@ -89,16 +164,18 @@
             console.log(res);
             
             if(!res.error){
+                var html = '<option value="0">- Todos -</option>'
+                $(".col-profesor select").append(html);
+                
                 res.data.forEach(function(profesor){
                     var html = '<option value="'+profesor.id_profesor+'">'+profesor.profesor_nombre_apellido+'</option>';
-                    
                     $(".col-profesor select").append(html);
                 });
             }
         });
         
         
-        //carca Cobo de Dias:
+        //carga Combo de Dias:
         var listarDias = $.ajax({
             url: URI.COMBO_DIAS,
             method: 'get',
@@ -109,15 +186,85 @@
             console.log(res);
             
             if(!res.error){
+                var html = '<option value="0">- Todos -</option>'
+                $(".col-dia select").append(html);
+                
                 res.data.forEach(function(dia){
-                    var html = '<option value="'+dia.id_dia+'">'+dia.dia_nombre+'</option>';
-                    
+                    var html = '<option value="'+dia.id_dia+'">'+dia.dia_nombre+'</option>';               
                     $(".col-dia select").append(html);                    
                 });
             }
         });
         
     }
+    
+    
+    var filtroPorActividad = function(id){
+        
+        var cargar = $.ajax({
+            url: URI.FILTRO_ACTIVIDAD,
+            method: 'get',
+            data: {id: id},
+            dataType: 'json'
+        });
+
+        cargar.done(function(res){
+            console.log(res);
+
+            if(!res.error){                    
+                $(".col-profesor select").html("");
+                var html = '<option value="0">- Todos -</option>';
+                $(".col-profesor select").append(html);
+
+                res.data.forEach(function(profesor){
+                    var html = '<option value="'+profesor.id_profesor+'">'+profesor.profesor_nombre_apellido+'</option>';
+
+                    $(".col-profesor select").append(html);
+                });
+            }else{
+                console.error("Ocurrio un error");
+                alert("No hay profesores asignados a la actividad seleccionada!")
+            }
+        });
+
+        cargar.fail(function(res){
+            console.log(res);
+        });
+    }
+    
+    
+    var filtroPorProfesor = function(id){
+        var cargar = $.ajax({
+            url: URI.FILTRO_PROFESOR,
+            method: 'get',
+            data: {id: id},
+            dataType: 'json'
+        });
+
+        cargar.done(function(res){
+            console.log(res);
+
+            if(!res.error){                    
+                $(".col-actividad select").html("");
+                var html = '<option value="0">- Todas -</option>';
+                $(".col-actividad select").append(html);
+
+                res.data.forEach(function(actividad){
+                    var html = '<option value="'+actividad.id_actividad+'">'+actividad.nombre+'</option>';
+
+                    $(".col-actividad select").append(html);
+                });
+            }else{
+                console.error("Ocurrio un error");
+                alert("El profesor seleccionado no dicta la actividad seleccionada!")
+            }
+        });
+
+        cargar.fail(function(res){
+            console.log(res);
+        });
+    }
+        
     
     cargarCombos();
     

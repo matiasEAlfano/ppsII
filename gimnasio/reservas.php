@@ -1,4 +1,12 @@
-<?php require("partials/header.php"); ?>
+<?php require("partials/header.php"); 
+/*require("models/calendario.php");*/
+/*$c = new Calendario();*/
+
+if($_POST){
+    /*$calendarios = $c->getCalendarios($_POST);*/   
+}
+
+?>
         
         <div class="container-fluid cuerpo">
             
@@ -6,137 +14,98 @@
             
             <div class="container cuerpo-reservas">
                 
-                <div class="row menu-reservas">
-                    <div class="col-md-3 col-actividad">
-                        <label>Actividad:</label>
-                        <select  class="form-control">
-                            <option>- Todas -</option>
-                            <option value="1">IndoorCycle</option>
-                            <option value="2">BodyCombat</option>
-                            <option value="3">Localizada</option>
-                            <option value="4">Yoga</option>
-                            <option value="5">Aquiagym</option>
-                        </select>
-                    </div>
-                    
-                    <div class="col-md-3 col-sede">
-                        <label>Sede:</label>
-                        <select class="form-control">
-                            <option>- Todas -</option>
-                            <option value="1">Pilar</option>
-                            <option value="2">Microcentro</option>
-                            <option value="3">Martinez</option>
-                            <option value="4">Palermo</option>
-                            <option value="5">Belgrano</option>
-                        </select>
-                    </div>
-                    
-                    <div class="col-md-3 col-dia">
-                        <label>Día:</label>
-                        <input type="date" class="form-control" type="button">
-                    </div>
-                    
-                    <div class="col-md-3 col-buscar">
-                        <a href="reservas2.php"><button class="btn btn-primary" type="button">Buscar</button></a>
-                    </div>
-                    </div>
-                    
-                </div>
                 
-                <div class="row">
-<!--
-                    <table class="table table-bordered">
+                    
+                <div class="row menu-reservas">
+                        
+                    <form id="form-buscar">
+
+                        <div class="col-md-3 col-actividad">
+                            <label>Actividad:</label>
+                            <select id="cboActividad" name="actividad" class="form-control combo">
+                                
+                            </select>
+                        </div>
+
+                        <div class="col-md-3 col-profesor">                        
+                            <label>Profesor:</label>
+                            <select id="cboProfesor" name="profesor" class="form-control combo">
+                                                           
+                            </select>
+                        </div>
+
+                        <div class="col-md-3 col-dia">
+                            <label>Dia:</label>
+                            <select id="cboDia" name="dia" class="form-control combo">
+                                
+                            </select>
+                        </div>
+
+                        <div class="col-md-3 col-fecha">
+                            <label>Fecha: </label>
+                            <input type="fecha" class="form-control">
+                        </div>
+
+                        <div class="col-md-3 col-buscar">
+                            <button id="btnBuscar" class="btn btn-primary" type="submit">Buscar</button>
+                        </div>
+                        
+                    </form>
+                    
+                    <div class="col-md-3">
+                        <a href="reservas.php"><button id="btnCancelar" type="button" class="btn btn-danger">Cancelar</button></a>
+                    </div>
+                </div>
+                    
+                
+                
+                <div class="row calendarios">
+                    <table id="calendario" class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>Actividad</th>
-                                <th>Sede</th>
+                                <th>Profesor</th>
                                 <th>Dia</th>
                                 <th>Horario</th>
+                                <th>Cupos Disponibles</th>
                                 <th>Reservar</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>IndoorCycle</td>
-                                <td>Martinez</td>
-                                <td>Lunes</td>
-                                <td>10:00AM</td>
-                                <td><button type="button" class="btn btn-success" aria-label="Left Align">
-  <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-</button></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>IndoorCycle</td>
-                                <td>Martinez</td>
-                                <td>Lunes</td>
-                                <td>19:00PM</td>
-                                <td><button type="button" class="btn btn-success" aria-label="Left Align">
-  <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-</button></td>
-                            </tr>
-                            <tr>
-                                <td>IndoorCycle</td>
-                                <td>Belgrano</td>
-                                <td>Martes</td>
-                                <td>09:30AM</td>
-                                <td><button type="button" class="btn btn-success" aria-label="Left Align">
-  <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-</button></td>
-                            </tr>
-                            <tr>
-                                <td>IndoorCycle</td>
-                                <td>Martinez</td>
-                                <td>Lunes</td>
-                                <td>10:00AM</td>
-                                <td><button type="button" class="btn btn-success" aria-label="Left Align">
-  <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-</button></td>
-                            </tr>
-                            <tr>
-                                <td>IndoorCycle</td>
-                                <td>Martinez</td>
-                                <td>Lunes</td>
-                                <td>10:00AM</td>
-                                <td><button type="button" class="btn btn-success" aria-label="Left Align">
-  <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-</button></td>
-                            </tr>
-                            <tr>
-                                <td>IndoorCycle</td>
-                                <td>Martinez</td>
-                                <td>Lunes</td>
-                                <td>10:00AM</td>
-                                <td><button type="button" class="btn btn-success" aria-label="Left Align">
-  <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-</button></td>
-                            </tr>
-                            <tr>
-                                <td>IndoorCycle</td>
-                                <td>Martinez</td>
-                                <td>Lunes</td>
-                                <td>10:00AM</td>
-                                <td><button type="button" class="btn btn-success" aria-label="Left Align">
-  <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-</button></td>
-                            </tr>
-                            <tr>
-                                <td>IndoorCycle</td>
-                                <td>Martinez</td>
-                                <td>Lunes</td>
-                                <td>10:00AM</td>
-                                <td><button type="button" class="btn btn-success" aria-label="Left Align">
-  <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-</button></td>
-                            </tr>
-                        
+                        <tbody>                            
+                            <!--ACA SE CONSTRUYE POR AJAX EL CUERPO DEL CALENDARIO-->
+                            <!--EL SIGUIENTE DIV ES EL MODAL DE CONFIRMACION:-->
+                            <div class="modal fade confirmar-reserva" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-sm">
+                                        <div class="modal-content contenido">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">x</span></button>
+                                                <h4 class="modal-title">Confirmar Reserva?</h4>
+                                            </div>
+                                            <div class="modal-body reserva">
+                                                <!--Actividad: <label>IndoorCycle</label><br>
+                                                Sede: <label>Microcentro</label><br>
+                                                Día: <label>12/05/2015</label><br>
+                                                Horario: <label>21:00PM</label>-->
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button id="confirmar" type="button" class="btn btn-success left">Confirmar</button>
+                                                <button type="button" class="btn btn-danger left">Cancelar</button>
+                                            </div>
+                                        </div>
+                                  </div>
+                            </div>
                         </tbody>
                     
                     </table>
--->
                 
                 </div>                
                 
             </div>
             
+        </div>
+
+<script src="js/vendor/jquery-1.11.2.min.js"></script>
+    <script src="js/reservas.js"></script>
+
+        
 <?php require("partials/footer.php"); ?>
