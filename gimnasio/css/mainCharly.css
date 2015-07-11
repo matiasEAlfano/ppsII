@@ -51,5 +51,26 @@
     border: none;
 }
 
+#grupos_Actividades > li{
+    list-style: none;
+    padding-bottom: 16px;
+}
+
+#grupos_Actividades{
+    padding-top: 20px;
+}
+
+#grupos_Actividades li ul li{
+    list-style-type:square;
+}
+
+#tituloTipo{
+    padding-top: 10px;
+    padding-left: 45%;
+}
+
+#contenedor_Tipo_Actividad{
+    border-bottom: solid;
+}
 
 /**/

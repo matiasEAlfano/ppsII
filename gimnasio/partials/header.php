@@ -1,4 +1,4 @@
-<?php session_start(); print_r($_SESSION); //unset($_SESSION["tempUser"])?>
+    <?php session_start(); print_r($_SESSION); //unset($_SESSION["tempUser"])?>
 <!doctype html>
 <html class="no-js" lang="">
     <head>
@@ -72,7 +72,7 @@
             
             <div class="row menu-opciones">
 
-                <div class="col-md-2 col-iconos">
+                <div class="col-md-1 col-iconos">
                     <div class="yt">
                         <a href="http://www.youtube.com"><img src="img/youtube-logo-vector.jpg" alt="Youtube" class="yt img-responsive"/></a>   
                     </div>
@@ -86,13 +86,19 @@
                     </div>                
                 </div>
 
-                <div class="col-md-10 col-opciones">
+                <div class="col-md-11 col-opciones">
                     <ul class="nav nav-pills nav-justified">
+                        <li style=<?php if (!empty($_SESSION["usuario"]) && $_SESSION["usuario"]["id_tipo"] == 1 ) {?>
+                            "display:table-cell;"
+                        <?php }else{ ?>
+                            "display:none;"
+                        <?php } ?> 
+                          ><a href="admin.php" class="menulink"><b style="color:#AD6918">ADMINISTRADOR</b></a></li>
                         <li><a href="index.php" class="menulink"><b>Inicio</b></a></li>
                         <li><a href="e-shop.php" class="menulink"><b>e-Shop</b></a></li>
                         <li><a href="sede.php" class="menulink"><b>El Gym</b></a></li>
                         <li><a href="horarios.php" class="menulink"><b>Horarios</b></a></li>
-                        <li><a href="reservas.php" class="menulink"><b>Actividades</b></a></li>
+                        <li><a href="actividades.php" class="menulink"><b>Actividades</b></a></li>
                         <li><a href="planes.php" class="menulink"><b>Planes</b></a></li>
                         <li><a href="contacto.php" class="menulink"><b>Contacto</b></a></li>
                     </ul>            
