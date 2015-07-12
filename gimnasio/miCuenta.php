@@ -26,7 +26,7 @@ if(isset($_GET["c"])){
                             <input type="hidden" class="id_usuario" name="id_usuario" value="<?php echo $_SESSION["usuario"]["id"]; ?>">
                             <li><a class="datos_usuario">Mis Datos</a></li>
                             <li>
-                                <a <?= empty(!$_SESSION["carrito"])? 'href="micarrito.php"' : 'data-toggle="modal" data-target=".mi-carrito"' ?>>Mi Carrito</a>
+                                <a <?= isset($_SESSION["carrito"])? 'href="micarrito.php"' : 'data-toggle="modal" data-target=".mi-carrito"' ?>>Mi Carrito</a>
                             </li>
                             <li><a class="mis_compras">Mis Compras</a></li>
                             <li><a class="mis_reservas">Mis Reservas</a></li>

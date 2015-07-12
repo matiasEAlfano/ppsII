@@ -63,7 +63,12 @@ function removeCarrito($producto){
             //Esto me reorganiza el array para que no me queden espacios vacios:
             $_SESSION["carrito"] = array_values($_SESSION["carrito"]);
         }
-    } 
+    }
+    
+    //si no quedan productos en el carrito, que elimine la Session Carrito
+    if(count($_SESSION["carrito"])<1){
+        unset($_SESSION["carrito"]);
+    }
 }
     
 
