@@ -73,4 +73,32 @@
     border-bottom: solid;
 }
 
+.tituloFilto{
+  font-size: 16px;
+  padding-top: 4px;
+  padding-left: 8px;
+  border-bottom: solid;
+  background-color: darkgray;
+  cursor: pointer; */
+}
+
+.divFiltro{
+    border:solid 2px black;
+    margin-top: 34px;
+}
+
+.radioFiltro{
+    padding-left:10px;
+}
+
+.btnFiltro{
+    background-color: transparent;
+    border: none;
+}
+
+.spanFiltro{
+      padding-right: 10px;
+}
+
+
 /**/

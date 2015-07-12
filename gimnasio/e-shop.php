@@ -18,7 +18,7 @@
                         <li><label>Total:</label></l>
                         <li><a class="list-car" href="micarrito.php"><label>Ir a Mi Carrito</label></a></l>
                     </ul>
-                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseCategorias" aria-expanded="false" aria-controls="collapseExample">Categorias</a>
+                    <!-- <a class="btn btn-primary" data-toggle="collapse" href="#collapseCategorias" aria-expanded="false" aria-controls="collapseExample">Categorias</a>
 
                     <div class="collapse" id="collapseCategorias">
 
@@ -53,13 +53,44 @@
 
                         </div>
 
-                    </div>
+                    </div> -->
+
+                   <div>
+ 
+                        <div class="divFiltro">
+                            <div class="tituloFilto" data-toggle="collapse" data-target="#buscarCategoria" aria-expanded="false" aria-controls="buscarCategoria">
+                                Categorias
+                                <span class="glyphicon glyphicon-chevron-down pull-right spanFiltro" aria-hidden="true"></span>
+                            </div>
+                           <div class="collapse" id="buscarCategoria" >
+                               
+                           </div>
+                       </div>
+
+                       <div  class="divFiltro">
+                           <div class="tituloFilto" data-toggle="collapse" data-target="#buscarMarca" aria-expanded="false" aria-controls="buscarMarca">
+                               Marcas
+                               
+                                <span class="glyphicon glyphicon-chevron-down pull-right spanFiltro" aria-hidden="true"></span>
+                                
+                           </div>
+                           <div  class="collapse" id="buscarMarca" >
+                               
+                           </div>
+                       </div>
+
+                           
+
+                   </div>
+
+
+
                     
                 </div>
                 
                 <div class="col-md-9 productos">
                     
-                    <ul class="lista-prodcutos list-inline list-unstyled">
+                    <ul id="listaCompra" class="lista-prodcutos list-inline list-unstyled">
                         <?php foreach ($productos as $producto) {?>
                         
                             <li class="item">
@@ -131,5 +162,6 @@
 <script src="js/vendor/jquery-1.11.2.min.js"></script>
 <!--<script src="js/vendor/bootstrap.min.js"></script>-->
 <script src="js/funcionesGenericas.js"></script>
+<script src="js/filtroCarrito.js"></script>
         
 <?php require("partials/footer.php"); ?>

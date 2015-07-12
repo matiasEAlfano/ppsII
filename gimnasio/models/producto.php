@@ -102,6 +102,7 @@ function getConnection(){
         }
         return $marcas;
     }
+
     
 /*
 Gabby quito columnas
@@ -130,6 +131,47 @@ Gabby quito columnas
         return $result->fetch_assoc();
     }
 
+    function getFiltroProductos($marca,$cat){
+        $c = getConnection();
+        $query = "SELECT p.id_producto, 
+                p.producto_descripcion, 
+                m.marca_nombre, 
+                p.producto_precio, 
+                c.categoria_nombre, 
+                pt.nombre_tipo_producto, 
+                g.genero_nombre, 
+                p.producto_imagen
+            FROM productos as p , 
+                marcas as m , 
+                categorias as c , 
+                `producto-tipo` as pt , 
+                generos as g
+            WHERE p.producto_genero = g.id_genero
+            AND p.producto_tipoProducto = pt.id_tipo_producto
+            AND p.producto_marca = m.id_marca
+            AND p.producto_categoria = c.id_categoria";
+            if ($cat !="-1") {
+                $query = $query." AND p.producto_categoria = $cat";
+            };
+            if ($marca !="-1") {
+                $query = $query." AND p.producto_marca = $marca ";
+            };
+        $query = $query." order by producto_descripcion";
+
+        $productos = array();
+        if( $result = $c->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                
+                $productos[] = $fila;
+            }
+            $result->free();
+        }
+        else{
+            return false;
+        }
+        return $productos;
+    }
+
     function getProductos(){
         $c = getConnection();
         $query = "SELECT p.id_producto, 
@@ -151,13 +193,21 @@ Gabby quito columnas
             AND p.producto_genero = g.id_genero
         order by producto_descripcion";
         $productos = array();
-        if( $result = $c->query($query) ){
-            while($fila = $result->fetch_assoc()){
-                
-                $productos[] = $fila;
-            }
-            $result->free();
+
+        $result = $c->query($query);
+
+        if (!$result) {
+            return false;
         }
+
+
+        
+        while($fila = $result->fetch_assoc()){
+            
+            $productos[] = $fila;
+        }
+        $result->free();
+        
         return $productos;
     }
     
