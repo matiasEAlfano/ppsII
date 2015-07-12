@@ -145,11 +145,13 @@
                     
                     $(".calendarios tbody").append(html);
                 });
+            }else{
+                $(".calendarios tbody").html("");
             }
         });
         
         listar.fail(function(res){
-            console.log(res);
+            console.log(res);            
         });
     }
     

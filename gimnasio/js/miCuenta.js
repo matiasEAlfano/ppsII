@@ -3,26 +3,148 @@
     $listar = $("#listar");
     $panel = $("#panel_usuario");
     
+    
+    //LLAMA A LA FUNCION QUE MUESTRA LOS DATOS DEL USUARIO
     $panel.on("click", ".datos_usuario", function(){
         //trae el id que esta en el input:
         var id = $(".id_usuario").val();
         listarDatosPersonales(id);
     });
     
+    
+    //LLAMA A LA FUNCION QUE LISTA LAS COMPRAS DEL USUARIO
     $panel.on("click", ".mis_compras", function(){
         var id = $(".id_usuario").val();
         listarMisCompras(id);
     });
     
+    
+    //LLAMA A LA FUNCION QUE LISTA LA RESERVAS DEL USUARIO
     $panel.on("click", ".mis_reservas", function(){
         var id = $(".id_usuario").val();
         listarMisReservas(id);
     });
     
     
+    //MODAL: INFORMA QUE NO HAY PRODUCTOS EN EL CARRITO
+    $panel.on("click", "a.mi_carrito", function(){
+        $panel.find("div.contenido").html("");
+        
+        var html = '<div class="modal-body">\
+                        <h4 class="modal-title">No tienes productos en el carrito.</h4>\                                       </div>\
+                    <div class="modal-footer">\
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>\
+                    </div>';
+        
+        $panel.find("div.contenido").append(html);
+    });
+    
+    
+    //MODAL: CONFIRMAR CANCELACION DE RESERVA
+    $listar.on("click", "a.cancelar-reserva", function(){
+        var id = $(this).closest("td").find("#id-reserva").val();
+        
+        $panel.find("div.contenido").html("");
+        
+        var html = '<div class="modal-body">\
+                    <h4 class="modal-title">Seguro que quieres cancelar esta reserva?</h4>\
+                                    </div>\
+                                    <div class="modal-footer">\
+                                        <input type="hidden" name="id-reserva" value="'+id+'">\
+                                        <button id="cancelar-reserva"type="button" class="btn btn-success" data-dismiss="modal">Confirmar</button>\
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>\
+                                    </div>';
+        
+        $panel.find("div.contenido").append(html);     
+    });
+    
+    //LLAMA A LA FUNCION QUE EJECUTA EL CANCELAR RESERVA
+    $panel.on("click", "#cancelar-reserva", function(){
+        var id = $(this).closest("div").find("input[name=id-reserva]").val();
+        cancelarReserva(id);
+    });
+    
+    
+    //LLAMA A LA FUNCION QUE EJECUTA EL RESUMEN DEL USUARIO
+    $panel.on("click", "a.resumen", function(){
+        resumen();
+    });
+    
+    
     var URI = {
         MI_CUENTA: 'actions/api-miCuenta.php'
     };
+    
+    
+    var resumen = function(){
+        $listar.html("");
+        
+        var html = '<div class="col-md-6">\
+                    </div>\
+                    <div class="col-md-3">\
+                        <div class="row">\
+                            <label>Ultima Actividad calificada:</label>\
+                            <li>Spinning</li>\
+                            <label>Calificacion:</label>\
+                            <li>Excelente</li>\
+                        </div>\
+                        <div class="row">\
+                            <label>Actividades Reservadas:</label>\
+                            <table class="table table-hover">\
+                                      <thead>\
+                                        <tr>\
+                                          <th>Actividad</th>\
+                                          <th>Fecha</th>\
+                                        </tr>\
+                                      </thead>\
+                                      <tbody>\
+                                        <tr>\
+                                          <td>Bodycombat</td>\
+                                          <td>10/05/2015</td>\
+                                        </tr>\
+                                        <tr>\
+                                          <td>IndoorCycle</td>\
+                                          <td>12/05/2015</td>\
+                                        </tr>\
+                                        <tr>\
+                                          <td>Localizada</td>\
+                                          <td>13/05/2015</td>\
+                                        </tr>\
+                                        <tr>\
+                                          <td>Aquagym</td>\
+                                          <td>17/05/2015</td>\
+                                        </tr>\
+                                      </tbody>\
+                                </table>\
+                        </div>\
+                    </div>';
+        
+        $listar.append(html);
+        
+    }
+    
+    
+    var cancelarReserva = function(id){
+        var cancelar = $.ajax({
+            url: URI.MI_CUENTA,
+            method: 'POST',
+            data: {idReserva: id,
+                  action: 'cancelarReserva'}
+        });
+        
+        cancelar.done(function(res){
+            console.log(res);
+            
+            if(!res.error){
+                var id = $(".id_usuario").val();
+                listarMisReservas(id);
+            }
+        });
+        
+        cancelar.fail(function(res){
+            console.log(res);
+        });
+    }
     
     
     var listarMisReservas = function(id){
@@ -63,8 +185,8 @@
                                     <td>'+dato.horario_desde_profesor_actividad+' a '+dato.horario_hasta_profesor_actividad+'</td>\
                                     <td>'+dato.profesor_nombre_apellido+'</td>\
                                     <td>\
-                                        <input type="hidden" name="idReserva" value="'+dato.id_reserva+'">\
-                                        <a>Eliminar</a>\
+                                        <input id="id-reserva" type="hidden" name="idReserva" value="'+dato.id_reserva+'">\
+                                        <a class="cancelar-reserva" data-toggle="modal" data-target=".mi-modal">Cancelar</a>\
                                     </td>\
                                 </tr>';
                     
@@ -79,6 +201,7 @@
                 $listar.append(html);
                     
             }else{
+                $listar.html("");
                 console.error("Error al listar reservas")
             }
         });
@@ -240,5 +363,7 @@
             console.log("Error al listar datos de usuario");
         });
     }
+    
+    resumen();
     
 })(jQuery);

@@ -10,6 +10,18 @@ class MiCuenta
     }
     
     
+    public function cancelarReserva($idReserva){
+        $query = "DELETE FROM `reservas`
+                WHERE id_reserva = $idReserva";
+        
+        if($this->connection->query($query)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    
     public function listarReservaActividades($idUsuario){
         $query = "SELECT r.id_reserva,
                         a.nombre, 

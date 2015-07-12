@@ -22,12 +22,35 @@ switch($action){
         listarReservas($request);
         break;
     
+    case "cancelarReserva":
+        cancelarReserva($request);
+        break;
+    
     default:
         sendResponse(array(
             "error" => true,
             "mensaje" => "Request mal formado"
         ));
         break;
+}
+
+
+function cancelarReserva($request){
+    require("../models/miCuenta.php");
+    $idReserva = $request->idReserva;
+    $mc = new MiCuenta();
+    
+    if($mc->cancelarReserva($idReserva)){
+        sendResponse(array(
+            "error" => false,
+            "mensaje" => ""
+        ));
+    }else{
+        sendResponse(array(
+            "error" => true,
+            "mensaje" => "Error al intentar cancelar la reserva"
+        ));
+    }
 }
 
 

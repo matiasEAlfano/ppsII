@@ -1,6 +1,11 @@
 <?php
 session_start();
 require("../utils/request.php");
+
+function redirect($url){
+   header('Location: ' . $url, true, 303);
+   die();
+}
 /*
 function sendResponse($response){
     echo json_encode($response);

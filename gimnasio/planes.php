@@ -16,7 +16,6 @@
                         <h3>Plan "ORO"</h3>
                         <p>Es el plan perfecto para quienes buscan el maximo rendimiento físico y la alta competitividad deportiva.</p>
                         <ul>
-                            <li>Libre acceso a cualquier Sede.</li>
                             <li>Asistencia profesional en todo momento.</li>
                             <li>Libre acceso a cualquier actividad.</li>
                             <li>Pileta libre.</li>
@@ -37,7 +36,6 @@
                         <h3>Plan "PLATA"</h3>
                         <p>El plan para quienes hacen de la actividad fisica una forma de vida, por ello te ofrecemos:</p>
                         <ul>
-                            <li>Libre acceso a cualquier Sede.</li>
                             <li>Asistencia profesional en todo momento.</li>
                             <li>Dos actividades libres por semana.</li>
                             <li>Pileta libre.</li>
