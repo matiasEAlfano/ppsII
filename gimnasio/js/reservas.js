@@ -7,7 +7,9 @@
         LISTAR: "actions/api-reservas.php?action=listar",
         FILTRO_ACTIVIDAD: "actions/api-reservas.php?action=filtroPorActividad",
         FILTRO_PROFESOR: "actions/api-reservas.php?action=filtroPorProfesor",
-        FILTRO_DIA: "actions/api-reservas.php?action="
+        FILTRO_DIA: "actions/api-reservas.php?action=",
+        RESERVAR: "actions/api-reservas.php?action=reserva",
+        CONFIRMAR: "actions/api-reservas.php?action=confirmar"
     }
     
     
@@ -22,14 +24,17 @@
         
     
     //SELECCIONA DEL CALENDARIO UNA ACTIVIDAD PARA RESERVARLA
-    $calendario.on("click", ".reserva", function(event){        
+    $calendario.on("click", ".reserva", function(event){   
+        
         var id = $(this).closest("td").find("input[name='id_calendario_profesor_actividad']").val();
         reservar(id);
     });
     
     
+    //GUARDA LA RESERVA QUE MUESTRA EL MODAL
     $("#confirmar").on("click", function(event){
-        alert("chau");
+        var idCalendario = $("#idCalendario").val();
+        confirmarReserva(idCalendario);
     });
     
     
@@ -53,10 +58,33 @@
     });
     
     
+    var confirmarReserva = function(id){
+        var confirm = $.ajax({
+            url: URI.CONFIRMAR,
+            method: 'POST',
+            data: {idCalendario: id}            
+        });
+        
+        confirm.done(function(res){
+            console.log(res);
+            
+            if(!res.error){
+                listarBusqueda();
+            }
+        });
+        
+        confirm.fail(function(res){
+            console.error(res);
+        });
+    
+    }
+    
+    
+    //MUESTRA UN MODAL PARA CONFIRMAR LA RESERVA: 
     var reservar = function(id){
         var reserva = $.ajax({
-            url: 'actions/api-reservas.php?action=reserva',
-            method: 'get',
+            url: URI.RESERVAR,
+            method: 'GET',
             data: {id_calendario_profesor_actividad: id},
             dataType: 'json'
         });
@@ -71,7 +99,8 @@
                 var html = 'Actividad: <label>'+res.data.nombre+'</label><br>\
                 Profesor: <label>'+res.data.profesor_nombre_apellido+'</label><br>\
                 Día: <label>'+res.data.fecha_profesor_actividad+'</label><br>\
-                Horario: <label>'+res.data.horario_desde_profesor_actividad+' a '+res.data.horario_hasta_profesor_actividad+'</label>';
+                Horario: <label>'+res.data.horario_desde_profesor_actividad+' a '+res.data.horario_hasta_profesor_actividad+'</label>\
+                <input type="hidden" id="idCalendario" name="idCalendario" value="'+res.data.id_calendario_profesor_actividad+'">';
                 
                 $(".confirmar-reserva div.reserva").append(html);
                 
@@ -90,7 +119,7 @@
     var listarBusqueda = function(){
         var listar = $.ajax({
             url: URI.LISTAR,
-            method: 'get',
+            method: 'GET',
             data: $form.serialize(),
             dataType: 'json'
         });
@@ -120,7 +149,7 @@
         });
         
         listar.fail(function(res){
-            console.error(res);
+            console.log(res);
         });
     }
     
@@ -130,7 +159,7 @@
         //carga Combo de Actividades:
         var listarActividades = $.ajax({
             url: URI.COMBO_ACTIVIDADES,
-            method: 'get',
+            method: 'GET',
             dataType: 'json'
         });
         
@@ -156,7 +185,7 @@
         //carga Combo de Profesores:
         var listarProfesores = $.ajax({
             url: URI.COMBO_PROFESORES,
-            method: 'get',
+            method: 'GET',
             dataType: 'json'
         });
         
@@ -178,7 +207,7 @@
         //carga Combo de Dias:
         var listarDias = $.ajax({
             url: URI.COMBO_DIAS,
-            method: 'get',
+            method: 'GET',
             dataType: 'json'
         });
         
@@ -203,7 +232,7 @@
         
         var cargar = $.ajax({
             url: URI.FILTRO_ACTIVIDAD,
-            method: 'get',
+            method: 'GET',
             data: {id: id},
             dataType: 'json'
         });
@@ -236,7 +265,7 @@
     var filtroPorProfesor = function(id){
         var cargar = $.ajax({
             url: URI.FILTRO_PROFESOR,
-            method: 'get',
+            method: 'GET',
             data: {id: id},
             dataType: 'json'
         });

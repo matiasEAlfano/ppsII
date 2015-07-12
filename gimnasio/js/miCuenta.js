@@ -14,10 +14,79 @@
         listarMisCompras(id);
     });
     
+    $panel.on("click", ".mis_reservas", function(){
+        var id = $(".id_usuario").val();
+        listarMisReservas(id);
+    });
+    
     
     var URI = {
         MI_CUENTA: 'actions/api-miCuenta.php'
-    };    
+    };
+    
+    
+    var listarMisReservas = function(id){
+        var listarReservas = $.ajax({
+            url: URI.MI_CUENTA,
+            method: 'GET',
+            data: {idUsuario: id,
+                  action: 'reservas'},
+            dataType: 'json'
+        });
+        
+        listarReservas.done(function(res){
+            console.log(res);
+            
+            if(!res.error){
+                //Borro el listado:
+                $listar.html("");
+                
+                //Cargo la cabecera fuera del ForEach para que no se repita:
+                var html = '<h3>Mis Reservas de Actividades:</h3><br>\
+                                <table class="table">\
+                                <thead>\
+                                    <tr>\
+                                        <th>Fecha</th>\
+                                        <th>Actividad</th>\
+                                        <th>Horario</th>\
+                                        <th>Profesor</th>\
+                                    </tr>\
+                                </thead>\
+                                <tbody>';
+                
+                //Cargo las filas de la tabla:
+                res.data.forEach(function(dato){
+                    
+                        html += '<tr>\
+                                    <td>'+dato.fecha_profesor_actividad+'</td>\
+                                    <td>'+dato.nombre+'</td>\
+                                    <td>'+dato.horario_desde_profesor_actividad+' a '+dato.horario_hasta_profesor_actividad+'</td>\
+                                    <td>'+dato.profesor_nombre_apellido+'</td>\
+                                    <td>\
+                                        <input type="hidden" name="idReserva" value="'+dato.id_reserva+'">\
+                                        <a>Eliminar</a>\
+                                    </td>\
+                                </tr>';
+                    
+                });
+                
+                //concateno el cierre de la tabla
+                 html += '</tbody>\
+                            </table>\
+                                    </td>\
+                                </tr>';
+                
+                $listar.append(html);
+                    
+            }else{
+                console.error("Error al listar reservas")
+            }
+        });
+        
+        listarReservas.fail(function(res){
+            console.error(res);
+        })
+    }
     
     
     var listarMisCompras = function(id){
@@ -132,11 +201,18 @@
             if(!res.error){
                 
                 $listar.html("");
-                
                 var dato = res.data;
+                var password = "";
+                //Para mostrar los caracteres de la clave como asteriscos:
+                for(i=0; i<dato.clave.length; i++){
+                    password += "*";
+                }                
+                
                 var html = '<h3>Mis Datos:</h3><br>\
                             <h4>Datos de cuenta:</h4>\
                             <label>Usuario:</label>'+" "+dato.email+'\
+                            <br>\
+                            <label>Contraseña:</label>'+" "+password+'\
                             <h4>Datos personales:</h4>\
                             <label>Nombre:</label>'+" "+dato.datos_usuario_nombre+'\
                             <br>\

@@ -18,6 +18,10 @@ switch($action){
         listarCompras($request);
         break;
     
+    case "reservas":
+        listarReservas($request);
+        break;
+    
     default:
         sendResponse(array(
             "error" => true,
@@ -25,6 +29,27 @@ switch($action){
         ));
         break;
 }
+
+
+function listarReservas($request){
+    require("../models/miCuenta.php");
+    $idUsuario = $request->idUsuario;
+    $mc = new MiCuenta();
+    
+    if($datos = $mc->listarReservaActividades($idUsuario)){
+        sendResponse(array(
+            "error" => false,
+            "mensaje" => "",
+            "data" => $datos
+        ));
+    }else{
+        sendResponse(array(
+            "error" => true,
+            "mensaje" => "Error al obtener datos de reservas"
+        ));
+    }
+}
+
 
 function listarCompras($request){
     require("../models/miCuenta.php");

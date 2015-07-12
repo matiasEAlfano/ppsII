@@ -10,6 +10,56 @@ class Reservas
     }
     
     
+    public function reservaExiste($id, $usuario){
+        $idUsuario = $usuario["id"];
+        
+        $query = "SELECT id_reserva
+                FROM `reservas`
+                WHERE id_calendario_profesor_actividad = $id
+                AND id_usuario = $idUsuario";
+        
+        $result = $this->connection->query($query);
+        
+        if($result->num_rows == 0){
+            return $this->actualizarCupos($id, $usuario);
+        }else{
+            return false;
+        }
+            
+    }
+    
+    
+    public function actualizarCupos($id, $usuario){
+        $query = "UPDATE `calendario-profesor-actividad`
+                SET cupo = cupo - 1
+                WHERE id_calendario_profesor_actividad = $id";
+        
+        if($this->connection->query($query)){
+            return $this->confirmarReserva($id, $usuario);    
+        }else{
+            return false;
+        }
+    }
+        
+        
+    public function confirmarReserva($id, $usuario){
+            $idUsuario = $usuario["id"];
+        
+                $query = "INSERT INTO `reservas`
+                    (id_usuario,
+                    id_calendario_profesor_actividad)
+                    VALUES
+                    ($idUsuario, 
+                    $id)";
+                
+                if($this->connection->query($query)){
+                    return "reservaExitosa";
+                }else{
+                    return false;
+                }            
+    }
+    
+    
     public function reserva($id){
         $query = "SELECT c.id_calendario_profesor_actividad,
                         a.nombre, 
@@ -33,7 +83,7 @@ class Reservas
     }
     
     
-    public function listarBusqueda($request){
+    public function listarBusqueda($request, $idUsuario){
         $where = '1=1 ';
         
         $profesor = $request->profesor;
@@ -64,7 +114,26 @@ class Reservas
                 INNER JOIN `actividades` a ON a.id = pa.id_actividad
                 WHERE c.cupo > 0
                 AND $where
+				AND c.id_calendario_profesor_actividad NOT IN
+				(SELECT r.id_calendario_profesor_actividad
+				FROM `reservas` r
+				WHERE r.id_usuario = $idUsuario)
                 ORDER BY c.fecha_profesor_actividad, c.horario_desde_profesor_actividad";
+        
+        /*$query = "SELECT c.id_calendario_profesor_actividad,
+                        a.nombre, 
+                        p.profesor_nombre_apellido,
+                        c.fecha_profesor_actividad,
+                        c.horario_desde_profesor_actividad,
+                        c.horario_hasta_profesor_actividad,
+                        c.cupo
+                FROM `calendario-profesor-actividad` c
+                INNER JOIN `profesor-actividad` pa ON pa.id_profesor_actividad = c.id_profesor_actividad
+                INNER JOIN `profesores` p ON p.id_profesor = pa.id_profesor
+                INNER JOIN `actividades` a ON a.id = pa.id_actividad
+                WHERE c.cupo > 0
+                AND $where
+                ORDER BY c.fecha_profesor_actividad, c.horario_desde_profesor_actividad";*/
         
         $datos = array();
         

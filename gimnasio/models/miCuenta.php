@@ -9,6 +9,33 @@ class MiCuenta
         $this->connection = Connection::getInstance();
     }
     
+    
+    public function listarReservaActividades($idUsuario){
+        $query = "SELECT r.id_reserva,
+                        a.nombre, 
+                        p.profesor_nombre_apellido,
+                        c.fecha_profesor_actividad,
+                        c.horario_desde_profesor_actividad,
+                        c.horario_hasta_profesor_actividad
+                FROM `reservas` r
+                INNER JOIN `calendario-profesor-actividad` c on c.id_calendario_profesor_actividad = r.id_calendario_profesor_actividad
+                INNER JOIN `profesor-actividad` pa ON pa.id_profesor_actividad = c.id_profesor_actividad
+                INNER JOIN `profesores` p ON p.id_profesor = pa.id_profesor
+                INNER JOIN `actividades` a ON a.id = pa.id_actividad
+                WHERE r.id_usuario = $idUsuario
+                ORDER BY c.fecha_profesor_actividad";
+        
+        $datos = array();
+        if($result = $this->connection->query($query)){
+            while($fila = $result->fetch_assoc()){
+                $datos[] = $fila;
+            }
+            $result->free();
+        }
+        
+        return $datos;
+    }
+    
     public function listarComprasUsuario($idUsuario){
         $query = "SELECT v.id_venta,
                         v.fecha_venta, 
@@ -65,6 +92,7 @@ class MiCuenta
     public function listarDatosUsuario($idUsuario){
         $query = "SELECT    du.id_usuario,
                             u.email,
+                            u.clave,
                             du.datos_usuario_nombre,
                             du.datos_usuario_apellido,
                             du.datos_usuario_dni,

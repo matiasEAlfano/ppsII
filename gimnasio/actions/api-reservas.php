@@ -1,6 +1,11 @@
 <?php
-
+session_start();
 require("../utils/request.php");
+
+function redirect($url){
+   header('Location: ' . $url, true, 303);
+   die();
+}
 
 function sendResponse($response){
     echo json_encode($response);
@@ -66,19 +71,31 @@ function reserva($request){
 function confirmarReserva($request){
     require("../models/reservas.php");
     $r = new Reservas();
-    $id = $request->id_calendario_profesor_actividad;
+    $id = $request->idCalendario;
+    
+    
+    if(isset($_SESSION["usuario"])){
+        
+        $usuario = $_SESSION["usuario"];
 
-    if($datos = $r->confirmarReserva($id)){
-        sendResponse(array(
-            "error" => false,
-            "mensaje" => "",
-            "data" => $datos
-        ));
+        $result = $r->reservaExiste($id, $usuario);
+
+        if($result == "reservaExitosa"){
+            sendResponse(array(
+                "error" => false,
+                "mensaje" => "Reserva exitosa!!",
+            ));
+        }else{
+            sendResponse(array(
+                "error" => true,
+                "mensaje" => "Error al intentar guardar la reserva",
+            ));
+        }
     }else{
         sendResponse(array(
-            "error" => true,
-            "mensaje" => "Error al obtener datos de reserva"
-        ));
+                "error" => true,
+                "mensaje" => "No se ha logueado ningun socio!",
+            ));
     }
 }
 
@@ -97,7 +114,7 @@ function filtroPorProfesor($request){
     }else{
         sendResponse(array(
             "error" => true,
-            "mensaje" => "Error al obtener datos de personales"
+            "mensaje" => "Error al filtrar por profesor"
         ));
     }
 }
@@ -117,7 +134,7 @@ function filtroPorActividad($request){
     }else{
         sendResponse(array(
             "error" => true,
-            "mensaje" => "Error al obtener datos de personales"
+            "mensaje" => "Error al filtrar por actividad"
         ));
     }
 }
@@ -126,8 +143,9 @@ function filtroPorActividad($request){
 function listarBusqueda($request){
     require("../models/reservas.php");
     $r = new Reservas();
+    $idUsuario = $_SESSION["usuario"]["id"];
     
-    if($datos = $r->listarBusqueda($request)){
+    if($datos = $r->listarBusqueda($request, $idUsuario)){
         sendResponse(array(
             "error" => false,
             "mensaje" => "",
@@ -136,7 +154,7 @@ function listarBusqueda($request){
     }else{
         sendResponse(array(
             "error" => true,
-            "mensaje" => "Error al obtener datos de personales"
+            "mensaje" => "Error al listar el calendario de actividades"
         ));
     }
 }
@@ -155,7 +173,7 @@ function getDias(){
     }else{
         sendResponse(array(
             "error" => true,
-            "mensaje" => "Error al obtener datos de personales"
+            "mensaje" => "Error al cargar dias"
         ));
     }
 }
@@ -174,7 +192,7 @@ function getProfesores(){
     }else{
         sendResponse(array(
             "error" => true,
-            "mensaje" => "Error al obtener datos de personales"
+            "mensaje" => "Error al cargar profesores"
         ));
     }
 }
@@ -193,7 +211,7 @@ function getActividades(){
     }else{
         sendResponse(array(
             "error" => true,
-            "mensaje" => "Error al obtener datos de personales"
+            "mensaje" => "Error al cargar actividades"
         ));
     }
 }

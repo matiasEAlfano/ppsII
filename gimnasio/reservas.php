@@ -74,7 +74,7 @@ if($_POST){
                         <tbody>                            
                             <!--ACA SE CONSTRUYE POR AJAX EL CUERPO DEL CALENDARIO-->
                             <!--EL SIGUIENTE DIV ES EL MODAL DE CONFIRMACION:-->
-                            <div class="modal fade confirmar-reserva" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div id="modal" class="modal fade confirmar-reserva" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-sm">
                                         <div class="modal-content contenido">
                                             <div class="modal-header">
@@ -88,11 +88,24 @@ if($_POST){
                                                 Horario: <label>21:00PM</label>-->
                                             </div>
                                             <div class="modal-footer">
-                                                <button id="confirmar" type="button" class="btn btn-success left">Confirmar</button>
-                                                <button type="button" class="btn btn-danger left">Cancelar</button>
+                                                <button id="confirmar" type="button" class="btn btn-success left" data-dismiss="modal" data-toggle="modal" data-target=".reservaExito">Confirmar</button>
+                                                <button type="button" class="btn btn-danger left" data-dismiss="modal">Cancelar</button>
                                             </div>
                                         </div>
                                   </div>
+                            </div>
+                            
+                            <div class="modal fade reservaExito" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content contenido">
+                                        <div class="modal-body">
+                                            <h4 class="modal-title">Reserva Exitosa!</h4>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </tbody>
                     
