@@ -134,7 +134,7 @@
                     var html = '<tr>\
                                     <td>'+dato.nombre+'</td>\
                                     <td>'+dato.profesor_nombre_apellido+'</td>\
-                                    <td>Martes - '+dato.fecha_profesor_actividad+'</td>\
+                                    <td>'+dato.fecha_profesor_actividad+'</td>\
                                     <td>'+dato.horario_desde_profesor_actividad+' a '+dato.horario_hasta_profesor_actividad+'</td>\
                                     <td>'+dato.cupo+'</td>\
                                     <td>\

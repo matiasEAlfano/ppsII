@@ -1,4 +1,4 @@
-    <?php session_start(); print_r($_SESSION); //unset($_SESSION["tempUser"])?>
+    <?php session_start(); //print_r($_SESSION); //unset($_SESSION["tempUser"])?>
 <!doctype html>
 <html class="no-js" lang="">
     <head>

@@ -1,66 +1,83 @@
 <?php
-    function getConnection(){
-        $mysqli = new mysqli("localhost", "root", "admin", "atleticus");
-        if( $mysqli->connect_errno ){
-            die("Error al intentar establecer la conexión con MySQL");
-        }else{
-            $mysqli->query("SET NAMES 'utf8'");
-            return $mysqli;
-        }
-    }
+require("connection.php");
 
-    function getTipo($tipoId){
-        $c = getConnection();
-        $id = (int) $c->real_escape_string($tipoId);
-        $query = "SELECT id, descripcion FROM `actividad-tipo` WHERE id = $id";
-        $result = $c->query($query);
-        return $result->fetch_assoc();
+class ActividadTipo
+{
+    private $connection;
+    
+    public function __construct(){
+        $this->connection = Connection::getInstance();
     }
+    
 
-    function getTipos(){
-        $c = getConnection();
-        $query = "SELECT id, descripcion FROM `actividad-tipo`
-                order by descripcion";
-        $tipos = array();
-        if( $result = $c->query($query) ){
+    function getTipo($request){
+        $id = $request->id;
+        $query = "SELECT id, 
+                        descripcion 
+                    FROM `actividad-tipo` 
+                    WHERE id = $id";
+        
+        if($datos = $this->connection->query($query)){
+            return $datos->fetch_assoc();   
+        }       
+        
+    }
+    
+    public function getAll(){
+        $query = "SELECT id, 
+                        descripcion 
+                        FROM `actividad-tipo`
+                        ORDER BY descripcion";
+        
+        $datos = array();
+        
+        if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
-                $tipos[] = $fila;
+                $datos[] = $fila;
             }
             $result->free();
         }
-        return $tipos;
+        return $datos;
     }
 
-    function createTipo($tipo){
-        $c = getConnection();
-        $descripcion = $c->real_escape_string($tipo['descripcion']);
+
+    function createTipo($request){
+        $descripcion = $request->descripcion;
         $query = "INSERT INTO `actividad-tipo` VALUES (
                     DEFAULT,
                     '$descripcion')";
-        if($c->query($query)){
-            $tipo['id'] = $c->insert_id;
-            return $tipo;
+        
+        if($this->connection->query($query)){
+            return true;
         }else{
-            echo $c->error;
+            echo $this->error;
         }
     }
 
-    function updateTipo($tipo){
-        $c = getConnection();
-        $id = (int) $c->real_escape_string($tipo['id']);
-        $descripcion = $c->real_escape_string($tipo['descripcion']);
+    function actualizar($request){
+        $id = $request->id;
+        $descripcion = $request->descripcion;
         $query = "UPDATE `actividad-tipo` SET
                     descripcion = '$descripcion'
                   WHERE id = $id";
-        return $c->query($query);
+        
+        if($this->connection->query($query)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
-    function removeTipo($tipoId){
-        $c = getConnection();
-        $id = (int) $c->real_escape_string($tipoId);
+    function eliminar($request){
+        $id = $request->id;
         $query = "DELETE FROM `actividad-tipo`
-                  WHERE id = $tipoId";
-        return $c->query($query);
+                  WHERE id = $id";
+        
+        if($this->connection->query($query)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
-?>
+}

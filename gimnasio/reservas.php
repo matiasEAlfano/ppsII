@@ -42,8 +42,8 @@ if($_POST){
                         </div>
 
                         <div class="col-md-3 col-fecha">
-                            <label>Fecha: </label>
-                            <input type="fecha" class="form-control">
+                            <!--<label>Fecha: </label>
+                            <input type="fecha" class="form-control">-->
                         </div>
 
                         <div class="col-md-3 col-buscar">
